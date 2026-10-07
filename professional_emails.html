@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Professional Emails - SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: white;
+            background:
+                radial-gradient(circle at top left, #163b5c 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #123d35 0%, transparent 35%),
+                linear-gradient(135deg, #06101c, #0b1d2d, #06101c);
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 24px 0 60px;
+        }
+
+        /* TOP BAR */
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .topbar button {
+            border: none;
+            color: white;
+            padding: 11px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12) !important;
+        }
+
+        .profile-btn {
+            background: #2563eb;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #b9c8d7;
+            line-height: 1.6;
+        }
+
+        .progress-box {
+            margin-top: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #d7e3ee;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #182b3d;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #22c55e;
+            transition: .3s;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255, 255, 255, .06);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .stat span {
+            color: #9fb1c1;
+            font-size: 13px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 22px;
+            margin-top: 5px;
+        }
+
+        /* LESSONS */
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .lesson {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 20px;
+            padding: 21px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .lesson:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .10);
+        }
+
+        .lesson h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .lesson p {
+            color: #b3c3d1;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: #26384a;
+            color: #dce8f2;
+            font-size: 12px;
+        }
+
+        .badge.completed {
+            background: #166534;
+            color: #dcfce7;
+        }
+
+        /* AI BOX */
+
+        .ai-box {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 25px;
+        }
+
+        .ai-box h2 {
+            margin-bottom: 8px;
+        }
+
+        .ai-box>p {
+            color: #aebdca;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #dce7f0;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #344b60;
+            background: #091827;
+            color: white;
+            padding: 13px;
+            border-radius: 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .generate-btn {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .generate-btn:hover {
+            background: #16a34a;
+        }
+
+        /* RESULT */
+
+        .email-result {
+            display: none;
+            margin-top: 24px;
+            background: #071522;
+            border: 1px solid #2b4358;
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .email-result h3 {
+            margin-bottom: 15px;
+        }
+
+        .subject {
+            background: #10263a;
+            padding: 13px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+        }
+
+        .email-body {
+            white-space: pre-wrap;
+            background: #0b1b2a;
+            padding: 18px;
+            border-radius: 12px;
+            line-height: 1.7;
+            color: #dbe7ef;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .action-buttons button {
+            border: none;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #2563eb;
+        }
+
+        .action-buttons button:nth-child(2) {
+            background: #7c3aed;
+        }
+
+        .action-buttons button:nth-child(3) {
+            background: #475569;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .78);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow: auto;
+            background: #091827;
+            border: 1px solid #30475b;
+            border-radius: 22px;
+            padding: 25px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #c2d0dc;
+            line-height: 1.7;
+            margin-bottom: 13px;
+        }
+
+        .example {
+            background: #10283d;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 15px 0;
+        }
+
+        .example p {
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .modal-buttons button {
+            border: none;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #2563eb;
+        }
+
+        .modal-buttons .complete {
+            background: #22c55e;
+        }
+
+        .modal-buttons .close {
+            background: #475569;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:600px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .ai-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <button class="back-btn" onclick="goBack()">
+                ← Jobs
+            </button>
+
+            <button class="profile-btn" onclick="goProfile()">
+                Profile
+            </button>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <h1>✉️ Professional Emails</h1>
+
+            <p>
+                Learn how to write professional emails for jobs,
+                HR, interviews and workplace communication.
+            </p>
+
+
+            <div class="progress-box">
+
+                <div class="progress-info">
+
+                    <span>Course Progress</span>
+
+                    <span id="progressText">0%</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill" id="progressFill"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span>XP</span>
+
+                    <strong id="xpValue">0</strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Coins</span>
+
+                    <strong id="coinValue">0</strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Emails Created</span>
+
+                    <strong id="emailCount">0</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LESSONS -->
+
+        <div class="lesson-grid">
+
+
+            <div class="lesson" onclick="openLesson(0)">
+
+                <h3>📩 Job Application Email</h3>
+
+                <p>
+                    Learn how to apply for a job professionally
+                    through email.
+                </p>
+
+                <span class="badge" id="badge0">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(1)">
+
+                <h3>👨‍💼 Email to HR</h3>
+
+                <p>
+                    Learn how to contact HR about
+                    job opportunities.
+                </p>
+
+                <span class="badge" id="badge1">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(2)">
+
+                <h3>📅 Interview Follow-up</h3>
+
+                <p>
+                    Learn how to send a professional
+                    follow-up after an interview.
+                </p>
+
+                <span class="badge" id="badge2">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(3)">
+
+                <h3>🙏 Thank You Email</h3>
+
+                <p>
+                    Learn how to thank HR or a
+                    manager professionally.
+                </p>
+
+                <span class="badge" id="badge3">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(4)">
+
+                <h3>📝 Leave / Request Email</h3>
+
+                <p>
+                    Learn how to make professional
+                    workplace requests.
+                </p>
+
+                <span class="badge" id="badge4">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- AI EMAIL GENERATOR -->
+
+        <div class="ai-box">
+
+            <h2>🤖 AI Email Generator</h2>
+
+            <p>
+                Tell SpeakMate AI what you want to write
+                and create a professional email.
+            </p>
+
+
+            <div class="form-group">
+
+                <label>Email Type</label>
+
+                <select id="emailType">
+
+                    <option value="job">
+                        Job Application
+                    </option>
+
+                    <option value="hr">
+                        Email to HR
+                    </option>
+
+                    <option value="interview">
+                        Interview Follow-up
+                    </option>
+
+                    <option value="thankyou">
+                        Thank You Email
+                    </option>
+
+                    <option value="leave">
+                        Leave / Request
+                    </option>
+
+                    <option value="custom">
+                        Custom Email
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    What do you want to say?
+                </label>
+
+                <textarea id="situation"
+                    placeholder="Example: I want to apply for a Sales Executive job and send my resume to HR."></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Name (optional)
+                </label>
+
+                <input id="recipientName" placeholder="Example: Rahul Sharma">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Your Name
+                </label>
+
+                <input id="senderName" placeholder="Example: Manish">
+
+            </div>
+
+
+            <button class="generate-btn" onclick="generateEmail()">
+                ✨ Generate Professional Email
+            </button>
+
+
+            <div class="email-result" id="emailResult">
+
+                <h3>
+                    📧 Your Professional Email
+                </h3>
+
+
+                <div class="subject">
+
+                    <strong>Subject:</strong>
+
+                    <span id="generatedSubject"></span>
+
+                </div>
+
+
+                <div class="email-body" id="generatedBody"></div>
+
+
+                <div class="action-buttons">
+
+                    <button onclick="copyEmail()">
+                        📋 Copy
+                    </button>
+
+                    <button onclick="listenEmail()">
+                        🔊 Listen
+                    </button>
+
+                    <button onclick="newEmail()">
+                        ✨ New Email
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LESSON MODAL -->
+
+    <div class="modal" id="lessonModal">
+
+        <div class="modal-content">
+
+            <h2 id="lessonTitle"></h2>
+
+            <p id="lessonDescription"></p>
+
+
+            <div class="example">
+
+                <strong>Example:</strong>
+
+                <p id="lessonExample"></p>
+
+            </div>
+
+
+            <p>
+                <strong>Meaning:</strong>
+            </p>
+
+            <p id="lessonMeaning"></p>
+
+
+            <div class="modal-buttons">
+
+                <button onclick="listenLesson()">
+                    🔊 Listen
+                </button>
+
+                <button class="complete" onclick="completeLesson()">
+                    ✅ Complete Lesson
+                </button>
+
+                <button class="close" onclick="closeLesson()">
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /*
+        ==================================================
+        IMPORTANT
+        ==================================================
+        
+        New progress key is used.
+        
+        Old:
+        emailLessonsCompleted
+        
+        New:
+        professionalEmailLessonsV2
+        
+        This prevents old saved completion data
+        from incorrectly showing lessons as completed.
+        */
+
+        const PROGRESS_KEY =
+            "professionalEmailLessonsV2";
+
+
+        const lessons = [
+
+            {
+                title: "📩 Job Application Email",
+
+                description:
+                    "Use this email when you want to apply for a job and send your resume to a company.",
+
+                example:
+                    `Subject: Application for Sales Executive Position
+
+Dear Hiring Manager,
+
+I am writing to express my interest in the Sales Executive position at your organization.
+
+I am interested in building my career in sales and believe that my communication skills, willingness to learn, and positive attitude would allow me to contribute effectively to your team.
+
+Please find my resume attached for your consideration. I would appreciate the opportunity to discuss my application and learn more about the position.
+
+Thank you for your time and consideration.
+
+Kind regards,
+Your Name
+Phone Number
+Email Address`,
+
+                meaning:
+                    "This is a professional email for applying for a job and sending your resume."
+            },
+
+
+            {
+                title: "👨‍💼 Email to HR",
+
+                description:
+                    "Use this email when you want to ask HR about available job opportunities.",
+
+                example:
+                    `Subject: Inquiry About Sales Job Opportunities
+
+Dear HR Manager,
+
+I hope you are doing well.
+
+I am writing to inquire about any available Sales Executive opportunities at your organization.
+
+I am interested in building my career in sales and would be grateful if you could let me know about any suitable openings.
+
+Please find my resume attached for your consideration.
+
+Thank you for your time.
+
+Kind regards,
+Your Name
+Phone Number
+Email Address`,
+
+                meaning:
+                    "This email politely asks HR whether there is a suitable job opening."
+            },
+
+
+            {
+                title: "📅 Interview Follow-up",
+
+                description:
+                    "Send this email after an interview to thank the interviewer and show your continued interest.",
+
+                example:
+                    `Subject: Thank You for the Interview
+
+Dear Hiring Manager,
+
+Thank you for taking the time to interview me for the Sales Executive position.
+
+I enjoyed learning more about the role and your organization. I remain very interested in the opportunity and look forward to hearing from you.
+
+Please let me know if you need any additional information from me.
+
+Kind regards,
+Your Name`,
+
+                meaning:
+                    "This email shows professionalism and continued interest after an interview."
+            },
+
+
+            {
+                title: "🙏 Thank You Email",
+
+                description:
+                    "Use this email to professionally thank HR, a manager or interviewer.",
+
+                example:
+                    `Subject: Thank You
+
+Dear Hiring Manager,
+
+Thank you for your time and consideration.
+
+I appreciate the opportunity to discuss the position with you. I enjoyed our conversation and learning more about your organization.
+
+Thank you again for your consideration.
+
+Kind regards,
+Your Name`,
+
+                meaning:
+                    "A short professional message used to show appreciation."
+            },
+
+
+            {
+                title: "📝 Leave / Request Email",
+
+                description:
+                    "Use this format when you need to request leave or make a professional workplace request.",
+
+                example:
+                    `Subject: Leave Request
+
+Dear Manager,
+
+I would like to request leave from [Start Date] to [End Date] due to personal reasons.
+
+I will make sure that my pending work is completed or properly handed over before my leave.
+
+I kindly request you to approve my leave.
+
+Thank you for your understanding.
+
+Kind regards,
+Your Name`,
+
+                meaning:
+                    "This is a professional way to request leave from your manager."
+            }
+
+        ];
+
+
+        let currentLesson = 0;
+
+
+        /* ================================
+           GET COMPLETED LESSONS
+        ================================ */
+
+        function getCompletedLessons() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem(PROGRESS_KEY) || "[]"
+                );
+
+            } catch (error) {
+
+                return [];
+
+            }
+        }
+
+
+        /* ================================
+           OPEN LESSON
+        ================================ */
+
+        function openLesson(index) {
+
+            currentLesson = index;
+
+            const lesson =
+                lessons[index];
+
+
+            document.getElementById(
+                "lessonTitle"
+            ).innerText =
+                lesson.title;
+
+
+            document.getElementById(
+                "lessonDescription"
+            ).innerText =
+                lesson.description;
+
+
+            document.getElementById(
+                "lessonExample"
+            ).innerText =
+                lesson.example;
+
+
+            document.getElementById(
+                "lessonMeaning"
+            ).innerText =
+                lesson.meaning;
+
+
+            /*
+               IMPORTANT:
+        
+               Opening a lesson NEVER marks it
+               as completed.
+            */
+
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "flex";
+        }
+
+
+        /* ================================
+           CLOSE LESSON
+        ================================ */
+
+        function closeLesson() {
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "none";
+        }
+
+
+        /* ================================
+           LISTEN LESSON
+        ================================ */
+
+        function listenLesson() {
+
+            const text =
+                lessons[currentLesson].example;
+
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+
+                alert(
+                    "Speech is not supported in this browser."
+                );
+
+                return;
+            }
+
+
+            speechSynthesis.cancel();
+
+
+            const speech =
+                new SpeechSynthesisUtterance(text);
+
+
+            speech.lang = "en-US";
+
+            speech.rate = 0.9;
+
+
+            speechSynthesis.speak(speech);
+        }
+
+
+        /* ================================
+           COMPLETE LESSON
+        ================================ */
+
+        function completeLesson() {
+
+            let completed =
+                getCompletedLessons();
+
+
+            /*
+               If already completed:
+        
+               Do NOT give XP again.
+               Do NOT give coins again.
+               Lesson remains completed.
+            */
+
+            if (
+                completed.includes(currentLesson)
+            ) {
+
+                closeLesson();
+
+                updateProgress();
+
+                return;
+            }
+
+
+            /*
+               Only this button can mark
+               the lesson as completed.
+            */
+
+            completed.push(currentLesson);
+
+
+            localStorage.setItem(
+                PROGRESS_KEY,
+                JSON.stringify(completed)
+            );
+
+
+            /*
+               Reward only first completion.
+            */
+
+            addXP(10);
+
+            addCoins(5);
+
+
+            updateProgress();
+
+
+            closeLesson();
+
+
+            alert(
+                "🎉 Lesson completed!\n+10 XP\n+5 Coins"
+            );
+        }
+
+
+        /* ================================
+           XP
+        ================================ */
+
+        function addXP(amount) {
+
+            let xp =
+                Number(
+                    localStorage.getItem("xp") || 0
+                );
+
+
+            xp += amount;
+
+
+            localStorage.setItem(
+                "xp",
+                xp
+            );
+        }
+
+
+        /* ================================
+           COINS
+        ================================ */
+
+        function addCoins(amount) {
+
+            let coins =
+                Number(
+                    localStorage.getItem("coins") || 0
+                );
+
+
+            coins += amount;
+
+
+            localStorage.setItem(
+                "coins",
+                coins
+            );
+        }
+
+
+        /* ================================
+           EMAIL GENERATOR
+        ================================ */
+
+        function generateEmail() {
+
+            const type =
+                document.getElementById(
+                    "emailType"
+                ).value;
+
+
+            const situation =
+                document.getElementById(
+                    "situation"
+                ).value.trim();
+
+
+            const recipient =
+                document.getElementById(
+                    "recipientName"
+                ).value.trim();
+
+
+            const sender =
+                document.getElementById(
+                    "senderName"
+                ).value.trim()
+                || "Your Name";
+
+
+            let subject = "";
+
+            let body = "";
+
+
+            const greeting =
+                recipient
+                    ? `Dear ${recipient},`
+                    : "Dear Hiring Manager,";
+
+
+            /* JOB APPLICATION */
+
+            if (type === "job") {
+
+                subject =
+                    "Application for Sales Executive Position";
+
+
+                body =
+                    `${greeting}
+
+I am writing to express my interest in the Sales Executive position at your organization.
+
+I am interested in building my career in sales and believe that my communication skills, willingness to learn, and positive attitude would allow me to contribute effectively to your team.
+
+${situation ? cleanSituation(situation) + "\n\n" : ""}Please find my resume attached for your consideration. I would appreciate the opportunity to discuss my application and learn more about the position.
+
+Thank you for your time and consideration.
+
+Kind regards,
+${sender}`;
+
+
+            }
+
+
+            /* HR EMAIL */
+
+            else if (type === "hr") {
+
+                subject =
+                    "Inquiry About Sales Job Opportunities";
+
+
+                body =
+                    `${greeting}
+
+I hope you are doing well.
+
+I am writing to inquire about any available Sales Executive opportunities at your organization.
+
+I am interested in building my career in sales and would be grateful if you could let me know about any suitable openings.
+
+${situation ? cleanSituation(situation) + "\n\n" : ""}Please find my resume attached for your consideration.
+
+Thank you for your time.
+
+Kind regards,
+${sender}`;
+
+
+            }
+
+
+            /* INTERVIEW FOLLOW-UP */
+
+            else if (type === "interview") {
+
+                subject =
+                    "Thank You for the Interview";
+
+
+                body =
+                    `${greeting}
+
+Thank you for taking the time to interview me for the Sales Executive position.
+
+I enjoyed learning more about the role and your organization. I remain very interested in the opportunity and look forward to hearing from you.
+
+${situation ? cleanSituation(situation) + "\n\n" : ""}Please let me know if you need any additional information from me.
+
+Kind regards,
+${sender}`;
+
+
+            }
+
+
+            /* THANK YOU */
+
+            else if (type === "thankyou") {
+
+                subject =
+                    "Thank You";
+
+
+                body =
+                    `${greeting}
+
+Thank you for your time and consideration.
+
+I appreciate the opportunity to discuss the position with you. I enjoyed our conversation and learning more about your organization.
+
+${situation ? cleanSituation(situation) + "\n\n" : ""}Thank you again for your consideration.
+
+Kind regards,
+${sender}`;
+
+
+            }
+
+
+            /* LEAVE */
+
+            else if (type === "leave") {
+
+                subject =
+                    "Leave Request";
+
+
+                body =
+                    `${greeting}
+
+I would like to request leave due to personal reasons.
+
+${situation ? cleanSituation(situation) + "\n\n" : ""}I will make sure that my pending work is completed or properly handed over before my leave.
+
+I kindly request you to approve my leave.
+
+Thank you for your understanding.
+
+Kind regards,
+${sender}`;
+
+
+            }
+
+
+            /* CUSTOM */
+
+            else {
+
+                subject =
+                    "Professional Request";
+
+
+                body =
+                    `${greeting}
+
+I hope you are doing well.
+
+${situation
+                        ? cleanSituation(situation)
+                        : "I am writing to discuss an important matter with you."}
+
+I would appreciate your time and consideration regarding this matter.
+
+Please let me know if you need any additional information.
+
+Thank you for your time.
+
+Kind regards,
+${sender}`;
+
+            }
+
+
+            document.getElementById(
+                "generatedSubject"
+            ).innerText =
+                subject;
+
+
+            document.getElementById(
+                "generatedBody"
+            ).innerText =
+                body;
+
+
+            document.getElementById(
+                "emailResult"
+            ).style.display =
+                "block";
+
+
+            /*
+               Email generation is NOT lesson completion.
+               It only increases the email counter.
+            */
+
+            let count =
+                Number(
+                    localStorage.getItem(
+                        "emailGeneratedCount"
+                    ) || 0
+                );
+
+
+            count++;
+
+
+            localStorage.setItem(
+                "emailGeneratedCount",
+                count
+            );
+
+
+            updateStats();
+        }
+
+
+        /* ================================
+           CLEAN USER INPUT
+        ================================ */
+
+        function cleanSituation(text) {
+
+            let value =
+                text.trim();
+
+
+            /*
+               Remove common Hindi instructions
+               that should not appear inside
+               the professional email.
+            */
+
+            value =
+                value
+                    .replace(
+                        /HR ko email karna hai/gi,
+                        ""
+                    )
+                    .replace(
+                        /HR ko mail karna hai/gi,
+                        ""
+                    )
+                    .replace(
+                        /email karna hai/gi,
+                        ""
+                    )
+                    .replace(
+                        /email bhejna hai/gi,
+                        ""
+                    )
+                    .replace(
+                        /mujhe email karna hai/gi,
+                        ""
+                    )
+                    .trim();
+
+
+            /*
+               If user asks specifically about
+               a sales job, create a clean
+               professional sentence.
+            */
+
+            if (
+                /sales job/i.test(value) ||
+                /sales executive/i.test(value)
+            ) {
+
+                return "I am interested in applying for a Sales Executive position and would be grateful for the opportunity to be considered.";
+            }
+
+
+            if (value.length === 0) {
+
+                return "";
+            }
+
+
+            return value;
+        }
+
+
+        /* ================================
+           COPY EMAIL
+        ================================ */
+
+        function copyEmail() {
+
+            const subject =
+                document.getElementById(
+                    "generatedSubject"
+                ).innerText;
+
+
+            const body =
+                document.getElementById(
+                    "generatedBody"
+                ).innerText;
+
+
+            const text =
+                `Subject: ${subject}
+
+${body}`;
+
+
+            navigator.clipboard
+                .writeText(text)
+                .then(() => {
+
+                    alert(
+                        "✅ Email copied!"
+                    );
+
+                })
+                .catch(() => {
+
+                    alert(
+                        "Please copy the email manually."
+                    );
+
+                });
+        }
+
+
+        /* ================================
+           LISTEN EMAIL
+        ================================ */
+
+        function listenEmail() {
+
+            const subject =
+                document.getElementById(
+                    "generatedSubject"
+                ).innerText;
+
+
+            const body =
+                document.getElementById(
+                    "generatedBody"
+                ).innerText;
+
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+
+                alert(
+                    "Speech is not supported in this browser."
+                );
+
+                return;
+            }
+
+
+            speechSynthesis.cancel();
+
+
+            const speech =
+                new SpeechSynthesisUtterance(
+                    "Subject: " +
+                    subject +
+                    ". " +
+                    body
+                );
+
+
+            speech.lang =
+                "en-US";
+
+
+            speech.rate =
+                0.9;
+
+
+            speechSynthesis.speak(
+                speech
+            );
+        }
+
+
+        /* ================================
+           NEW EMAIL
+        ================================ */
+
+        function newEmail() {
+
+            document.getElementById(
+                "situation"
+            ).value = "";
+
+
+            document.getElementById(
+                "recipientName"
+            ).value = "";
+
+
+            document.getElementById(
+                "senderName"
+            ).value = "";
+
+
+            document.getElementById(
+                "emailResult"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "situation"
+            ).focus();
+        }
+
+
+        /* ================================
+           UPDATE PROGRESS
+        ================================ */
+        /* =========================
+           PREMIUM ACCESS CHECK
+        ========================= */
+
+        function checkProfessionalEmailsPremium() {
+
+            const email = localStorage.getItem("userEmail");
+
+            const premiumKey = email
+                ? "premiumActive_" + email
+                : "premiumActive";
+
+            const isPremium =
+                localStorage.getItem(premiumKey) === "true";
+
+            if (isPremium) {
+                return true;
+            }
+
+            alert(
+                "👑 Professional Emails is a Premium feature.\n\n" +
+                "SpeakMate Premium activate karke unlock karein."
+            );
+
+            window.location.href = "premium.html";
+
+            return false;
+        }
+
+        if (!checkProfessionalEmailsPremium()) {
+            return;
+        }
+        function updateProgress() {
+
+            const completed =
+                getCompletedLessons();
+
+
+            const progress =
+                completed.length * 20;
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                progress + "%";
+
+
+            document.getElementById(
+                "progressText"
+            ).innerText =
+                progress + "%";
+
+
+            /*
+               Update only visual status.
+               It does NOT lock the lesson.
+            */
+
+            for (
+                let i = 0;
+                i < lessons.length;
+                i++
+            ) {
+
+                const badge =
+                    document.getElementById(
+                        "badge" + i
+                    );
+
+
+                if (
+                    completed.includes(i)
+                ) {
+
+                    badge.innerText =
+                        "✓ COMPLETED";
+
+
+                    badge.classList.add(
+                        "completed"
+                    );
+
+                } else {
+
+                    badge.innerText =
+                        "Start Lesson";
+
+
+                    badge.classList.remove(
+                        "completed"
+                    );
+                }
+            }
+
+
+            /*
+               Job page can use this status.
+            */
+
+            if (
+                completed.length === 5
+            ) {
+
+                localStorage.setItem(
+                    "professionalEmailsCompleted",
+                    "true"
+                );
+
+            } else {
+
+                localStorage.removeItem(
+                    "professionalEmailsCompleted"
+                );
+
+            }
+
+
+            updateStats();
+        }
+
+
+        /* ================================
+           UPDATE STATS
+        ================================ */
+
+        function updateStats() {
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                localStorage.getItem("xp") || 0;
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                localStorage.getItem("coins") || 0;
+
+
+            document.getElementById(
+                "emailCount"
+            ).innerText =
+                localStorage.getItem(
+                    "emailGeneratedCount"
+                ) || 0;
+        }
+
+
+        /* ================================
+           NAVIGATION
+        ================================ */
+
+        function goBack() {
+
+            window.location.href =
+                "job.html";
+        }
+
+
+        function goProfile() {
+
+            window.location.href =
+                "profile.html";
+        }
+
+
+        /* ================================
+           START
+        ================================ */
+        /* =========================
+           PREMIUM ACCESS CHECK
+        ========================= */
+
+        function checkProfessionalEmailsPremium() {
+
+            const email = localStorage.getItem("userEmail");
+
+            const premiumKey = email
+                ? "premiumActive_" + email
+                : "premiumActive";
+
+            const isPremium =
+                localStorage.getItem(premiumKey) === "true";
+
+            if (isPremium) {
+                return;
+            }
+
+            alert(
+                "👑 Professional Emails is a Premium feature.\n\n" +
+                "SpeakMate Premium activate karke unlock karein."
+            );
+
+            window.location.href = "premium.html";
+        }
+
+        checkProfessionalEmailsPremium();
+        updateProgress();
+
+    </script>
+
+</body>
+
+</html>

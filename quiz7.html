@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 7 - Shopping English | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 20px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .progress-area {
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        progress {
+            width: 100%;
+            height: 18px;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: #1f2937;
+            color: white;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #38bdf8;
+            transform: translateY(-1px);
+        }
+
+        .option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .next-btn,
+        .result-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover,
+        .result-btn:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .score {
+            font-size: 42px;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .reward {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 14px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+        }
+
+        .review-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .review-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🛍️ Quiz 7</h1>
+
+        <p class="subtitle">
+            Shopping English
+        </p>
+
+        <div class="progress-area">
+            <div class="progress-text">
+                <span id="progressText">Question 1 of 10</span>
+                <span id="scoreText">Score: 0</span>
+            </div>
+
+            <progress id="progressBar" value="1" max="10"></progress>
+        </div>
+
+        <div id="quizArea"></div>
+
+        <div id="result" class="result">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="score" id="finalScore">0/10</div>
+
+            <p id="resultMessage"></p>
+
+            <div id="rewardBox" class="reward"></div>
+
+            <button class="review-btn" onclick="location.href='lesson7.html'">
+                📖 Review Lesson 7
+            </button>
+
+            <button class="review-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="result-btn" onclick="restartQuiz()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<span>Home</span></a>
+        <a href="course.html">📚<span>Course</span></a>
+        <a href="chat.html">🤖<span>AI</span></a>
+        <a href="profile.html">👤<span>Profile</span></a>
+    </div>
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "How do you ask the price of something?",
+                options: [
+                    "How much is this?",
+                    "How many is this?",
+                    "How price this?",
+                    "What money this?"
+                ],
+                answer: 0,
+                explanation: "How much is this? is the natural way to ask the price."
+            },
+
+            {
+                question: "What does 'discount' mean?",
+                options: [
+                    "Extra charge",
+                    "Price reduction",
+                    "Product size",
+                    "Product color"
+                ],
+                answer: 1,
+                explanation: "A discount means a reduction in the original price."
+            },
+
+            {
+                question: "Which sentence is correct when asking for a larger size?",
+                options: [
+                    "Give me large size.",
+                    "Do you have this in a larger size?",
+                    "You have large?",
+                    "This larger size give?"
+                ],
+                answer: 1,
+                explanation: "Do you have this in a larger size? is a polite and natural sentence."
+            },
+
+            {
+                question: "What does 'I will take it' mean while shopping?",
+                options: [
+                    "I will leave the shop.",
+                    "I will buy it.",
+                    "I will return it.",
+                    "I will clean it."
+                ],
+                answer: 1,
+                explanation: "I will take it means that you have decided to buy the item."
+            },
+
+            {
+                question: "Which sentence asks whether you can pay using a card?",
+                options: [
+                    "Can I pay by card?",
+                    "Can I card this?",
+                    "Do I card pay?",
+                    "Can card give me?"
+                ],
+                answer: 0,
+                explanation: "Can I pay by card? is the correct sentence."
+            },
+
+            {
+                question: "What does 'I am just looking' mean in a shop?",
+                options: [
+                    "I am ready to buy everything.",
+                    "I am only browsing.",
+                    "I want a discount.",
+                    "I want to leave immediately."
+                ],
+                answer: 1,
+                explanation: "I am just looking means you are browsing and are not necessarily ready to buy."
+            },
+
+            {
+                question: "Which sentence is a polite way to ask for a lower price?",
+                options: [
+                    "Make cheap.",
+                    "Give low money.",
+                    "Can you give me a discount?",
+                    "Price down now."
+                ],
+                answer: 2,
+                explanation: "Can you give me a discount? is a polite way to ask for a lower price."
+            },
+
+            {
+                question: "If a shirt costs ₹800, which sentence is correct?",
+                options: [
+                    "The shirt is eight hundred rupees.",
+                    "The shirt have eight hundred.",
+                    "The shirt price are eight hundred.",
+                    "The shirt costs eight hundreds rupees."
+                ],
+                answer: 0,
+                explanation: "The shirt is eight hundred rupees is a natural way to state its price."
+            },
+
+            {
+                question: "Which sentence asks for a different color?",
+                options: [
+                    "Do you have this in blue?",
+                    "Do you blue this?",
+                    "Can blue give this?",
+                    "Have color blue?"
+                ],
+                answer: 0,
+                explanation: "Do you have this in blue? correctly asks whether the item is available in blue."
+            },
+
+            {
+                question: "True or False: 'Can I try this on?' is commonly used when asking to wear a clothing item before buying it.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                answer: 0,
+                explanation: "Can I try this on? is commonly used when asking to try on clothing."
+            }
+
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("progressText").textContent =
+                "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+            document.getElementById("scoreText").textContent =
+                "Score: " + score;
+
+            document.getElementById("progressBar").value =
+                currentQuestion + 1;
+
+            let html = `
+        <div class="question-box">
+
+          <div class="question-number">
+            Question ${currentQuestion + 1}
+          </div>
+
+          <div class="question">
+            ${q.question}
+          </div>
+      `;
+
+            q.options.forEach((option, index) => {
+
+                html += `
+          <button
+            class="option"
+            onclick="selectAnswer(${index})"
+            id="option${index}">
+            ${String.fromCharCode(65 + index)}. ${option}
+          </button>
+        `;
+
+            });
+
+            html += `
+          <div id="feedback" class="feedback" style="display:none;"></div>
+
+          <button
+            id="nextButton"
+            class="next-btn"
+            onclick="nextQuestion()"
+            style="display:none;">
+            ${currentQuestion === questions.length - 1
+                    ? "🏁 Finish Quiz"
+                    : "➡️ Next Question"}
+          </button>
+
+        </div>
+      `;
+
+            document.getElementById("quizArea").innerHTML = html;
+        }
+
+
+        function selectAnswer(selectedIndex) {
+
+            if (answered) {
+                return;
+            }
+
+            answered = true;
+
+            const q = questions[currentQuestion];
+
+            const options = document.querySelectorAll(".option");
+
+            options.forEach((button, index) => {
+
+                button.disabled = true;
+
+                if (index === q.answer) {
+                    button.classList.add("correct");
+                }
+
+                if (index === selectedIndex && selectedIndex !== q.answer) {
+                    button.classList.add("wrong");
+                }
+
+            });
+
+            if (selectedIndex === q.answer) {
+                score++;
+            }
+
+            document.getElementById("scoreText").textContent =
+                "Score: " + score;
+
+            const feedback = document.getElementById("feedback");
+
+            if (selectedIndex === q.answer) {
+
+                feedback.innerHTML =
+                    "✅ Correct! " + q.explanation;
+
+            } else {
+
+                feedback.innerHTML =
+                    "❌ Not quite. " + q.explanation;
+
+            }
+
+            feedback.style.display = "block";
+
+            document.getElementById("nextButton").style.display =
+                "block";
+        }
+
+
+        function nextQuestion() {
+
+            if (!answered) {
+                return;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quizArea").style.display =
+                "none";
+
+            document.getElementById("result").style.display =
+                "block";
+
+            document.getElementById("progressText").textContent =
+                "Quiz Complete";
+
+            document.getElementById("progressBar").value =
+                questions.length;
+
+            document.getElementById("finalScore").textContent =
+                score + "/" + questions.length;
+
+            let message = "";
+
+            if (score >= 9) {
+
+                message =
+                    "🏆 Excellent! Your Shopping English is very strong.";
+
+            } else if (score >= 7) {
+
+                message =
+                    "👏 Great job! Keep practicing your shopping conversations.";
+
+            } else if (score >= 5) {
+
+                message =
+                    "👍 Good effort! Review Lesson 7 once more.";
+
+            } else {
+
+                message =
+                    "📖 Keep practicing. Review Lesson 7 and try again.";
+
+            }
+
+            document.getElementById("resultMessage").textContent =
+                message;
+
+
+            const rewardBox =
+                document.getElementById("rewardBox");
+
+
+            if (score >= 5) {
+
+                const alreadyCompleted =
+                    localStorage.getItem("quiz7Completed") === "true";
+
+                if (!alreadyCompleted) {
+
+                    let xp =
+                        Number(localStorage.getItem("xp") || 0);
+
+                    let coins =
+                        Number(localStorage.getItem("coins") || 0);
+
+                    xp += 20;
+                    coins += 10;
+
+                    localStorage.setItem("xp", xp);
+                    localStorage.setItem("coins", coins);
+
+                    localStorage.setItem(
+                        "quiz7Completed",
+                        "true"
+                    );
+
+                    rewardBox.innerHTML = `
+            🎁 <b>Quiz Reward</b><br><br>
+            ⭐ +20 XP<br>
+            🪙 +10 Coins
+          `;
+
+                } else {
+
+                    rewardBox.innerHTML = `
+            ✅ Quiz 7 already completed.<br>
+            Your reward was already collected.
+          `;
+
+                }
+
+            } else {
+
+                rewardBox.innerHTML = `
+          ❌ Score 5 or more is required to earn the reward.<br><br>
+          Review Lesson 7 and try again!
+        `;
+
+            }
+
+        }
+
+
+        function restartQuiz() {
+
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+
+            document.getElementById("quizArea").style.display =
+                "block";
+
+            document.getElementById("result").style.display =
+                "none";
+
+            loadQuestion();
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>

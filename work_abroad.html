@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpeakMate AI - Work Abroad</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #164e63 0%, transparent 34%),
+                radial-gradient(circle at bottom right, #4c1d95 0%, transparent 35%),
+                linear-gradient(135deg, #06111e, #0b1728 55%, #111827);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            border: none;
+            color: #fff;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            padding: 11px 16px;
+            cursor: pointer;
+        }
+
+        .brand {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .hero {
+            padding: 28px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            backdrop-filter: blur(14px);
+            margin-bottom: 22px;
+        }
+
+        .hero-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 31px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #b8c5d5;
+            line-height: 1.65;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 15px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #9eacbe;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin: 27px 0 14px;
+        }
+
+        .section-subtitle {
+            color: #91a1b5;
+            font-size: 14px;
+            margin-top: -7px;
+            margin-bottom: 15px;
+        }
+
+        /* COUNTRIES */
+
+        .countries {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .country {
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            cursor: pointer;
+            transition: .2s;
+            min-height: 185px;
+        }
+
+        .country:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(125, 211, 252, .35);
+        }
+
+        .country:active {
+            transform: scale(.98);
+        }
+
+        .country-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .country h3 {
+            margin-bottom: 7px;
+            font-size: 19px;
+        }
+
+        .country p {
+            color: #aab8c9;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .country-open {
+            display: inline-block;
+            margin-top: 13px;
+            padding: 7px 10px;
+            border-radius: 9px;
+            font-size: 11px;
+            color: #bae6fd;
+            background: rgba(14, 165, 233, .12);
+        }
+
+        /* COUNTRY SCREEN */
+
+        .country-screen {
+            display: none;
+        }
+
+        .country-header {
+            padding: 25px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            margin-bottom: 20px;
+        }
+
+        .country-title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .country-big-flag {
+            font-size: 58px;
+        }
+
+        .country-header h1 {
+            font-size: 29px;
+        }
+
+        .country-header p {
+            color: #aebdce;
+            line-height: 1.6;
+            margin-top: 7px;
+        }
+
+        .country-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            border: none;
+            color: #fff;
+            padding: 12px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        /* TOPIC CARDS */
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .topic-card {
+            padding: 22px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .1);
+            border-color: rgba(125, 211, 252, .35);
+        }
+
+        .topic-card:active {
+            transform: scale(.98);
+        }
+
+        .topic-icon {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .topic-card h3 {
+            font-size: 19px;
+            margin-bottom: 7px;
+        }
+
+        .topic-card p {
+            color: #aab8c9;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .topic-open {
+            display: inline-block;
+            margin-top: 13px;
+            color: #93c5fd;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* AI */
+
+        .ai-card {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 23px;
+            background:
+                linear-gradient(135deg,
+                    rgba(14, 165, 233, .14),
+                    rgba(124, 58, 237, .16));
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .ai-icon {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .ai-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .ai-card p {
+            color: #b8c5d5;
+            line-height: 1.6;
+        }
+
+        .ai-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, .78);
+            padding: 18px;
+            overflow: auto;
+        }
+
+        .modal-box {
+            max-width: 680px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 24px;
+            background: #101c2d;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .close {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 11px;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .modal-subtitle {
+            color: #8fa1b5;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .info-box {
+            margin-top: 18px;
+            padding: 17px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .info-box h4 {
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #c0ccda;
+            line-height: 1.65;
+        }
+
+        .listen-btn {
+            margin-top: 12px;
+            border: none;
+            color: #93c5fd;
+            background: rgba(59, 130, 246, .13);
+            padding: 9px 13px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .practice-title {
+            margin-top: 21px;
+            margin-bottom: 8px;
+        }
+
+        .practice-question {
+            color: #d3deea;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 115px;
+            resize: vertical;
+            padding: 14px;
+            border-radius: 14px;
+            outline: none;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            font-size: 15px;
+        }
+
+        textarea::placeholder {
+            color: #77879b;
+        }
+
+        .actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .2);
+            color: #c6d3df;
+            line-height: 1.6;
+        }
+
+        .tip-box {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(245, 158, 11, .08);
+            border: 1px solid rgba(245, 158, 11, .15);
+            color: #d9c9a9;
+            line-height: 1.5;
+        }
+
+        @media(max-width:700px) {
+
+            .container {
+                padding: 14px;
+            }
+
+            .hero {
+                padding: 21px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .countries {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .country-title-row {
+                align-items: flex-start;
+            }
+
+        }
+
+        @media(max-width:430px) {
+
+            .countries {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <button class="back-btn" onclick="goHome()">
+                ← Home
+            </button>
+
+            <div class="brand">
+                🌍 SpeakMate AI
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+     MAIN SCREEN
+===================================================== -->
+
+        <div id="mainScreen">
+
+            <div class="hero">
+
+                <div class="hero-icon">
+                    🌍
+                </div>
+
+                <h1>
+                    Work Abroad
+                </h1>
+
+                <p>
+                    Prepare for working in another country.
+                    Choose your destination and practice
+                    real workplace English, interviews,
+                    customer communication and daily work situations.
+                </p>
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        <div class="stat-value" id="selectedCountryValue">
+                            🌎
+                        </div>
+
+                        <div class="stat-label">
+                            Destination
+                        </div>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <div class="stat-value" id="practiceCount">
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            Practices
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h2 class="section-title">
+                🌎 Choose Your Destination
+            </h2>
+
+            <p class="section-subtitle">
+                Touch any country to open its complete practice area.
+            </p>
+
+
+            <div class="countries">
+
+                <div class="country" onclick="openCountry('AE')">
+                    <div class="country-icon">🇦🇪</div>
+
+                    <h3>UAE</h3>
+
+                    <p>
+                        Practice workplace, interview,
+                        customer and daily English.
+                    </p>
+
+                    <span class="country-open">
+                        Open UAE →
+                    </span>
+                </div>
+
+
+                <div class="country" onclick="openCountry('CA')">
+                    <div class="country-icon">🇨🇦</div>
+
+                    <h3>Canada</h3>
+
+                    <p>
+                        Build confidence for jobs,
+                        interviews and workplace communication.
+                    </p>
+
+                    <span class="country-open">
+                        Open Canada →
+                    </span>
+                </div>
+
+
+                <div class="country" onclick="openCountry('AU')">
+                    <div class="country-icon">🇦🇺</div>
+
+                    <h3>Australia</h3>
+
+                    <p>
+                        Practice practical English for
+                        international workplaces.
+                    </p>
+
+                    <span class="country-open">
+                        Open Australia →
+                    </span>
+                </div>
+
+
+                <div class="country" onclick="openCountry('GB')">
+                    <div class="country-icon">🇬🇧</div>
+
+                    <h3>UK</h3>
+
+                    <p>
+                        Improve professional communication
+                        for international jobs.
+                    </p>
+
+                    <span class="country-open">
+                        Open UK →
+                    </span>
+                </div>
+
+
+                <div class="country" onclick="openCountry('DE')">
+                    <div class="country-icon">🇩🇪</div>
+
+                    <h3>Germany</h3>
+
+                    <p>
+                        Practice workplace and
+                        professional English.
+                    </p>
+
+                    <span class="country-open">
+                        Open Germany →
+                    </span>
+                </div>
+
+
+                <div class="country" onclick="openCountry('US')">
+                    <div class="country-icon">🇺🇸</div>
+
+                    <h3>USA</h3>
+
+                    <p>
+                        Prepare for interviews,
+                        workplace and customer conversations.
+                    </p>
+
+                    <span class="country-open">
+                        Open USA →
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="ai-card">
+
+                <div class="ai-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    AI Work Abroad Coach
+                </h2>
+
+                <p>
+                    Practice international workplace conversations
+                    and interviews with SpeakMate AI.
+                </p>
+
+                <div class="ai-buttons">
+
+                    <button class="primary-btn" onclick="startGeneralAI()">
+                        🎤 Start AI Practice
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+     COUNTRY SCREEN
+===================================================== -->
+
+        <div id="countryScreen" class="country-screen">
+
+            <div class="country-header">
+
+                <div class="country-title-row">
+
+                    <div class="country-big-flag" id="countryFlag">
+                        🇦🇪
+                    </div>
+
+                    <div>
+
+                        <h1 id="countryName">
+                            UAE
+                        </h1>
+
+                        <p id="countryIntro">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="country-actions">
+
+                    <button class="primary-btn" onclick="startCountryAI()">
+                        🤖 Practice With AI
+                    </button>
+
+                    <button class="secondary-btn" onclick="showCountries()">
+                        ← All Countries
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <h2 class="section-title">
+                🎯 Practice for <span id="countryPracticeName"></span>
+            </h2>
+
+            <p class="section-subtitle">
+                Choose what you want to practice.
+            </p>
+
+
+            <div class="topic-grid">
+
+
+                <!-- WORKPLACE -->
+
+                <div class="topic-card" onclick="openTopic('workplace')">
+
+                    <div class="topic-icon">
+                        💬
+                    </div>
+
+                    <h3>
+                        Workplace English
+                    </h3>
+
+                    <p id="workplaceDescription">
+                    </p>
+
+                    <span class="topic-open">
+                        Start Practice →
+                    </span>
+
+                </div>
+
+
+                <!-- INTERVIEW -->
+
+                <div class="topic-card" onclick="openTopic('interview')">
+
+                    <div class="topic-icon">
+                        🎤
+                    </div>
+
+                    <h3>
+                        Interview Practice
+                    </h3>
+
+                    <p id="interviewDescription">
+                    </p>
+
+                    <span class="topic-open">
+                        Start Practice →
+                    </span>
+
+                </div>
+
+
+                <!-- CUSTOMER -->
+
+                <div class="topic-card" onclick="openTopic('customer')">
+
+                    <div class="topic-icon">
+                        🤝
+                    </div>
+
+                    <h3>
+                        Customer Communication
+                    </h3>
+
+                    <p id="customerDescription">
+                    </p>
+
+                    <span class="topic-open">
+                        Start Practice →
+                    </span>
+
+                </div>
+
+
+                <!-- DAILY -->
+
+                <div class="topic-card" onclick="openTopic('daily')">
+
+                    <div class="topic-icon">
+                        🏢
+                    </div>
+
+                    <h3>
+                        Daily Workplace
+                    </h3>
+
+                    <p id="dailyDescription">
+                    </p>
+
+                    <span class="topic-open">
+                        Start Practice →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-card">
+
+                <div class="ai-icon">
+                    🌍🤖
+                </div>
+
+                <h2>
+                    <span id="aiCountryName">
+                        Country
+                    </span>
+                    AI Coach
+                </h2>
+
+                <p>
+                    Practice realistic conversations for
+                    your selected destination.
+                </p>
+
+                <div class="ai-buttons">
+
+                    <button class="primary-btn" onclick="startCountryAI()">
+                        🎤 Start Country Roleplay
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+     PRACTICE MODAL
+===================================================== -->
+
+    <div class="modal" id="practiceModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modalTitle">
+                        Practice
+                    </h2>
+
+                    <div class="modal-subtitle" id="modalSubtitle"></div>
+
+                </div>
+
+                <button class="close" onclick="closeModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    🌍 Destination
+                </h4>
+
+                <p id="modalCountry">
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    💡 Situation
+                </h4>
+
+                <p id="situationText">
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h4>
+                    💬 Useful English
+                </h4>
+
+                <p id="exampleText">
+                </p>
+
+                <button class="listen-btn" onclick="listenExample()">
+                    🔊 Listen
+                </button>
+
+            </div>
+
+
+            <div class="practice-title">
+
+                <h3>
+                    🎙️ Your Practice
+                </h3>
+
+            </div>
+
+
+            <div class="practice-question" id="practiceQuestion">
+            </div>
+
+
+            <textarea id="answerInput" placeholder="Type your answer in English..."></textarea>
+
+
+            <div class="actions">
+
+                <button class="primary-btn" onclick="checkAnswer()">
+                    ✓ Check Answer
+                </button>
+
+                <button class="secondary-btn" onclick="startVoice()">
+                    🎙️ Speak
+                </button>
+
+                <button class="secondary-btn" onclick="clearAnswer()">
+                    Clear
+                </button>
+
+                <button class="primary-btn" id="nextQuestionBtn" onclick="nextQuestion()" style="display:none;">
+                    ➡️ Next Question
+                </button>
+
+            </div>
+
+
+            <div class="feedback" id="feedbackBox">
+            </div>
+
+
+            <div class="tip-box">
+
+                💡 <strong>Speaking Tip:</strong>
+                Speak slowly, use simple sentences,
+                and focus on communicating clearly.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================================================
+           COUNTRY DATA
+        ========================================================= */
+
+        const countries = {
+
+            AE: {
+                flag: "🇦🇪",
+                name: "UAE",
+
+                intro:
+                    "Prepare for professional communication in an international workplace environment.",
+
+                workplace:
+                    "Practice communication with managers, colleagues and customers in a professional workplace.",
+
+                interview:
+                    "Practice self-introduction, skills, experience and common job interview questions.",
+
+                customer:
+                    "Practice polite customer greetings, product explanations and customer problem solving.",
+
+                daily:
+                    "Practice asking for help, discussing tasks, schedules and communicating with coworkers."
+            },
+
+
+            CA: {
+                flag: "🇨🇦",
+                name: "Canada",
+
+                intro:
+                    "Build confidence for professional communication, interviews and everyday workplace situations.",
+
+                workplace:
+                    "Practice teamwork, meetings, workplace requests and professional conversations.",
+
+                interview:
+                    "Practice answers about your experience, skills, strengths and career goals.",
+
+                customer:
+                    "Practice friendly and professional customer conversations and clear explanations.",
+
+                daily:
+                    "Practice workplace introductions, asking questions, teamwork and professional small talk."
+            },
+
+
+            AU: {
+                flag: "🇦🇺",
+                name: "Australia",
+
+                intro:
+                    "Practice practical English for international workplaces and everyday professional communication.",
+
+                workplace:
+                    "Practice talking with coworkers, managers and customers in common workplace situations.",
+
+                interview:
+                    "Practice confident self-introductions, skills, experience and career goals.",
+
+                customer:
+                    "Practice friendly customer conversations and handling questions professionally.",
+
+                daily:
+                    "Practice everyday workplace conversations, asking for assistance and communicating clearly."
+            },
+
+
+            GB: {
+                flag: "🇬🇧",
+                name: "UK",
+
+                intro:
+                    "Build professional English confidence for workplace communication and international job interviews.",
+
+                workplace:
+                    "Practice polite workplace communication, meetings, requests and conversations with colleagues.",
+
+                interview:
+                    "Practice structured answers about your experience, skills, strengths and motivation.",
+
+                customer:
+                    "Practice polite greetings, understanding customer needs and providing clear responses.",
+
+                daily:
+                    "Practice introductions, workplace requests, teamwork and everyday professional conversations."
+            },
+
+
+            DE: {
+                flag: "🇩🇪",
+                name: "Germany",
+
+                intro:
+                    "Practice international workplace English for professional communication and job situations.",
+
+                workplace:
+                    "Practice clear and structured communication with managers, colleagues and customers.",
+
+                interview:
+                    "Practice professional self-introductions, experience, skills and motivation.",
+
+                customer:
+                    "Practice explaining products, understanding customer needs and responding professionally.",
+
+                daily:
+                    "Practice asking questions, discussing tasks and communicating with your team."
+            },
+
+
+            US: {
+                flag: "🇺🇸",
+                name: "USA",
+
+                intro:
+                    "Prepare for professional conversations, interviews and workplace communication.",
+
+                workplace:
+                    "Practice workplace conversations, meetings, requests and communication with managers and coworkers.",
+
+                interview:
+                    "Practice confident answers about experience, skills, strengths and career goals.",
+
+                customer:
+                    "Practice customer greetings, product explanations and professional problem solving.",
+
+                daily:
+                    "Practice introductions, asking for help, teamwork and everyday workplace conversations."
+            }
+
+        };
+
+
+        /* =========================================================
+           TOPIC DATA
+        ========================================================= */
+
+        const topicData = {
+
+            workplace: {
+
+                title: "💬 Workplace English",
+
+                subtitle: "Professional workplace conversation",
+
+                questions: [
+                    {
+                        situation: "You are working in a company abroad. Your manager asks you about today's work and you need to respond clearly.",
+                        example: "Good morning. My work is going well. I have completed the first task and I am currently working on the next one.",
+                        question: "Your manager asks: 'How is your work going today?' How would you answer?",
+                        keywords: ["work", "going", "completed", "working", "task", "progress", "today"]
+                    },
+                    {
+                        situation: "Your manager gives you a new task and expects a professional response.",
+                        example: "Thank you for assigning me this task. I will make sure I understand the requirements and complete it on time.",
+                        question: "Your manager gives you a new task. How would you respond professionally?",
+                        keywords: ["thank", "task", "assignment", "complete", "finish", "deadline", "understand", "requirement", "will"]
+                    },
+                    {
+                        situation: "You are working with a colleague on an important task.",
+                        example: "I think we can work on this together. Please let me know how I can help.",
+                        question: "How would you speak professionally with a colleague about working together?",
+                        keywords: ["colleague", "team", "together", "work", "help", "project", "please"]
+                    },
+                    {
+                        situation: "You do not understand part of your work and need assistance from a colleague or manager.",
+                        example: "Excuse me, could you please help me understand this task? I want to make sure I do it correctly.",
+                        question: "You need help with a task. How would you ask for help professionally?",
+                        keywords: ["help", "please", "could", "understand", "assist", "task", "correctly"]
+                    },
+                    {
+                        situation: "A customer needs help and you must respond politely and professionally.",
+                        example: "Good morning. I'd be happy to help you. Could you please tell me what you need?",
+                        question: "A customer asks for help. How would you respond professionally?",
+                        keywords: ["customer", "help", "please", "understand", "problem", "service", "happy"]
+                    }
+                ]
+            },
+
+
+            interview: {
+
+                title: "🎤 Interview Practice",
+
+                subtitle: "Unlimited international job interview practice",
+
+                questions: [
+                    { situation: "The interviewer asks you to introduce yourself.", example: "My name is Manish. I am interested in building my career in sales. I have good communication skills and I enjoy interacting with people.", question: "Tell me about yourself.", keywords: ["name", "career", "experience", "skills", "communication", "work", "interested"] },
+                    { situation: "The interviewer wants to understand your background.", example: "I have experience in sales and I enjoy working with customers. I have developed my communication and problem-solving skills through my work.", question: "Tell me about your work experience.", keywords: ["experience", "work", "sales", "job", "customers", "skills"] },
+                    { situation: "The interviewer asks about your strengths.", example: "My strengths are good communication, patience, a positive attitude, and willingness to learn.", question: "What are your strengths?", keywords: ["strength", "communication", "patience", "positive", "learn", "hardworking"] },
+                    { situation: "The interviewer asks about an area you want to improve.", example: "I am working on improving my confidence when speaking English, and I practice regularly.", question: "What is one weakness you are working to improve?", keywords: ["weakness", "improve", "learning", "practice", "confidence", "english"] },
+                    { situation: "The company wants to know why you applied.", example: "I am interested in this position because it matches my skills and gives me an opportunity to grow professionally.", question: "Why do you want this job?", keywords: ["job", "position", "skills", "career", "grow", "interested"] },
+                    { situation: "The interviewer asks why you should be selected.", example: "I have good communication skills, I am hardworking, and I am willing to learn and take responsibility.", question: "Why should we hire you?", keywords: ["hire", "skills", "communication", "hardworking", "learn", "responsibility"] },
+                    { situation: "The interviewer asks about teamwork.", example: "I enjoy working with a team. I listen to others, share ideas, and help the team complete its goals.", question: "How do you work in a team?", keywords: ["team", "work", "listen", "help", "ideas", "together"] },
+                    { situation: "The interviewer asks about difficult customers.", example: "I would stay calm, listen carefully, understand the customer's concern, and try to find a suitable solution.", question: "How would you handle a difficult customer?", keywords: ["customer", "calm", "listen", "problem", "solution", "concern"] },
+                    { situation: "The interviewer asks how you handle rejection in sales.", example: "I would not take rejection personally. I would learn from it, improve my approach, and continue speaking with other customers.", question: "How would you handle customer rejection?", keywords: ["rejection", "customer", "learn", "improve", "sales", "positive"] },
+                    { situation: "The interviewer asks how you sell a product.", example: "I would first understand the customer's needs and then explain the benefits of the product honestly.", question: "How would you convince a customer to buy a product?", keywords: ["customer", "product", "needs", "benefits", "sell", "explain"] },
+                    { situation: "The interviewer asks about an expensive product.", example: "I would understand the customer's concern and explain the value and benefits of the product without pressuring them.", question: "How would you handle a customer who says a product is too expensive?", keywords: ["customer", "expensive", "price", "value", "benefits", "budget"] },
+                    { situation: "The interviewer asks about your goals.", example: "I want to improve my sales and communication skills, take on more responsibility, and grow professionally.", question: "What are your career goals?", keywords: ["career", "goals", "skills", "sales", "grow", "responsibility"] },
+                    { situation: "The interviewer asks about pressure at work.", example: "I stay organized, prioritize important tasks, and remain calm so I can complete my work on time.", question: "How do you handle work pressure?", keywords: ["pressure", "work", "calm", "tasks", "priority", "time"] },
+                    { situation: "The interviewer asks about learning new skills.", example: "I am willing to learn new skills. I practice regularly, ask questions, and use feedback to improve.", question: "How do you learn new skills?", keywords: ["learn", "skills", "practice", "questions", "feedback", "improve"] },
+                    { situation: "The interviewer asks about mistakes at work.", example: "I take responsibility for my mistakes, understand what went wrong, and make sure I do better next time.", question: "How do you handle a mistake at work?", keywords: ["mistake", "responsibility", "learn", "improve", "work", "next"] },
+                    { situation: "The interviewer asks about customer service.", example: "Good customer service means listening carefully, understanding the customer's needs, and providing a polite and useful solution.", question: "What does good customer service mean to you?", keywords: ["customer", "service", "listen", "needs", "solution", "polite"] },
+                    { situation: "The interviewer asks about communication.", example: "Good communication means listening carefully, speaking clearly, and making sure the other person understands.", question: "What makes someone a good communicator?", keywords: ["communication", "listen", "clearly", "understand", "speak", "skills"] },
+                    { situation: "The interviewer asks about a busy day.", example: "I make a list of priorities, focus on one task at a time, and communicate if I need support.", question: "How do you organize a busy workday?", keywords: ["organize", "busy", "priority", "task", "work", "support"] },
+                    { situation: "The interviewer asks what motivates you.", example: "I am motivated by learning new things, helping customers, achieving goals, and improving my skills.", question: "What motivates you at work?", keywords: ["motivate", "learning", "customers", "goals", "skills", "work"] },
+                    { situation: "The interviewer asks if you have questions.", example: "Yes, I would like to know more about the role, the team, and the opportunities for professional growth.", question: "Do you have any questions for us?", keywords: ["questions", "role", "team", "growth", "opportunity", "position"] }
+                ]
+            },
+
+
+            customer: {
+
+                title: "🤝 Customer Communication",
+                subtitle: "Unlimited professional customer conversation",
+
+                questions: [
+                    { situation: "A customer approaches you for help.", example: "Good morning. I'd be happy to help you. How can I assist you today?", question: "How would you greet a customer professionally?", keywords: ["customer", "help", "assist", "today", "please", "good"] },
+                    { situation: "A customer asks about a product.", example: "Certainly. I can explain the main features and benefits of this product.", question: "How would you explain a product to a customer?", keywords: ["product", "explain", "features", "benefits", "customer"] },
+                    { situation: "A customer is not sure which product to choose.", example: "I'd be happy to help. Could you tell me what you are looking for?", question: "How would you understand a customer's needs?", keywords: ["customer", "needs", "help", "looking", "understand", "product"] },
+                    { situation: "A customer has a problem with a product.", example: "I'm sorry to hear that. Let me understand the problem and see how I can help.", question: "How would you respond to a customer with a problem?", keywords: ["sorry", "problem", "help", "understand", "customer", "solution"] },
+                    { situation: "A customer is unhappy with the service.", example: "I understand your concern. I'm sorry for the inconvenience, and I will do my best to help.", question: "How would you handle an unhappy customer?", keywords: ["customer", "understand", "concern", "sorry", "help", "service"] },
+                    { situation: "A customer asks for the price.", example: "The price is 50 dollars. I can also explain what is included.", question: "How would you tell a customer the price professionally?", keywords: ["price", "customer", "dollars", "cost", "included"] },
+                    { situation: "A customer asks for more information.", example: "Of course. Let me give you some more information about the product.", question: "How would you provide more information to a customer?", keywords: ["information", "customer", "product", "explain", "provide"] },
+                    { situation: "A customer asks whether a product is available.", example: "Yes, this product is currently available. I can check the available options for you.", question: "How would you answer a customer asking about availability?", keywords: ["available", "product", "customer", "check", "options"] },
+                    { situation: "A customer wants to return a product.", example: "Certainly. I can explain our return policy and help you with the process.", question: "How would you help a customer with a return?", keywords: ["return", "customer", "policy", "help", "process"] },
+                    { situation: "A customer asks when an order will arrive.", example: "Let me check the delivery status for you. I will give you the latest information.", question: "How would you respond to a customer asking about delivery?", keywords: ["delivery", "order", "customer", "check", "arrive", "information"] },
+                    { situation: "A customer does not understand your explanation.", example: "No problem. Let me explain it again in a simpler way.", question: "What would you say if a customer does not understand you?", keywords: ["explain", "understand", "again", "customer", "simple"] },
+                    { situation: "A customer asks you to repeat information.", example: "Of course. I'll repeat the information for you.", question: "How would you respond if a customer asks you to repeat something?", keywords: ["repeat", "customer", "information", "course"] },
+                    { situation: "A customer needs help choosing between two options.", example: "I can explain the differences and help you choose the option that best fits your needs.", question: "How would you help a customer compare two products?", keywords: ["compare", "customer", "options", "differences", "needs", "choose"] },
+                    { situation: "A customer thanks you for your help.", example: "You're very welcome. Please let me know if you need anything else.", question: "How would you respond when a customer thanks you?", keywords: ["welcome", "customer", "help", "anything", "else", "thank"] },
+                    { situation: "A customer asks for a recommendation.", example: "Based on what you need, I would recommend this option because it offers good value.", question: "How would you recommend a product to a customer?", keywords: ["recommend", "customer", "needs", "option", "value", "product"] },
+                    { situation: "A customer is waiting for assistance.", example: "Thank you for waiting. I'm ready to help you now.", question: "What would you say to a customer who has been waiting?", keywords: ["thank", "waiting", "customer", "help", "now"] },
+                    { situation: "You need time to check a customer's request.", example: "Let me check that for you. I'll get back to you with the correct information.", question: "How would you ask a customer for a moment while you check something?", keywords: ["check", "customer", "moment", "information", "correct"] },
+                    { situation: "A customer asks for something that is unavailable.", example: "I'm sorry, that option is currently unavailable. Let me see if there is a suitable alternative.", question: "How would you tell a customer that something is unavailable?", keywords: ["sorry", "unavailable", "customer", "alternative", "option"] },
+                    { situation: "A customer has a question you cannot answer immediately.", example: "Let me confirm that information and get back to you as soon as possible.", question: "What would you say if you need to check an answer before responding?", keywords: ["confirm", "information", "customer", "check", "answer"] },
+                    { situation: "You are finishing a customer conversation.", example: "Thank you for contacting us. Please feel free to contact us again if you need any further help.", question: "How would you close a customer conversation professionally?", keywords: ["thank", "contact", "help", "again", "customer"] }
+                ]
+            },
+
+
+            daily: {
+
+                title: "🏢 Daily Workplace",
+                subtitle: "Unlimited everyday workplace communication",
+
+                questions: [
+                    { situation: "You are new at a company and need to find a meeting room.", example: "Excuse me, could you please tell me where the meeting room is?", question: "How would you ask a colleague where the meeting room is?", keywords: ["excuse", "please", "meeting", "room", "where", "tell"] },
+                    { situation: "You arrive at work and see a colleague.", example: "Good morning. How are you today?", question: "How would you greet a colleague at work?", keywords: ["good", "morning", "colleague", "today", "hello"] },
+                    { situation: "You need help with your computer.", example: "Could you please help me with this computer issue?", question: "How would you ask a colleague for help with a computer problem?", keywords: ["help", "computer", "problem", "please", "issue", "could"] },
+                    { situation: "You are running late for work.", example: "I'm sorry I'm late. There was a delay on the way to work.", question: "What would you say if you arrive late at work?", keywords: ["sorry", "late", "work", "delay", "arrive"] },
+                    { situation: "You need to take a short break.", example: "I'm going to take a short break. I'll be back in a few minutes.", question: "How would you tell your colleague that you are taking a short break?", keywords: ["break", "short", "back", "minutes", "colleague"] },
+                    { situation: "You need to confirm the time of a meeting.", example: "Could you please confirm what time the meeting starts?", question: "How would you ask about the meeting time?", keywords: ["meeting", "time", "confirm", "starts", "please"] },
+                    { situation: "You did not hear what your colleague said.", example: "Sorry, could you please repeat that?", question: "What would you say if you did not hear your colleague clearly?", keywords: ["sorry", "repeat", "hear", "please", "clearly"] },
+                    { situation: "You want to join your colleagues for lunch.", example: "Are you going for lunch? May I join you?", question: "How would you politely ask to join colleagues for lunch?", keywords: ["lunch", "join", "colleagues", "please", "may"] },
+                    { situation: "You need to know where office supplies are kept.", example: "Could you please tell me where the office supplies are?", question: "How would you ask where office supplies are?", keywords: ["office", "supplies", "where", "please", "tell"] },
+                    { situation: "You have finished your task and need another task.", example: "I've finished my current task. Is there anything else I can work on?", question: "How would you ask your manager for another task?", keywords: ["finished", "task", "anything", "work", "manager"] },
+                    { situation: "You need to tell a colleague about a meeting.", example: "The meeting is scheduled for 10 a.m. in the main meeting room.", question: "How would you tell a colleague about a meeting?", keywords: ["meeting", "scheduled", "time", "room", "colleague"] },
+                    { situation: "You need to borrow a pen from a colleague.", example: "Excuse me, could I please borrow a pen for a moment?", question: "How would you politely ask a colleague to borrow something?", keywords: ["excuse", "please", "borrow", "pen", "could"] },
+                    { situation: "You need clarification about a workplace instruction.", example: "Could you please clarify what I need to do next?", question: "How would you ask for clarification about a task?", keywords: ["clarify", "please", "task", "need", "next"] },
+                    { situation: "You want to thank a colleague for helping you.", example: "Thank you for your help. I really appreciate it.", question: "How would you thank a colleague professionally?", keywords: ["thank", "help", "appreciate", "colleague"] },
+                    { situation: "You need to inform a colleague that you will be busy.", example: "I'm working on an important task right now. I'll speak with you when I'm finished.", question: "How would you tell a colleague that you are busy?", keywords: ["busy", "working", "task", "finished", "speak"] },
+                    { situation: "A colleague asks if you need help.", example: "Thank you. I think I'm okay for now, but I'll ask if I need any help.", question: "How would you respond when a colleague offers help?", keywords: ["thank", "help", "okay", "ask", "need"] },
+                    { situation: "You need to tell your colleague that you will be late to a meeting.", example: "I'm sorry, I may be a few minutes late for the meeting.", question: "How would you tell a colleague that you may be late for a meeting?", keywords: ["sorry", "late", "meeting", "minutes", "may"] },
+                    { situation: "You want to ask a colleague about their weekend.", example: "How was your weekend? Did you have a good time?", question: "How would you make polite small talk with a colleague?", keywords: ["weekend", "good", "colleague", "time"] },
+                    { situation: "You are leaving the office at the end of the day.", example: "Have a good evening. See you tomorrow.", question: "How would you say goodbye to your colleagues at the end of the day?", keywords: ["good", "evening", "tomorrow", "goodbye", "colleagues"] },
+                    { situation: "You want to check whether a colleague is available to talk.", example: "Do you have a moment to talk about the project?", question: "How would you politely ask a colleague if they are available?", keywords: ["moment", "talk", "project", "available", "please"] }
+                ]
+            }
+
+
+        };
+
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        let selectedCountryCode =
+            localStorage.getItem("workAbroadCountryCode") || "";
+
+        let currentTopic = "";
+
+        let currentQuestionIndex = 0;
+
+        let answerChecked = false;
+
+        let practiceCount =
+            Number(
+                localStorage.getItem("workAbroadPracticeCount") || 0
+            );
+
+
+        /* =========================================================
+           OPEN COUNTRY
+        ========================================================= */
+
+        function openCountry(code) {
+
+            const country = countries[code];
+
+            if (!country) {
+                return;
+            }
+
+            selectedCountryCode = code;
+
+            localStorage.setItem(
+                "workAbroadCountryCode",
+                code
+            );
+
+            localStorage.setItem(
+                "workAbroadCountry",
+                country.flag + " " + country.name
+            );
+
+            document.getElementById(
+                "mainScreen"
+            ).style.display = "none";
+
+            document.getElementById(
+                "countryScreen"
+            ).style.display = "block";
+
+            document.getElementById(
+                "selectedCountryValue"
+            ).innerText = country.flag;
+
+            document.getElementById(
+                "countryFlag"
+            ).innerText = country.flag;
+
+            document.getElementById(
+                "countryName"
+            ).innerText = country.name;
+
+            document.getElementById(
+                "countryPracticeName"
+            ).innerText = country.name;
+
+            document.getElementById(
+                "aiCountryName"
+            ).innerText = country.name;
+
+            document.getElementById(
+                "countryIntro"
+            ).innerText = country.intro;
+
+            document.getElementById(
+                "workplaceDescription"
+            ).innerText = country.workplace;
+
+            document.getElementById(
+                "interviewDescription"
+            ).innerText = country.interview;
+
+            document.getElementById(
+                "customerDescription"
+            ).innerText = country.customer;
+
+            document.getElementById(
+                "dailyDescription"
+            ).innerText = country.daily;
+        }
+
+
+        /* =========================================================
+           SHOW COUNTRIES
+        ========================================================= */
+
+        function showCountries() {
+
+            document.getElementById(
+                "countryScreen"
+            ).style.display = "none";
+
+            document.getElementById(
+                "mainScreen"
+            ).style.display = "block";
+        }
+
+
+        /* =========================================================
+           OPEN TOPIC
+        ========================================================= */
+
+        function openTopic(topic) {
+
+            const country = countries[selectedCountryCode];
+            const data = topicData[topic];
+
+            if (!country || !data) {
+                alert("Please select a country first.");
+                return;
+            }
+
+            currentTopic = topic;
+            currentQuestionIndex = 0;
+            answerChecked = false;
+
+            document.getElementById("modalTitle").innerText = data.title;
+            document.getElementById("modalSubtitle").innerText = data.subtitle;
+            document.getElementById("modalCountry").innerText = country.flag + " " + country.name;
+
+            loadPracticeQuestion();
+            document.getElementById("practiceModal").style.display = "block";
+        }
+
+
+        function loadPracticeQuestion() {
+
+            const data = topicData[currentTopic];
+            if (!data) return;
+
+            const questions = data.questions || [data];
+            const q = questions[currentQuestionIndex];
+            if (!q) return;
+
+            answerChecked = false;
+
+            document.getElementById("situationText").innerText = q.situation;
+            document.getElementById("exampleText").innerText = q.example;
+            const questionLabel = "Question " + (currentQuestionIndex + 1);
+
+            document.getElementById("practiceQuestion").innerText =
+                questionLabel + "\n\n" + q.question;
+            document.getElementById("answerInput").value = "";
+            document.getElementById("feedbackBox").style.display = "none";
+
+            const nextBtn = document.getElementById("nextQuestionBtn");
+            nextBtn.style.display = "none";
+            nextBtn.innerText = "➡️ Next Question";
+        }
+
+
+        function nextQuestion() {
+
+            if (!answerChecked) return;
+
+            const data = topicData[currentTopic];
+            const questions = data.questions || [data];
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex >= questions.length) {
+                currentQuestionIndex = 0;
+            }
+
+            loadPracticeQuestion();
+        }
+
+
+        /* =========================================================
+           CLOSE
+        ========================================================= */
+
+        function closeModal() {
+
+            document.getElementById(
+                "practiceModal"
+            ).style.display = "none";
+        }
+
+
+        /* =========================================================
+           LISTEN
+        ========================================================= */
+
+        function listenExample() {
+
+            const data = topicData[currentTopic];
+            if (!data) return;
+
+            const questions = data.questions || [data];
+            const q = questions[currentQuestionIndex];
+            if (!q) return;
+
+            if (!("speechSynthesis" in window)) {
+                alert("Speech is not supported in this browser.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+            const speech = new SpeechSynthesisUtterance(q.example);
+            speech.lang = "en-US";
+            speech.rate = 0.9;
+            speechSynthesis.speak(speech);
+        }
+
+
+        /* =========================================================
+           VOICE
+        ========================================================= */
+
+        function startVoice() {
+
+            const Recognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+            if (!Recognition) {
+
+                alert(
+                    "Voice recognition is not supported here. Please type your answer."
+                );
+
+                return;
+            }
+
+            const recognition =
+                new Recognition();
+
+            recognition.lang = "en-US";
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            const feedback =
+                document.getElementById(
+                    "feedbackBox"
+                );
+
+            recognition.onstart = function () {
+
+                feedback.style.display =
+                    "block";
+
+                feedback.innerText =
+                    "🎙️ Listening... Speak now.";
+            };
+
+            recognition.onresult =
+                function (event) {
+
+                    const transcript =
+                        event.results[0][0].transcript;
+
+                    document.getElementById(
+                        "answerInput"
+                    ).value =
+                        transcript;
+
+                    feedback.innerText =
+                        "✓ Answer captured. Now click Check Answer.";
+                };
+
+            recognition.onerror =
+                function () {
+
+                    feedback.style.display =
+                        "block";
+
+                    feedback.innerText =
+                        "⚠️ I couldn't hear you clearly. Please try again.";
+                };
+
+            recognition.start();
+        }
+
+
+        /* =========================================================
+           CHECK ANSWER
+        ========================================================= */
+
+        function checkAnswer() {
+
+            const answer =
+                document.getElementById(
+                    "answerInput"
+                ).value.trim();
+
+            const feedback =
+                document.getElementById(
+                    "feedbackBox"
+                );
+
+            if (!answer) {
+                feedback.style.display = "block";
+                feedback.innerText =
+                    "⚠️ Please type or speak your answer first.";
+                return;
+            }
+
+            const lowerAnswer = answer.toLowerCase();
+            const words = answer.split(/\s+/).filter(Boolean);
+            const data = topicData[currentTopic];
+            const questions = data.questions || [data];
+            const q = questions[currentQuestionIndex];
+            const question = q && q.question ? q.question.toLowerCase() : "";
+
+            let relevantWords = q && Array.isArray(q.keywords)
+                ? q.keywords
+                : [];
+
+            if (relevantWords.length === 0) {
+                relevantWords = ["please", "help", "work", "customer", "manager", "task", "team", "meeting", "thank", "understand"];
+            }
+
+            let matchedWords = 0;
+            relevantWords.forEach(function (word) {
+                if (lowerAnswer.includes(word)) matchedWords++;
+            });
+
+            const professionalWords = [
+                "please", "thank", "thanks", "sure", "certainly",
+                "appreciate", "understand", "complete", "deadline",
+                "priority", "assist", "would", "could", "hardworking",
+                "professional", "experience", "communication"
+            ];
+
+            let professionalScore = 0;
+            professionalWords.forEach(function (word) {
+                if (lowerAnswer.includes(word)) professionalScore++;
+            });
+
+            if (words.length < 4) {
+                feedback.style.display = "block";
+                feedback.innerText =
+                    "❌ Please try again.\n\n" +
+                    "Your answer is too short and does not clearly respond to the situation.\n\n" +
+                    "💡 Try using 2–4 complete professional sentences.";
+                return;
+            }
+
+            if (matchedWords === 0) {
+                feedback.style.display = "block";
+                feedback.innerText =
+                    "❌ Your answer does not clearly match the question.\n\n" +
+                    "Please answer the situation directly.\n\n" +
+                    "💡 Think about what you would actually say in this situation.";
+                return;
+            }
+
+            if (matchedWords <= 2) {
+                feedback.style.display = "block";
+                feedback.innerText =
+                    "⚠️ Good attempt, but your answer could be more relevant and professional.\n\n" +
+                    "Try to answer the situation directly and add a little more detail.\n\n" +
+                    "💡 Tip: Use polite professional English.";
+                return;
+            }
+
+            if (matchedWords >= 3 && (professionalScore < 1 || words.length < 7)) {
+                feedback.style.display = "block";
+                feedback.innerText =
+                    "⚠️ Your answer is relevant.\n\n" +
+                    "Try to make it more professional and complete.\n\n" +
+                    "💡 Tip: Add polite expressions and clear details.";
+                return;
+            }
+
+            feedback.style.display = "block";
+            feedback.innerText =
+                "✅ Good answer!\n\n" +
+                "Your response is relevant, clear, and professional.\n\n" +
+                "💡 Tip: Keep speaking naturally and confidently.";
+
+            answerChecked = true;
+
+            const nextBtn = document.getElementById("nextQuestionBtn");
+            nextBtn.style.display = "inline-block";
+            nextBtn.innerText = "➡️ Next Question";
+
+            practiceCount++;
+
+            localStorage.setItem(
+                "workAbroadPracticeCount",
+                practiceCount
+            );
+
+            document.getElementById(
+                "practiceCount"
+            ).innerText = practiceCount;
+        }
+
+        /* =========================================================
+           CLEAR
+        ========================================================= */
+
+        function clearAnswer() {
+
+            document.getElementById(
+                "answerInput"
+            ).value = "";
+
+            document.getElementById(
+                "feedbackBox"
+            ).style.display = "none";
+
+            answerChecked = false;
+            document.getElementById("nextQuestionBtn").style.display = "none";
+        }
+
+
+        /* =========================================================
+           COUNTRY AI
+        ========================================================= */
+
+        function startCountryAI() {
+
+            const country =
+                countries[selectedCountryCode];
+
+            if (!country) {
+
+                alert(
+                    "Please select a country first."
+                );
+
+                return;
+            }
+
+            localStorage.setItem(
+                "chatMode",
+                "Work Abroad Coach"
+            );
+
+            localStorage.setItem(
+                "workAbroadRoleplay",
+                "true"
+            );
+
+            localStorage.setItem(
+                "workAbroadCountryCode",
+                selectedCountryCode
+            );
+
+            localStorage.setItem(
+                "workAbroadCountry",
+                country.flag + " " + country.name
+            );
+
+            localStorage.setItem(
+                "workAbroadRoleplayIntro",
+                "I want to practice English for working in " +
+                country.name +
+                ". Act as my workplace interviewer or coworker. Ask me one question at a time and correct my English."
+            );
+
+            window.location.href =
+                "chat.html?abroad=1";
+        }
+
+
+        /* =========================================================
+           GENERAL AI
+        ========================================================= */
+
+        function startGeneralAI() {
+
+            localStorage.setItem(
+                "chatMode",
+                "Work Abroad Coach"
+            );
+
+            localStorage.setItem(
+                "workAbroadRoleplay",
+                "true"
+            );
+
+            localStorage.setItem(
+                "workAbroadRoleplayIntro",
+                "I want to practice English for working abroad. Start a realistic workplace conversation and ask me one question at a time."
+            );
+
+            window.location.href =
+                "chat.html?abroad=1";
+        }
+
+
+        /* =========================================================
+           HOME
+        ========================================================= */
+
+        function goHome() {
+
+            window.location.href =
+                "home_special.html";
+        }
+
+        /* =========================
+           PREMIUM ACCESS CHECK
+        ========================= */
+
+        function checkWorkAbroadPremium() {
+
+            const email = localStorage.getItem("userEmail");
+
+            const premiumKey = email
+                ? "premiumActive_" + email
+                : "premiumActive";
+
+            const isPremium =
+                localStorage.getItem(premiumKey) === "true";
+
+            if (isPremium) {
+                return true;
+            }
+
+            alert(
+                "👑 Work Abroad Practice is a Premium feature.\n\n" +
+                "SpeakMate Premium activate karke unlock karein."
+            );
+
+            window.location.href = "premium.html";
+
+            return false;
+        }
+
+        if (!checkWorkAbroadPremium()) {
+            // Premium page par redirect hoga
+        }
+        /* =========================================================
+           INIT
+        ========================================================= */
+
+        document.getElementById(
+            "practiceCount"
+        ).innerText =
+            practiceCount;
+
+
+        /* Restore selected country */
+
+        if (selectedCountryCode) {
+
+            if (countries[selectedCountryCode]) {
+
+                document.getElementById(
+                    "selectedCountryValue"
+                ).innerText =
+                    countries[selectedCountryCode].flag;
+            }
+        }
+
+
+        /* Close modal when clicking outside */
+
+        document.getElementById(
+            "practiceModal"
+        ).addEventListener(
+            "click",
+            function (event) {
+
+                if (event.target === this) {
+
+                    closeModal();
+                }
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

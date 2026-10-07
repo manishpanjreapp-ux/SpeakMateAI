@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpeakMate AI - Resume Builder</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #263d78 0%, transparent 34%),
+                radial-gradient(circle at bottom right, #49206c 0%, transparent 34%),
+                linear-gradient(135deg, #07111f, #111827, #080d18);
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding-bottom: 50px;
+        }
+
+        /* HEADER */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 16px 20px;
+            background: rgba(7, 13, 25, .9);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .headerLeft {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .backBtn {
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .headerText h1 {
+            font-size: 20px;
+        }
+
+        .headerText p {
+            margin-top: 3px;
+            color: #9caac0;
+            font-size: 11px;
+        }
+
+        .profileBtn {
+            padding: 9px 13px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 13px;
+            color: #fff;
+            background: rgba(255, 255, 255, .06);
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            margin: 20px;
+            padding: 25px;
+            border-radius: 22px;
+            background: linear-gradient(135deg,
+                    rgba(37, 99, 235, .16),
+                    rgba(124, 58, 237, .12));
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .heroIcon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #aab6c8;
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        /* PROGRESS */
+
+        .progressCard {
+            margin: 0 20px 20px;
+            padding: 15px 18px;
+            border-radius: 17px;
+            background: rgba(255, 255, 255, .055);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .progressTop {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+        }
+
+        .progressTop span {
+            color: #9caac0;
+            font-size: 12px;
+        }
+
+        .progressTop strong {
+            color: #67e8f9;
+            font-size: 12px;
+        }
+
+        .progressTrack {
+            height: 8px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .progressFill {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            transition: .4s;
+        }
+
+        /* LAYOUT */
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        /* CARD */
+
+        .card {
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .055);
+            border: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+        }
+
+        .card h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .cardDescription {
+            color: #8997ab;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-bottom: 17px;
+        }
+
+        /* FORM */
+
+        .formGroup {
+            margin-bottom: 15px;
+        }
+
+        .formGroup label {
+            display: block;
+            margin-bottom: 7px;
+            color: #c5cfdd;
+            font-size: 11px;
+        }
+
+        .formGroup input,
+        .formGroup textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            outline: none;
+            color: #fff;
+            background: rgba(255, 255, 255, .06);
+            padding: 12px;
+            font-size: 13px;
+        }
+
+        .formGroup textarea {
+            min-height: 105px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .formGroup input:focus,
+        .formGroup textarea:focus {
+            border-color: rgba(96, 165, 250, .6);
+        }
+
+        /* TWO INPUTS */
+
+        .twoColumns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* SKILLS */
+
+        .skillsBox {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 10px;
+        }
+
+        .skillTag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 10px;
+            border-radius: 20px;
+            background: rgba(37, 99, 235, .15);
+            border: 1px solid rgba(96, 165, 250, .2);
+            color: #bfdbfe;
+            font-size: 11px;
+        }
+
+        .skillTag button {
+            border: 0;
+            background: none;
+            color: #93c5fd;
+            cursor: pointer;
+        }
+
+        .skillAdd {
+            display: flex;
+            gap: 7px;
+        }
+
+        .skillAdd input {
+            flex: 1;
+        }
+
+        .smallBtn {
+            padding: 10px 13px;
+            border: 0;
+            border-radius: 11px;
+            color: #fff;
+            background: rgba(255, 255, 255, .1);
+            cursor: pointer;
+        }
+
+        /* AI OBJECTIVE */
+
+        .aiBox {
+            margin-top: 5px;
+            padding: 14px;
+            border-radius: 15px;
+            background: rgba(124, 58, 237, .09);
+            border: 1px solid rgba(167, 139, 250, .17);
+        }
+
+        .aiBoxTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 9px;
+        }
+
+        .aiBoxTitle strong {
+            font-size: 13px;
+        }
+
+        .aiBtn {
+            padding: 8px 11px;
+            border: 0;
+            border-radius: 10px;
+            color: #fff;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .aiResult {
+            display: none;
+            margin-top: 10px;
+            padding: 11px;
+            border-radius: 11px;
+            background: rgba(0, 0, 0, .18);
+            color: #dbeafe;
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        /* BUTTONS */
+
+        .actionButtons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .primaryBtn,
+        .secondaryBtn {
+            flex: 1;
+            min-width: 130px;
+            padding: 12px 14px;
+            border: 0;
+            border-radius: 12px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .primaryBtn {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .secondaryBtn {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        /* PREVIEW */
+
+        .previewCard {
+            min-height: 600px;
+        }
+
+        .previewHeader {
+            margin-bottom: 15px;
+        }
+
+        .previewHeader h3 {
+            margin-bottom: 4px;
+        }
+
+        .previewHeader p {
+            color: #8997ab;
+            font-size: 11px;
+        }
+
+        .resumePreview {
+            min-height: 520px;
+            padding: 25px;
+            border-radius: 14px;
+            background: #fff;
+            color: #182033;
+        }
+
+        .resumeName {
+            font-size: 27px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .resumeJob {
+            margin-top: 4px;
+            color: #4f46e5;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .contactLine {
+            margin-top: 8px;
+            color: #64748b;
+            font-size: 10px;
+            line-height: 1.6;
+        }
+
+        .previewDivider {
+            height: 1px;
+            margin: 17px 0;
+            background: #e2e8f0;
+        }
+
+        .resumeSection {
+            margin-bottom: 17px;
+        }
+
+        .resumeSection h4 {
+            margin-bottom: 7px;
+            color: #111827;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .resumeSection p {
+            color: #475569;
+            font-size: 10px;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .previewSkills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .previewSkill {
+            padding: 5px 8px;
+            border-radius: 5px;
+            color: #334155;
+            background: #e2e8f0;
+            font-size: 9px;
+        }
+
+        .emptyPreview {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* COMPLETE */
+
+        .completeBox {
+            display: none;
+            margin: 20px;
+            padding: 18px;
+            text-align: center;
+            border-radius: 18px;
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .2);
+        }
+
+        .completeBox h3 {
+            color: #86efac;
+            margin-bottom: 5px;
+        }
+
+        .completeBox p {
+            color: #a7f3d0;
+            font-size: 12px;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            padding: 11px 16px;
+            border-radius: 13px;
+            color: #fff;
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, .1);
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* PRINT */
+
+        @media print {
+
+            body {
+                background: #fff;
+            }
+
+            body * {
+                visibility: hidden;
+            }
+
+            .resumePreview,
+            .resumePreview * {
+                visibility: visible;
+            }
+
+            .resumePreview {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                min-height: auto;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:850px) {
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .previewCard {
+                min-height: auto;
+            }
+
+        }
+
+        @media(max-width:600px) {
+
+            .header {
+                padding: 13px 11px;
+            }
+
+            .headerText h1 {
+                font-size: 17px;
+            }
+
+            .profileBtn {
+                font-size: 10px;
+                padding: 8px 9px;
+            }
+
+            .hero {
+                margin: 13px;
+                padding: 19px;
+            }
+
+            .progressCard {
+                margin: 0 13px 15px;
+            }
+
+            .layout {
+                padding: 0 13px;
+            }
+
+            .twoColumns {
+                grid-template-columns: 1fr;
+            }
+
+            .resumePreview {
+                padding: 18px;
+            }
+
+            .resumeName {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="headerLeft">
+
+                <button class="backBtn" onclick="goBack()">
+                    ←
+                </button>
+
+                <div class="headerText">
+
+                    <h1>📄 Resume Builder</h1>
+
+                    <p>
+                        Create a professional English resume
+                    </p>
+
+                </div>
+
+            </div>
+
+            <button class="profileBtn" onclick="goProfile()">
+                👤 Profile
+            </button>
+
+        </header>
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="heroIcon">
+                📄
+            </div>
+
+            <h2>
+                Build Your Professional Resume
+            </h2>
+
+            <p>
+                Create a clean, professional resume in English.
+                Fill in your details and see your resume update
+                instantly on the right.
+            </p>
+
+        </section>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progressCard">
+
+            <div class="progressTop">
+
+                <span>
+                    Resume Progress
+                </span>
+
+                <strong id="progressText">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progressTrack">
+
+                <div class="progressFill" id="progressFill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN -->
+
+        <div class="layout">
+
+            <!-- LEFT -->
+
+            <div>
+
+                <!-- PERSONAL INFORMATION -->
+
+                <section class="card">
+
+                    <h3>
+                        👤 Personal Information
+                    </h3>
+
+                    <p class="cardDescription">
+                        Add the information employers need to contact you.
+                    </p>
+
+
+                    <div class="formGroup">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input id="fullName" type="text" placeholder="e.g. Rahul Sharma">
+
+                    </div>
+
+
+                    <div class="formGroup">
+
+                        <label>
+                            Job Title
+                        </label>
+
+                        <input id="jobTitle" type="text" placeholder="e.g. Sales Executive">
+
+                    </div>
+
+
+                    <div class="twoColumns">
+
+                        <div class="formGroup">
+
+                            <label>
+                                Phone
+                            </label>
+
+                            <input id="phone" type="text" placeholder="+91 9876543210">
+
+                        </div>
+
+
+                        <div class="formGroup">
+
+                            <label>
+                                Email
+                            </label>
+
+                            <input id="email" type="email" placeholder="you@email.com">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="twoColumns">
+
+                        <div class="formGroup">
+
+                            <label>
+                                Location
+                            </label>
+
+                            <input id="location" type="text" placeholder="City, Country">
+
+                        </div>
+
+
+                        <div class="formGroup">
+
+                            <label>
+                                LinkedIn
+                            </label>
+
+                            <input id="linkedin" type="text" placeholder="linkedin.com/in/yourname">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- OBJECTIVE -->
+
+                <section class="card">
+
+                    <h3>
+                        🎯 Career Objective
+                    </h3>
+
+                    <p class="cardDescription">
+                        Write a short professional introduction about your career goal.
+                    </p>
+
+
+                    <div class="formGroup">
+
+                        <textarea id="objective"
+                            placeholder="Example: Motivated professional seeking an opportunity to use my communication and teamwork skills..."></textarea>
+
+                    </div>
+
+
+                    <div class="aiBox">
+
+                        <div class="aiBoxTitle">
+
+                            <strong>
+                                🤖 Improve with AI-style suggestions
+                            </strong>
+
+                            <button class="aiBtn" onclick="improveObjective()">
+                                Improve
+                            </button>
+
+                        </div>
+
+                        <div class="aiResult" id="aiResult">
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- EDUCATION -->
+
+                <section class="card">
+
+                    <h3>
+                        🎓 Education
+                    </h3>
+
+                    <p class="cardDescription">
+                        Add your latest qualification.
+                    </p>
+
+
+                    <div class="formGroup">
+
+                        <label>
+                            Degree / Qualification
+                        </label>
+
+                        <input id="education" type="text" placeholder="e.g. Bachelor of Commerce">
+
+                    </div>
+
+
+                    <div class="twoColumns">
+
+                        <div class="formGroup">
+
+                            <label>
+                                Institution
+                            </label>
+
+                            <input id="institution" type="text" placeholder="College / University">
+
+                        </div>
+
+
+                        <div class="formGroup">
+
+                            <label>
+                                Year
+                            </label>
+
+                            <input id="educationYear" type="text" placeholder="2024">
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- EXPERIENCE -->
+
+                <section class="card">
+
+                    <h3>
+                        💼 Work Experience
+                    </h3>
+
+                    <p class="cardDescription">
+                        Describe your previous work experience.
+                    </p>
+
+
+                    <div class="formGroup">
+
+                        <label>
+                            Job Position
+                        </label>
+
+                        <input id="experienceTitle" type="text" placeholder="e.g. Sales Associate">
+
+                    </div>
+
+
+                    <div class="twoColumns">
+
+                        <div class="formGroup">
+
+                            <label>
+                                Company
+                            </label>
+
+                            <input id="company" type="text" placeholder="Company Name">
+
+                        </div>
+
+
+                        <div class="formGroup">
+
+                            <label>
+                                Duration
+                            </label>
+
+                            <input id="duration" type="text" placeholder="2022 - 2025">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="formGroup">
+
+                        <label>
+                            Responsibilities
+                        </label>
+
+                        <textarea id="experience" placeholder="Example:
+Handled customers
+Managed daily sales
+Worked with team members"></textarea>
+
+                    </div>
+
+                </section>
+
+
+                <!-- SKILLS -->
+
+                <section class="card">
+
+                    <h3>
+                        ⭐ Skills
+                    </h3>
+
+                    <p class="cardDescription">
+                        Add skills relevant to the job you want.
+                    </p>
+
+
+                    <div class="skillsBox" id="skillsBox">
+                    </div>
+
+
+                    <div class="skillAdd">
+
+                        <input id="skillInput" type="text" placeholder="e.g. Communication">
+
+                        <button class="smallBtn" onclick="addSkill()">
+                            + Add
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ACTIONS -->
+
+                <section class="card">
+
+                    <h3>
+                        🚀 Finish Resume
+                    </h3>
+
+                    <p class="cardDescription">
+                        Save your resume or print it as a PDF.
+                    </p>
+
+
+                    <div class="actionButtons">
+
+                        <button class="primaryBtn" onclick="saveResume()">
+                            💾 Save Resume
+                        </button>
+
+                        <button class="secondaryBtn" onclick="printResume()">
+                            📄 Print / PDF
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div>
+
+                <section class="card previewCard">
+
+                    <div class="previewHeader">
+
+                        <h3>
+                            👀 Live Resume Preview
+                        </h3>
+
+                        <p>
+                            Your resume updates automatically.
+                        </p>
+
+                    </div>
+
+
+                    <div class="resumePreview" id="resumePreview">
+
+                        <div class="resumeName">
+                            Your Name
+                        </div>
+
+                        <div class="resumeJob">
+                            Your Job Title
+                        </div>
+
+                        <div class="contactLine">
+                            Phone • Email • Location
+                        </div>
+
+
+                        <div class="previewDivider">
+                        </div>
+
+
+                        <div class="resumeSection">
+
+                            <h4>
+                                Professional Summary
+                            </h4>
+
+                            <p id="previewObjective" class="emptyPreview">
+                                Your professional summary will appear here.
+                            </p>
+
+                        </div>
+
+
+                        <div class="resumeSection">
+
+                            <h4>
+                                Experience
+                            </h4>
+
+                            <p id="previewExperience" class="emptyPreview">
+                                Your work experience will appear here.
+                            </p>
+
+                        </div>
+
+
+                        <div class="resumeSection">
+
+                            <h4>
+                                Education
+                            </h4>
+
+                            <p id="previewEducation" class="emptyPreview">
+                                Your education will appear here.
+                            </p>
+
+                        </div>
+
+
+                        <div class="resumeSection">
+
+                            <h4>
+                                Skills
+                            </h4>
+
+                            <div class="previewSkills" id="previewSkills">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPLETE -->
+
+        <div class="completeBox" id="completeBox">
+
+            <h3>
+                🎉 Resume Completed!
+            </h3>
+
+            <p>
+                Great job! Your Resume English module is complete.
+                Your Job Progress has been updated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="toast" id="toast">
+    </div>
+
+
+    <script>
+
+        /* ==========================================
+           SPEAKMATE AI - RESUME BUILDER
+        ========================================== */
+
+
+        /* INPUT IDS */
+
+        const fields = [
+            "fullName",
+            "jobTitle",
+            "phone",
+            "email",
+            "location",
+            "linkedin",
+            "objective",
+            "education",
+            "institution",
+            "educationYear",
+            "experienceTitle",
+            "company",
+            "duration",
+            "experience"
+        ];
+
+
+        /* ==========================================
+           LOAD DATA
+        ========================================== */
+
+        function loadResume() {
+
+            let data = {};
+
+            try {
+
+                data =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "speakmateResume"
+                        ) || "{}"
+                    );
+
+            } catch (error) {
+
+                data = {};
+
+            }
+
+
+            fields.forEach(
+                id => {
+
+                    const element =
+                        document.getElementById(
+                            id
+                        );
+
+
+                    if (
+                        element &&
+                        data[id] !== undefined
+                    ) {
+
+                        element.value =
+                            data[id];
+
+                    }
+
+                }
+            );
+
+
+            let savedSkills = [];
+
+            try {
+
+                savedSkills =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "resumeSkills"
+                        ) || "[]"
+                    );
+
+            } catch (error) {
+
+                savedSkills = [];
+
+            }
+
+
+            skills =
+                Array.isArray(savedSkills)
+                    ? savedSkills
+                    : [];
+
+
+            renderSkills();
+
+            updatePreview();
+            /* =========================
+               PREMIUM ACCESS CHECK
+            ========================= */
+
+            function checkResumePremium() {
+
+                const email = localStorage.getItem("userEmail");
+
+                const premiumKey = email
+                    ? "premiumActive_" + email
+                    : "premiumActive";
+
+                const isPremium =
+                    localStorage.getItem(premiumKey) === "true";
+
+                if (isPremium) {
+                    return true;
+                }
+
+                alert(
+                    "👑 Resume English is a Premium feature.\n\n" +
+                    "SpeakMate Premium activate karke unlock karein."
+                );
+
+                window.location.href = "premium.html";
+
+                return false;
+            }
+
+            if (!checkResumePremium()) {
+                return;
+            }
+            updateProgress();
+
+        }
+
+
+        let skills = [];
+
+
+        loadResume();
+
+
+        /* ==========================================
+           SAVE DATA
+        ========================================== */
+
+        function getFormData() {
+
+            const data = {};
+
+
+            fields.forEach(
+                id => {
+
+                    const element =
+                        document.getElementById(
+                            id
+                        );
+
+
+                    if (element) {
+
+                        data[id] =
+                            element.value.trim();
+
+                    }
+
+                }
+            );
+
+
+            return data;
+
+        }
+
+
+        function saveData() {
+
+            localStorage.setItem(
+                "speakmateResume",
+                JSON.stringify(
+                    getFormData()
+                )
+            );
+
+
+            localStorage.setItem(
+                "resumeSkills",
+                JSON.stringify(
+                    skills
+                )
+            );
+
+        }
+
+
+        /* ==========================================
+           LIVE PREVIEW
+        ========================================== */
+
+        function updatePreview() {
+
+            const data =
+                getFormData();
+
+
+            document.querySelector(
+                ".resumeName"
+            ).innerText =
+                data.fullName ||
+                "Your Name";
+
+
+            document.querySelector(
+                ".resumeJob"
+            ).innerText =
+                data.jobTitle ||
+                "Your Job Title";
+
+
+            let contact = [];
+
+
+            if (data.phone)
+                contact.push(data.phone);
+
+
+            if (data.email)
+                contact.push(data.email);
+
+
+            if (data.location)
+                contact.push(data.location);
+
+
+            if (data.linkedin)
+                contact.push(data.linkedin);
+
+
+            document.querySelector(
+                ".contactLine"
+            ).innerText =
+                contact.length
+                    ? contact.join(" • ")
+                    : "Phone • Email • Location";
+
+
+            const objective =
+                document.getElementById(
+                    "previewObjective"
+                );
+
+
+            objective.innerText =
+                data.objective ||
+                "Your professional summary will appear here.";
+
+
+            objective.className =
+                data.objective
+                    ? ""
+                    : "emptyPreview";
+
+
+            const experience =
+                document.getElementById(
+                    "previewExperience"
+                );
+
+
+            let experienceText = "";
+
+
+            if (data.experienceTitle) {
+
+                experienceText +=
+                    data.experienceTitle;
+
+            }
+
+
+            if (data.company) {
+
+                experienceText +=
+                    experienceText
+                        ? " | " + data.company
+                        : data.company;
+
+            }
+
+
+            if (data.duration) {
+
+                experienceText +=
+                    experienceText
+                        ? " | " + data.duration
+                        : data.duration;
+
+            }
+
+
+            if (data.experience) {
+
+                experienceText +=
+                    experienceText
+                        ? "\n" + data.experience
+                        : data.experience;
+
+            }
+
+
+            experience.innerText =
+                experienceText ||
+                "Your work experience will appear here.";
+
+
+            experience.className =
+                experienceText
+                    ? ""
+                    : "emptyPreview";
+
+
+            const education =
+                document.getElementById(
+                    "previewEducation"
+                );
+
+
+            let educationText = "";
+
+
+            if (data.education) {
+
+                educationText +=
+                    data.education;
+
+            }
+
+
+            if (data.institution) {
+
+                educationText +=
+                    educationText
+                        ? " | " + data.institution
+                        : data.institution;
+
+            }
+
+
+            if (data.educationYear) {
+
+                educationText +=
+                    educationText
+                        ? " | " + data.educationYear
+                        : data.educationYear;
+
+            }
+
+
+            education.innerText =
+                educationText ||
+                "Your education will appear here.";
+
+
+            education.className =
+                educationText
+                    ? ""
+                    : "emptyPreview";
+
+
+            renderPreviewSkills();
+
+
+            updateProgress();
+
+        }
+
+
+        /* ==========================================
+           SKILLS
+        ========================================== */
+
+        function addSkill() {
+
+            const input =
+                document.getElementById(
+                    "skillInput"
+                );
+
+
+            const value =
+                input.value.trim();
+
+
+            if (!value) {
+
+                showToast(
+                    "Skill ka naam likho."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                skills.some(
+                    skill =>
+                        skill.toLowerCase() ===
+                        value.toLowerCase()
+                )
+            ) {
+
+                showToast(
+                    "Ye skill already added hai."
+                );
+
+                return;
+
+            }
+
+
+            skills.push(
+                value
+            );
+
+
+            input.value =
+                "";
+
+
+            renderSkills();
+
+            saveData();
+
+            updatePreview();
+
+        }
+
+
+        function removeSkill(
+            index
+        ) {
+
+            skills.splice(
+                index,
+                1
+            );
+
+
+            renderSkills();
+
+            saveData();
+
+            updatePreview();
+
+        }
+
+
+        function renderSkills() {
+
+            const box =
+                document.getElementById(
+                    "skillsBox"
+                );
+
+
+            box.innerHTML =
+                "";
+
+
+            skills.forEach(
+                (skill, index) => {
+
+                    const tag =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    tag.className =
+                        "skillTag";
+
+
+                    tag.innerHTML =
+                        `
+                ${escapeHtml(skill)}
+
+                <button
+                    onclick="removeSkill(${index})">
+                    ×
+                </button>
+                `;
+
+
+                    box.appendChild(
+                        tag
+                    );
+
+                }
+            );
+
+        }
+
+
+        function renderPreviewSkills() {
+
+            const box =
+                document.getElementById(
+                    "previewSkills"
+                );
+
+
+            box.innerHTML =
+                "";
+
+
+            if (
+                skills.length === 0
+            ) {
+
+                box.innerHTML =
+                    `<span class="emptyPreview">
+                Add your skills
+            </span>`;
+
+                return;
+
+            }
+
+
+            skills.forEach(
+                skill => {
+
+                    const span =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    span.className =
+                        "previewSkill";
+
+
+                    span.innerText =
+                        skill;
+
+
+                    box.appendChild(
+                        span
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           AI-STYLE OBJECTIVE
+        ========================================== */
+
+        function improveObjective() {
+
+            const data =
+                getFormData();
+
+
+            const job =
+                data.jobTitle ||
+                "professional";
+
+
+            const skillsText =
+                skills.length
+                    ? skills.slice(0, 4).join(", ")
+                    : "communication, teamwork and problem-solving";
+
+
+            const objective =
+                `Motivated and hardworking ${job} professional seeking an opportunity to contribute strong ${skillsText} skills in a growth-oriented organization. Eager to learn, take on new responsibilities and deliver quality results while developing long-term professional expertise.`;
+
+
+            document.getElementById(
+                "objective"
+            ).value =
+                objective;
+
+
+            const result =
+                document.getElementById(
+                    "aiResult"
+                );
+
+
+            result.style.display =
+                "block";
+
+
+            result.innerText =
+                "✨ Professional objective generated. You can edit it before saving.";
+
+
+            updatePreview();
+
+            saveData();
+
+
+            showToast(
+                "✨ Objective improved"
+            );
+
+        }
+
+
+        /* ==========================================
+           SAVE RESUME
+        ========================================== */
+
+        function saveResume() {
+
+            const data =
+                getFormData();
+
+
+            if (
+                !data.fullName
+            ) {
+
+                showToast(
+                    "Please enter your full name."
+                );
+
+                document.getElementById(
+                    "fullName"
+                ).focus();
+
+                return;
+
+            }
+
+
+            if (
+                !data.jobTitle
+            ) {
+
+                showToast(
+                    "Please enter your job title."
+                );
+
+                document.getElementById(
+                    "jobTitle"
+                ).focus();
+
+                return;
+
+            }
+
+
+            saveData();
+
+
+            localStorage.setItem(
+                "resumeCompleted",
+                "true"
+            );
+
+
+            showComplete();
+
+
+            updateProgress();
+
+
+            showToast(
+                "💾 Resume saved!"
+            );
+
+        }
+
+
+        /* ==========================================
+           PRINT / PDF
+        ========================================== */
+
+        function printResume() {
+
+            const data =
+                getFormData();
+
+
+            if (
+                !data.fullName
+            ) {
+
+                showToast(
+                    "Please enter your full name first."
+                );
+
+                document.getElementById(
+                    "fullName"
+                ).focus();
+
+                return;
+
+            }
+
+
+            saveData();
+
+
+            localStorage.setItem(
+                "resumeCompleted",
+                "true"
+            );
+
+
+            showComplete();
+
+
+            updateProgress();
+
+
+            setTimeout(
+                function () {
+
+                    window.print();
+
+                },
+                300
+            );
+
+        }
+
+
+        /* ==========================================
+           PROGRESS
+        ========================================== */
+
+        function updateProgress() {
+
+            const data =
+                getFormData();
+
+
+            let total =
+                0;
+
+
+            let completed =
+                0;
+
+
+            /*
+               Main resume sections:
+               Personal
+               Objective
+               Education
+               Experience
+               Skills
+            */
+
+            total = 5;
+
+
+            if (
+                data.fullName &&
+                data.jobTitle &&
+                data.email
+            ) {
+
+                completed++;
+
+            }
+
+
+            if (
+                data.objective
+            ) {
+
+                completed++;
+
+            }
+
+
+            if (
+                data.education ||
+                data.institution
+            ) {
+
+                completed++;
+
+            }
+
+
+            if (
+                data.experience ||
+                data.experienceTitle ||
+                data.company
+            ) {
+
+                completed++;
+
+            }
+
+
+            if (
+                skills.length > 0
+            ) {
+
+                completed++;
+
+            }
+
+
+            const percentage =
+                Math.round(
+                    completed /
+                    total *
+                    100
+                );
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                percentage + "%";
+
+
+            document.getElementById(
+                "progressText"
+            ).innerText =
+                percentage + "%";
+
+
+            if (
+                localStorage.getItem(
+                    "resumeCompleted"
+                ) === "true"
+            ) {
+
+                showComplete(
+                    false
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           COMPLETE BOX
+        ========================================== */
+
+        function showComplete(
+            toast = true
+        ) {
+
+            const box =
+                document.getElementById(
+                    "completeBox"
+                );
+
+
+            box.style.display =
+                "block";
+
+
+            if (toast) {
+
+                showToast(
+                    "🎉 Resume module completed!"
+                );
+
+            }
+
+        }
+
+
+        /* ==========================================
+           INPUT LISTENERS
+        ========================================== */
+
+        fields.forEach(
+            id => {
+
+                const element =
+                    document.getElementById(
+                        id
+                    );
+
+
+                if (element) {
+
+                    element.addEventListener(
+                        "input",
+                        function () {
+
+                            updatePreview();
+
+                            saveData();
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           SKILL ENTER
+        ========================================== */
+
+        document.getElementById(
+            "skillInput"
+        ).addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    addSkill();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           HTML ESCAPE
+        ========================================== */
+
+        function escapeHtml(
+            text
+        ) {
+
+            return String(text)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* ==========================================
+           NAVIGATION
+        ========================================== */
+
+        function goBack() {
+
+            window.location.href =
+                "job.html";
+
+        }
+
+
+        function goProfile() {
+
+            window.location.href =
+                "profile.html";
+
+        }
+
+
+        /* ==========================================
+           TOAST
+        ========================================== */
+
+        let toastTimer;
+
+
+        function showToast(
+            message
+        ) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.innerText =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(
+                toastTimer
+            );
+
+
+            toastTimer =
+                setTimeout(
+                    function () {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    2200
+                );
+
+        }
+
+
+        /* ==========================================
+           INITIAL
+        ========================================== */
+
+        updatePreview();
+
+        updateProgress();
+
+    </script>
+
+</body>
+
+</html>

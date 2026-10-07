@@ -1,0 +1,838 @@
+ /* ==============================
+   SpeakMate AI
+   Main Landing Page
+   ============================== */
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ html {
+     scroll-behavior: smooth;
+ }
+
+ body {
+     font-family:
+         Inter,
+         system-ui,
+         -apple-system,
+         BlinkMacSystemFont,
+         "Segoe UI",
+         sans-serif;
+
+     min-height: 100vh;
+
+     color: #ffffff;
+
+     background:
+         radial-gradient(circle at top left,
+             #172554 0%,
+             #080b18 38%,
+             #050711 100%);
+
+     overflow-x: hidden;
+ }
+
+
+ /* ==============================
+   Background Glow
+   ============================== */
+
+ .background-glow {
+     position: fixed;
+
+     width: 350px;
+     height: 350px;
+
+     border-radius: 50%;
+
+     filter: blur(100px);
+
+     opacity: 0.25;
+
+     pointer-events: none;
+
+     z-index: 0;
+ }
+
+ .glow-one {
+     background: #2563eb;
+
+     top: -120px;
+     left: -100px;
+ }
+
+ .glow-two {
+     background: #7c3aed;
+
+     right: -120px;
+     top: 300px;
+ }
+
+
+ /* ==============================
+   Main App
+   ============================== */
+
+ .app {
+     position: relative;
+
+     z-index: 1;
+
+     width: min(1180px, 92%);
+
+     margin: auto;
+
+     padding: 25px 0 40px;
+ }
+
+
+ /* ==============================
+   Header
+   ============================== */
+
+ .topbar {
+     display: flex;
+
+     align-items: center;
+
+     justify-content: space-between;
+
+     padding: 12px 0 30px;
+ }
+
+ .brand {
+     display: flex;
+
+     align-items: center;
+
+     gap: 12px;
+ }
+
+ .logo {
+     width: 48px;
+     height: 48px;
+
+     border-radius: 15px;
+
+     display: flex;
+
+     align-items: center;
+     justify-content: center;
+
+     background:
+         linear-gradient(135deg,
+             #2563eb,
+             #7c3aed);
+
+     box-shadow:
+         0 10px 30px rgba(37, 99, 235, 0.35);
+
+     font-weight: 800;
+
+     font-size: 14px;
+ }
+
+ .brand h2 {
+     font-size: 19px;
+
+     letter-spacing: -0.5px;
+ }
+
+ .brand p {
+     color: #94a3b8;
+
+     font-size: 12px;
+
+     margin-top: 2px;
+ }
+
+ .login-btn {
+     border: 1px solid rgba(255, 255, 255, 0.15);
+
+     background: rgba(255, 255, 255, 0.06);
+
+     color: white;
+
+     padding: 10px 20px;
+
+     border-radius: 12px;
+
+     cursor: pointer;
+
+     font-weight: 600;
+
+     transition: 0.25s;
+ }
+
+ .login-btn:hover {
+     background: rgba(255, 255, 255, 0.12);
+
+     transform: translateY(-2px);
+ }
+
+
+ /* ==============================
+   Hero
+   ============================== */
+
+ .hero {
+     display: grid;
+
+     grid-template-columns: 1.1fr 0.9fr;
+
+     gap: 70px;
+
+     align-items: center;
+
+     padding: 60px 0 90px;
+ }
+
+ .hero-text {
+     max-width: 650px;
+ }
+
+ .small-badge {
+     display: inline-block;
+
+     padding: 8px 14px;
+
+     border-radius: 50px;
+
+     background: rgba(59, 130, 246, 0.12);
+
+     border: 1px solid rgba(96, 165, 250, 0.2);
+
+     color: #93c5fd;
+
+     font-size: 13px;
+
+     margin-bottom: 22px;
+ }
+
+ .hero h1 {
+     font-size: clamp(42px, 6vw, 72px);
+
+     line-height: 1.02;
+
+     letter-spacing: -3px;
+
+     margin-bottom: 25px;
+ }
+
+ .hero h1 span {
+     display: block;
+
+     background:
+         linear-gradient(90deg,
+             #60a5fa,
+             #a78bfa);
+
+     -webkit-background-clip: text;
+
+     background-clip: text;
+
+     color: transparent;
+ }
+
+ .hero-text>p {
+     color: #aeb8ca;
+
+     font-size: 17px;
+
+     line-height: 1.7;
+
+     max-width: 590px;
+ }
+
+
+ /* ==============================
+   Hero Buttons
+   ============================== */
+
+ .hero-buttons {
+     display: flex;
+
+     gap: 14px;
+
+     flex-wrap: wrap;
+
+     margin-top: 32px;
+ }
+
+ .primary-btn,
+ .secondary-btn {
+     border: none;
+
+     padding: 15px 22px;
+
+     border-radius: 14px;
+
+     font-size: 15px;
+
+     font-weight: 700;
+
+     cursor: pointer;
+
+     transition: 0.25s;
+ }
+
+ .primary-btn {
+     color: white;
+
+     background:
+         linear-gradient(135deg,
+             #2563eb,
+             #7c3aed);
+
+     box-shadow:
+         0 12px 30px rgba(37, 99, 235, 0.3);
+ }
+
+ .primary-btn:hover {
+     transform: translateY(-3px);
+
+     box-shadow:
+         0 18px 35px rgba(37, 99, 235, 0.4);
+ }
+
+ .primary-btn span {
+     margin-left: 8px;
+
+     font-size: 18px;
+ }
+
+ .secondary-btn {
+     color: #e2e8f0;
+
+     background: rgba(255, 255, 255, 0.06);
+
+     border: 1px solid rgba(255, 255, 255, 0.13);
+ }
+
+ .secondary-btn:hover {
+     background: rgba(255, 255, 255, 0.11);
+
+     transform: translateY(-3px);
+ }
+
+ .trust {
+     margin-top: 22px;
+
+     display: flex;
+
+     gap: 15px;
+
+     flex-wrap: wrap;
+
+     color: #94a3b8;
+
+     font-size: 12px;
+ }
+
+ .trust span {
+     color: #4ade80;
+ }
+
+
+ /* ==============================
+   AI Card
+   ============================== */
+
+ .ai-card {
+     position: relative;
+
+     min-height: 390px;
+
+     padding: 42px 35px;
+
+     border-radius: 30px;
+
+     text-align: center;
+
+     display: flex;
+
+     flex-direction: column;
+
+     align-items: center;
+
+     justify-content: center;
+
+     background:
+         linear-gradient(145deg,
+             rgba(30, 41, 89, 0.8),
+             rgba(15, 23, 42, 0.85));
+
+     border: 1px solid rgba(255, 255, 255, 0.12);
+
+     box-shadow:
+         0 30px 80px rgba(0, 0, 0, 0.35);
+
+     overflow: hidden;
+ }
+
+ .card-glow {
+     position: absolute;
+
+     width: 180px;
+     height: 180px;
+
+     background: #2563eb;
+
+     filter: blur(80px);
+
+     opacity: 0.35;
+
+     top: -50px;
+ }
+
+ .robot {
+     width: 100px;
+     height: 100px;
+
+     border-radius: 28px;
+
+     display: flex;
+
+     align-items: center;
+     justify-content: center;
+
+     font-size: 55px;
+
+     background:
+         linear-gradient(135deg,
+             #1d4ed8,
+             #7c3aed);
+
+     box-shadow:
+         0 15px 45px rgba(37, 99, 235, 0.35);
+
+     margin-bottom: 25px;
+
+     position: relative;
+ }
+
+ .ai-card h3 {
+     font-size: 25px;
+
+     line-height: 1.25;
+
+     position: relative;
+ }
+
+ .ai-card>p {
+     color: #9caac0;
+
+     line-height: 1.6;
+
+     font-size: 14px;
+
+     max-width: 310px;
+
+     margin-top: 12px;
+
+     position: relative;
+ }
+
+
+ /* ==============================
+   Mini Stats
+   ============================== */
+
+ .mini-stats {
+     display: flex;
+
+     gap: 10px;
+
+     width: 100%;
+
+     margin-top: 28px;
+
+     position: relative;
+ }
+
+ .mini-stats div {
+     flex: 1;
+
+     padding: 13px 5px;
+
+     border-radius: 14px;
+
+     background: rgba(255, 255, 255, 0.06);
+
+     border: 1px solid rgba(255, 255, 255, 0.08);
+ }
+
+ .mini-stats strong {
+     display: block;
+
+     font-size: 18px;
+ }
+
+ .mini-stats small {
+     color: #94a3b8;
+
+     font-size: 10px;
+ }
+
+
+ /* ==============================
+   Features
+   ============================== */
+
+ .features {
+     padding: 20px 0 70px;
+ }
+
+ .section-heading {
+     text-align: center;
+
+     margin-bottom: 30px;
+ }
+
+ .section-heading span {
+     color: #60a5fa;
+
+     font-size: 11px;
+
+     font-weight: 800;
+
+     letter-spacing: 2px;
+ }
+
+ .section-heading h2 {
+     margin-top: 8px;
+
+     font-size: 30px;
+
+     letter-spacing: -1px;
+ }
+
+ .feature-grid {
+     display: grid;
+
+     grid-template-columns:
+         repeat(4, 1fr);
+
+     gap: 16px;
+ }
+
+ .feature-card {
+     padding: 24px;
+
+     min-height: 230px;
+
+     border-radius: 20px;
+
+     background:
+         rgba(255, 255, 255, 0.045);
+
+     border: 1px solid rgba(255, 255, 255, 0.08);
+
+     cursor: pointer;
+
+     transition: 0.3s;
+ }
+
+ .feature-card:hover {
+     transform: translateY(-6px);
+
+     background:
+         rgba(255, 255, 255, 0.075);
+
+     border-color:
+         rgba(96, 165, 250, 0.3);
+ }
+
+ .feature-icon {
+     width: 50px;
+     height: 50px;
+
+     border-radius: 15px;
+
+     display: flex;
+
+     align-items: center;
+     justify-content: center;
+
+     font-size: 23px;
+
+     margin-bottom: 20px;
+ }
+
+ .blue {
+     background: rgba(59, 130, 246, 0.15);
+ }
+
+ .purple {
+     background: rgba(139, 92, 246, 0.15);
+ }
+
+ .orange {
+     background: rgba(249, 115, 22, 0.15);
+ }
+
+ .green {
+     background: rgba(34, 197, 94, 0.15);
+ }
+
+ .feature-card h3 {
+     font-size: 17px;
+
+     margin-bottom: 9px;
+ }
+
+ .feature-card p {
+     color: #8f9bad;
+
+     font-size: 13px;
+
+     line-height: 1.6;
+
+     margin-bottom: 15px;
+ }
+
+ .feature-card b {
+     color: #60a5fa;
+
+     font-size: 12px;
+ }
+
+
+ /* ==============================
+   Bottom CTA
+   ============================== */
+
+ .bottom-cta {
+     display: flex;
+
+     align-items: center;
+
+     justify-content: space-between;
+
+     gap: 25px;
+
+     padding: 28px 30px;
+
+     border-radius: 22px;
+
+     background:
+         linear-gradient(100deg,
+             rgba(37, 99, 235, 0.18),
+             rgba(124, 58, 237, 0.14));
+
+     border: 1px solid rgba(96, 165, 250, 0.15);
+ }
+
+ .bottom-cta>div {
+     display: flex;
+
+     align-items: center;
+
+     gap: 15px;
+ }
+
+ .bottom-cta>div>span {
+     font-size: 32px;
+ }
+
+ .bottom-cta h2 {
+     font-size: 19px;
+ }
+
+ .bottom-cta p {
+     color: #94a3b8;
+
+     font-size: 13px;
+
+     margin-top: 4px;
+ }
+
+ .bottom-cta button {
+     border: none;
+
+     padding: 13px 20px;
+
+     border-radius: 12px;
+
+     color: white;
+
+     background: #2563eb;
+
+     font-weight: 700;
+
+     cursor: pointer;
+ }
+
+
+ /* ==============================
+   Footer
+   ============================== */
+
+ footer {
+     display: flex;
+
+     align-items: center;
+
+     justify-content: space-between;
+
+     gap: 15px;
+
+     padding-top: 35px;
+
+     color: #64748b;
+
+     font-size: 12px;
+ }
+
+ .footer-brand {
+     display: flex;
+
+     align-items: center;
+
+     gap: 9px;
+
+     color: #cbd5e1;
+ }
+
+ .small-logo {
+     width: 30px;
+     height: 30px;
+
+     border-radius: 9px;
+
+     font-size: 9px;
+ }
+
+
+ /* ==============================
+   Mobile
+   ============================== */
+
+ @media (max-width: 900px) {
+
+     .hero {
+         grid-template-columns: 1fr;
+
+         gap: 45px;
+
+         padding-top: 35px;
+     }
+
+     .hero-text {
+         text-align: center;
+
+         margin: auto;
+     }
+
+     .hero-text>p {
+         margin: auto;
+     }
+
+     .hero-buttons {
+         justify-content: center;
+     }
+
+     .trust {
+         justify-content: center;
+     }
+
+     .ai-card {
+         max-width: 480px;
+
+         width: 100%;
+
+         margin: auto;
+     }
+
+     .feature-grid {
+         grid-template-columns:
+             repeat(2, 1fr);
+     }
+ }
+
+
+ @media (max-width: 600px) {
+
+     .app {
+         width: 92%;
+     }
+
+     .topbar {
+         padding-top: 10px;
+     }
+
+     .brand h2 {
+         font-size: 16px;
+     }
+
+     .brand p {
+         font-size: 10px;
+     }
+
+     .logo {
+         width: 42px;
+         height: 42px;
+     }
+
+     .login-btn {
+         padding: 8px 14px;
+
+         font-size: 12px;
+     }
+
+     .hero {
+         padding: 30px 0 60px;
+     }
+
+     .hero h1 {
+         font-size: 43px;
+
+         letter-spacing: -2px;
+     }
+
+     .hero-text>p {
+         font-size: 14px;
+     }
+
+     .hero-buttons {
+         flex-direction: column;
+     }
+
+     .primary-btn,
+     .secondary-btn {
+         width: 100%;
+     }
+
+     .ai-card {
+         min-height: 350px;
+
+         padding: 30px 20px;
+     }
+
+     .feature-grid {
+         grid-template-columns: 1fr;
+     }
+
+     .section-heading h2 {
+         font-size: 25px;
+     }
+
+     .bottom-cta {
+         flex-direction: column;
+
+         align-items: flex-start;
+     }
+
+     .bottom-cta button {
+         width: 100%;
+     }
+
+     footer {
+         flex-direction: column;
+
+         text-align: center;
+     }
+ }

@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpeakMate AI - Interview English</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #173b62 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #40205d 0%, transparent 35%),
+                linear-gradient(135deg, #07111f, #0b1728 50%, #111827);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 22px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .back-btn {
+            border: none;
+            background: rgba(255, 255, 255, .09);
+            color: #fff;
+            padding: 11px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        .brand {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 22px;
+            backdrop-filter: blur(14px);
+        }
+
+        .hero-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 31px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #b9c5d5;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, .06);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #9eacc0;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* PROGRESS */
+
+        .progress-card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 22px;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-title {
+            font-weight: bold;
+        }
+
+        .progress-percent {
+            color: #6ee7b7;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 11px;
+            background: rgba(255, 255, 255, .1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #22c55e, #06b6d4);
+            border-radius: 20px;
+            transition: .4s;
+        }
+
+        /* SECTION */
+
+        .section-title {
+            font-size: 22px;
+            margin: 28px 0 15px;
+        }
+
+        /* LESSONS */
+
+        .lessons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .lesson {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            transition: .2s;
+            position: relative;
+        }
+
+        .lesson:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .09);
+        }
+
+        .lesson-number {
+            font-size: 12px;
+            color: #8fa3bb;
+            margin-bottom: 8px;
+        }
+
+        .lesson-icon {
+            font-size: 30px;
+            margin-bottom: 9px;
+        }
+
+        .lesson h3 {
+            margin-bottom: 7px;
+        }
+
+        .lesson p {
+            color: #aebacd;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            background: rgba(255, 255, 255, .08);
+            color: #b7c4d6;
+        }
+
+        .badge.completed {
+            background: rgba(34, 197, 94, .15);
+            color: #6ee7b7;
+        }
+
+        /* AI PRACTICE */
+
+        .ai-card {
+            margin-top: 22px;
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, .14),
+                    rgba(168, 85, 247, .13));
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 22px;
+            padding: 24px;
+        }
+
+        .ai-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .ai-card p {
+            color: #b9c5d5;
+            line-height: 1.6;
+        }
+
+        .ai-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .primary-btn {
+            border: none;
+            padding: 12px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .secondary-btn {
+            border: none;
+            padding: 12px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            color: #fff;
+            background: rgba(255, 255, 255, .1);
+        }
+
+        /* COMPLETION */
+
+        .complete-box {
+            display: none;
+            margin-top: 22px;
+            background: rgba(34, 197, 94, .09);
+            border: 1px solid rgba(34, 197, 94, .25);
+            border-radius: 22px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .complete-box h2 {
+            margin-bottom: 8px;
+        }
+
+        .complete-box p {
+            color: #b8c6d6;
+            line-height: 1.6;
+        }
+
+        .reward {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .reward span {
+            background: rgba(255, 255, 255, .08);
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        /* MODAL */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .7);
+            z-index: 100;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 650px;
+            margin: 50px auto;
+            background: #101c2d;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 24px;
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .close {
+            border: none;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .modal h2 {
+            margin-bottom: 7px;
+        }
+
+        .modal-subtitle {
+            color: #99a9bc;
+            font-size: 14px;
+        }
+
+        .answer-box {
+            background: rgba(255, 255, 255, .05);
+            border-radius: 17px;
+            padding: 18px;
+            margin: 18px 0;
+        }
+
+        .answer-box h4 {
+            margin-bottom: 8px;
+        }
+
+        .answer-box p {
+            color: #c3cfdd;
+            line-height: 1.65;
+        }
+
+        .listen-btn {
+            border: none;
+            background: rgba(59, 130, 246, .15);
+            color: #93c5fd;
+            padding: 10px 14px;
+            border-radius: 11px;
+            cursor: pointer;
+            margin-top: 14px;
+        }
+
+        .practice-title {
+            margin-top: 22px;
+            margin-bottom: 8px;
+        }
+
+        .practice-question {
+            color: #d9e2ed;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            padding: 15px;
+            color: #fff;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            font-size: 15px;
+        }
+
+        textarea::placeholder {
+            color: #77879b;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 13px;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .2);
+            border-radius: 15px;
+            color: #c5d3df;
+            line-height: 1.6;
+        }
+
+        .complete-lesson-btn {
+            width: 100%;
+            margin-top: 18px;
+            padding: 13px;
+            border: none;
+            border-radius: 13px;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            background: linear-gradient(135deg, #16a34a, #059669);
+        }
+
+        /* FINAL */
+
+        .final-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .final-icon {
+            font-size: 65px;
+            margin-bottom: 12px;
+        }
+
+        .final-screen h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .final-screen p {
+            color: #b9c5d5;
+            line-height: 1.6;
+        }
+
+        .final-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 22px 0;
+        }
+
+        .final-stat {
+            padding: 18px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .final-stat strong {
+            display: block;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 21px;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .lessons {
+                grid-template-columns: 1fr;
+            }
+
+            .final-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                gap: 10px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <button class="back-btn" onclick="goBack()">
+                ← Back
+            </button>
+
+            <div class="brand">
+                🎤 SpeakMate AI
+            </div>
+
+        </div>
+
+
+        <!-- MAIN COURSE -->
+
+        <div id="courseScreen">
+
+            <div class="hero">
+
+                <div class="hero-icon">
+                    🎤
+                </div>
+
+                <h1>Be Interview Ready</h1>
+
+                <p>
+                    Practice common job interview questions,
+                    improve your English answers, and build
+                    confidence for your next interview.
+                </p>
+
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <div class="stat-value" id="xpValue">
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            XP
+                        </div>
+                    </div>
+
+
+                    <div class="stat">
+                        <div class="stat-value" id="coinValue">
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            Coins
+                        </div>
+                    </div>
+
+
+                    <div class="stat">
+                        <div class="stat-value" id="questionValue">
+                            0/12
+                        </div>
+
+                        <div class="stat-label">
+                            Questions
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+
+            <div class="progress-card">
+
+                <div class="progress-top">
+
+                    <div class="progress-title">
+                        Interview Progress
+                    </div>
+
+                    <div class="progress-percent" id="progressPercent">
+                        0%
+                    </div>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div class="progress-fill" id="progressFill"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LESSONS -->
+
+            <h2 class="section-title">
+                Interview Lessons
+            </h2>
+
+
+            <div class="lessons" id="lessonsContainer">
+            </div>
+
+
+            <!-- AI PRACTICE -->
+
+            <div class="ai-card">
+
+                <h2>
+                    🤖 AI Interview Practice
+                </h2>
+
+                <p>
+                    Practice a real interview with SpeakMate AI.
+                    Answer questions one by one and get
+                    English correction, feedback and speaking tips.
+                </p>
+
+                <div class="ai-buttons">
+
+                    <button class="primary-btn" onclick="startAIInterview()">
+                        🎤 Start AI Interview
+                    </button>
+
+                    <button class="secondary-btn" onclick="openChatPractice()">
+                        💬 Practice With AI
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLETE BOX -->
+
+            <div class="complete-box" id="completeBox">
+
+                <h2>
+                    🎉 Interview Practice Completed!
+                </h2>
+
+                <p>
+                    You completed all 12 interview questions.
+                    Keep practicing to become more confident
+                    in real interviews.
+                </p>
+
+                <div class="reward">
+
+                    <span>
+                        🏆 +50 XP
+                    </span>
+
+                    <span>
+                        🪙 +25 Coins
+                    </span>
+
+                </div>
+
+                <button class="primary-btn" onclick="showFinalScreen()">
+                    📊 View Performance
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- FINAL SCREEN -->
+
+        <div class="final-screen" id="finalScreen">
+
+            <div class="final-icon">
+                🏆
+            </div>
+
+            <h2>
+                Interview Completed!
+            </h2>
+
+            <p>
+                Great job! You completed the full
+                Sales & Job Interview practice.
+            </p>
+
+
+            <div class="final-stats">
+
+                <div class="final-stat">
+
+                    <strong id="finalQuestions">
+                        12
+                    </strong>
+
+                    Questions
+
+                </div>
+
+
+                <div class="final-stat">
+
+                    <strong>
+                        +50
+                    </strong>
+
+                    XP Earned
+
+                </div>
+
+
+                <div class="final-stat">
+
+                    <strong>
+                        +25
+                    </strong>
+
+                    Coins Earned
+
+                </div>
+
+            </div>
+
+
+            <button class="primary-btn" onclick="restartInterview()">
+                🔄 Practice Again
+            </button>
+
+            <button class="secondary-btn" onclick="goBack()" style="margin-left:8px;">
+                ← Back to Jobs
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- LESSON MODAL -->
+
+    <div class="modal" id="lessonModal">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modalTitle">
+                        Interview Question
+                    </h2>
+
+                    <div class="modal-subtitle" id="modalSubtitle">
+                    </div>
+
+                </div>
+
+                <button class="close" onclick="closeModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="answer-box">
+
+                <h4>
+                    💡 Sample Answer
+                </h4>
+
+                <p id="sampleAnswer">
+                </p>
+
+                <button class="listen-btn" onclick="listenSample()">
+                    🔊 Listen
+                </button>
+
+            </div>
+
+
+            <div class="practice-title">
+
+                <h3>
+                    🎙️ Practice Your Answer
+                </h3>
+
+            </div>
+
+            <div class="practice-question" id="practiceQuestion">
+            </div>
+
+
+            <textarea id="answerInput" placeholder="Type your answer here..."></textarea>
+
+
+            <div class="modal-actions">
+
+                <button class="primary-btn" onclick="checkAnswer()">
+                    ✓ Check Answer
+                </button>
+
+                <button class="secondary-btn" onclick="startVoicePractice()">
+                    🎙️ Speak
+                </button>
+
+                <button class="secondary-btn" onclick="clearAnswer()">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div class="feedback" id="feedbackBox">
+            </div>
+
+
+            <button class="complete-lesson-btn" onclick="completeCurrentLesson()">
+                ✓ Mark Lesson Complete
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================================================
+           INTERVIEW DATA
+        ========================================================= */
+
+        const lessons = [
+
+            {
+                id: 1,
+                icon: "👋",
+                title: "Tell Me About Yourself",
+                description: "Learn how to introduce yourself professionally.",
+                question: "Tell me about yourself and why you're interested in a Sales Executive role?",
+                sample: "My name is Manish. I am interested in building my career in sales. I have good communication skills and I enjoy interacting with people. I am hardworking, willing to learn, and I want to improve my sales skills and grow professionally."
+            },
+
+            {
+                id: 2,
+                icon: "💼",
+                title: "Experience & Background",
+                description: "Learn how to talk about your work experience.",
+                question: "Can you tell me about your previous work experience?",
+                sample: "I have experience working with people and communicating with customers. Through my experience, I have learned how to understand people's needs, communicate clearly, and work responsibly."
+            },
+
+            {
+                id: 3,
+                icon: "⭐",
+                title: "Strengths & Weaknesses",
+                description: "Learn how to discuss your strengths and weaknesses.",
+                question: "What are your biggest strengths and one weakness?",
+                sample: "My biggest strengths are communication, patience, and willingness to learn. One weakness I am working on is that I sometimes spend too much time making sure my work is perfect. I am learning to manage my time better."
+            },
+
+            {
+                id: 4,
+                icon: "🏢",
+                title: "Why Should We Hire You?",
+                description: "Learn how to explain your value to an employer.",
+                question: "Why should we hire you for this Sales Executive position?",
+                sample: "You should hire me because I am hardworking, willing to learn, and comfortable communicating with people. I am serious about building my career in sales and I will give my best to achieve my targets and contribute to the team."
+            },
+
+            {
+                id: 5,
+                icon: "💰",
+                title: "Salary Expectations",
+                description: "Learn how to discuss salary professionally.",
+                question: "What are your salary expectations?",
+                sample: "I am open to discussing the salary based on the responsibilities of the role and the company's salary structure. My main focus is to find a good opportunity where I can learn, perform well, and grow professionally."
+            },
+
+            {
+                id: 6,
+                icon: "🎯",
+                title: "Sales Skills",
+                description: "Explain the skills needed for successful sales.",
+                question: "What do you think are the most important skills for a successful sales executive?",
+                sample: "I think good communication skills and the ability to listen actively are very important. A sales executive should also be persistent, understand customer needs, and build good relationships with customers."
+            },
+
+            {
+                id: 7,
+                icon: "🛍️",
+                title: "Selling a Product",
+                description: "Learn how to explain your sales approach.",
+                question: "How would you convince a customer to buy a product?",
+                sample: "I would first understand the customer's needs and then explain how the product can solve their problem. I would clearly explain the benefits of the product and answer their questions honestly. I would not pressure the customer to buy."
+            },
+
+            {
+                id: 8,
+                icon: "💵",
+                title: "Expensive Product",
+                description: "Learn how to handle price objections.",
+                question: "How would you handle a customer who says your product is too expensive?",
+                sample: "I would first understand why the customer feels the product is too expensive. Then I would explain the value and benefits of the product. If possible, I would offer a suitable option within their budget. I would never pressure the customer to buy."
+            },
+
+            {
+                id: 9,
+                icon: "🚫",
+                title: "Customer Rejection",
+                description: "Learn how to respond professionally to rejection.",
+                question: "How would you deal with rejection from a customer?",
+                sample: "I would not take rejection personally. I would try to understand why the customer said no and learn from the experience. I would stay positive, improve my approach, and continue talking to other customers."
+            },
+
+            {
+                id: 10,
+                icon: "😠",
+                title: "Difficult Customer",
+                description: "Learn how to handle an unhappy customer.",
+                question: "How would you handle an angry or unhappy customer?",
+                sample: "I would stay calm and listen carefully to the customer's problem. I would show empathy and try to understand the situation. Then I would explain the available solution and do my best to resolve the issue professionally."
+            },
+
+            {
+                id: 11,
+                icon: "🤝",
+                title: "Teamwork",
+                description: "Learn how to talk about working with a team.",
+                question: "Tell me about a time when you worked successfully as part of a team.",
+                sample: "I believe teamwork is important because people can achieve better results by working together. I communicate clearly with team members, help when needed, and focus on achieving the team's common goal."
+            },
+
+            {
+                id: 12,
+                icon: "📈",
+                title: "Career Goals",
+                description: "Learn how to discuss your future career plans.",
+                question: "Where do you see yourself in the next three years?",
+                sample: "In the next three years, I want to become a skilled sales professional with strong communication and customer-handling skills. I want to take on more responsibility, achieve good results, and grow within the organization."
+            }
+
+        ];
+
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        let currentLesson = null;
+
+        let completedLessons =
+            JSON.parse(
+                localStorage.getItem(
+                    "interviewEnglishLessonsV3"
+                ) || "[]"
+            );
+
+        let aiInterviewStarted =
+            localStorage.getItem(
+                "aiInterviewStarted"
+            ) === "true";
+
+
+        /* =========================================================
+           RENDER LESSONS
+        ========================================================= */
+
+        function renderLessons() {
+
+            const container =
+                document.getElementById(
+                    "lessonsContainer"
+                );
+
+            container.innerHTML = "";
+
+
+            lessons.forEach(lesson => {
+
+                const completed =
+                    completedLessons.includes(
+                        lesson.id
+                    );
+
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "lesson";
+
+
+                card.onclick = () =>
+                    openLesson(
+                        lesson.id
+                    );
+
+
+                card.innerHTML = `
+
+            <div class="lesson-number">
+                LESSON ${lesson.id}
+            </div>
+
+            <div class="lesson-icon">
+                ${lesson.icon}
+            </div>
+
+            <h3>
+                ${lesson.title}
+            </h3>
+
+            <p>
+                ${lesson.description}
+            </p>
+
+            <span class="badge ${completed ? "completed" : ""}">
+                ${completed
+                        ? "✓ COMPLETED"
+                        : "START LESSON"
+                    }
+            </span>
+
+        `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        /* =========================================================
+           OPEN LESSON
+        ========================================================= */
+
+        function openLesson(id) {
+
+            currentLesson =
+                lessons.find(
+                    lesson =>
+                        lesson.id === id
+                );
+
+
+            if (!currentLesson) {
+                return;
+            }
+
+
+            document.getElementById(
+                "modalTitle"
+            ).innerText =
+                currentLesson.icon +
+                " " +
+                currentLesson.title;
+
+
+            document.getElementById(
+                "modalSubtitle"
+            ).innerText =
+                "Lesson " +
+                currentLesson.id +
+                " of " +
+                lessons.length;
+
+
+            document.getElementById(
+                "sampleAnswer"
+            ).innerText =
+                currentLesson.sample;
+
+
+            document.getElementById(
+                "practiceQuestion"
+            ).innerText =
+                currentLesson.question;
+
+
+            document.getElementById(
+                "answerInput"
+            ).value = "";
+
+
+            document.getElementById(
+                "feedbackBox"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "block";
+
+        }
+
+
+        /* =========================================================
+           CLOSE MODAL
+        ========================================================= */
+
+        function closeModal() {
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "none";
+
+        }
+
+
+        /* =========================================================
+           SPEECH
+        ========================================================= */
+
+        function listenSample() {
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+
+                alert(
+                    "Speech is not supported in this browser."
+                );
+
+                return;
+
+            }
+
+
+            speechSynthesis.cancel();
+
+
+            const utterance =
+                new SpeechSynthesisUtterance(
+                    currentLesson.sample
+                );
+
+
+            utterance.lang =
+                "en-US";
+
+
+            utterance.rate =
+                0.9;
+
+
+            speechSynthesis.speak(
+                utterance
+            );
+
+        }
+
+
+        /* =========================================================
+           VOICE PRACTICE
+        ========================================================= */
+
+        function startVoicePractice() {
+
+            const Recognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+
+            if (!Recognition) {
+
+                alert(
+                    "Voice recognition is not supported in this browser. You can type your answer instead."
+                );
+
+                return;
+
+            }
+
+
+            const recognition =
+                new Recognition();
+
+
+            recognition.lang =
+                "en-US";
+
+
+            recognition.interimResults =
+                false;
+
+
+            recognition.continuous =
+                false;
+
+
+            recognition.onstart = () => {
+
+                document.getElementById(
+                    "feedbackBox"
+                ).style.display =
+                    "block";
+
+
+                document.getElementById(
+                    "feedbackBox"
+                ).innerText =
+                    "🎙️ Listening... Please speak your answer.";
+
+            };
+
+
+            recognition.onresult = event => {
+
+                const transcript =
+                    event.results[0][0].transcript;
+
+
+                document.getElementById(
+                    "answerInput"
+                ).value =
+                    transcript;
+
+
+                document.getElementById(
+                    "feedbackBox"
+                ).style.display =
+                    "block";
+
+
+                document.getElementById(
+                    "feedbackBox"
+                ).innerText =
+                    "✓ Your answer was captured. Click 'Check Answer' to practice it.";
+
+            };
+
+
+            recognition.onerror = () => {
+
+                document.getElementById(
+                    "feedbackBox"
+                ).style.display =
+                    "block";
+
+
+                document.getElementById(
+                    "feedbackBox"
+                ).innerText =
+                    "⚠️ I couldn't hear your answer clearly. Please try again.";
+
+            };
+
+
+            recognition.start();
+
+        }
+
+
+        /* =========================================================
+           CHECK ANSWER
+        ========================================================= */
+
+        function checkAnswer() {
+
+            const input =
+                document.getElementById(
+                    "answerInput"
+                );
+
+
+            const feedback =
+                document.getElementById(
+                    "feedbackBox"
+                );
+
+
+            const answer =
+                input.value.trim();
+
+
+            if (!answer) {
+
+                feedback.style.display =
+                    "block";
+
+
+                feedback.innerText =
+                    "Please type or speak your answer first.";
+
+
+                return;
+
+            }
+
+
+            const words =
+                answer
+                    .toLowerCase()
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            let feedbackText =
+                "✓ Good attempt! ";
+
+
+            if (words.length < 8) {
+
+                feedbackText +=
+                    "Try to give a little more detail. " +
+                    "Aim for 2–4 clear sentences.";
+
+            }
+            else if (words.length < 25) {
+
+                feedbackText +=
+                    "Your answer has a good length. " +
+                    "Try to speak clearly and confidently.";
+
+            }
+            else {
+
+                feedbackText +=
+                    "Your answer has good detail. " +
+                    "Focus on speaking naturally and avoiding memorized sentences.";
+
+            }
+
+
+            feedbackText +=
+                "\n\n💡 Tip: " +
+                "Use simple sentences and connect your ideas with words like first, then, also, and finally.";
+
+
+            feedback.style.display =
+                "block";
+
+
+            feedback.innerText =
+                feedbackText;
+
+        }
+
+
+        /* =========================================================
+           CLEAR ANSWER
+        ========================================================= */
+
+        function clearAnswer() {
+
+            document.getElementById(
+                "answerInput"
+            ).value = "";
+
+
+            document.getElementById(
+                "feedbackBox"
+            ).style.display =
+                "none";
+
+        }
+
+
+        /* =========================================================
+           COMPLETE CURRENT LESSON
+        ========================================================= */
+
+        function completeCurrentLesson() {
+
+            if (!currentLesson) {
+                return;
+            }
+
+
+            if (
+                !completedLessons.includes(
+                    currentLesson.id
+                )
+            ) {
+
+                completedLessons.push(
+                    currentLesson.id
+                );
+
+
+                localStorage.setItem(
+                    "interviewEnglishLessonsV3",
+                    JSON.stringify(
+                        completedLessons
+                    )
+                );
+
+
+                addXP(10);
+
+                addCoins(5);
+
+            }
+
+
+            closeModal();
+
+            renderLessons();
+
+            updateProgress();
+
+
+            if (
+                completedLessons.length ===
+                lessons.length
+            ) {
+
+                markInterviewCompleted();
+
+            }
+
+        }
+
+
+        /* =========================================================
+           MARK FULL INTERVIEW COMPLETE
+        ========================================================= */
+
+        function markInterviewCompleted() {
+
+            const alreadyCompleted =
+                localStorage.getItem(
+                    "interviewCompleted"
+                ) === "true";
+
+
+            if (!alreadyCompleted) {
+
+                addXP(50);
+
+                addCoins(25);
+
+
+                localStorage.setItem(
+                    "interviewCompleted",
+                    "true"
+                );
+
+            }
+
+
+            document.getElementById(
+                "completeBox"
+            ).style.display =
+                "block";
+
+        }
+
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+
+        function updateProgress() {
+
+            const count =
+                completedLessons.length;
+
+
+            const percent =
+                Math.round(
+                    (count / lessons.length) * 100
+                );
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                percent + "%";
+
+
+            document.getElementById(
+                "progressPercent"
+            ).innerText =
+                percent + "%";
+
+
+            document.getElementById(
+                "questionValue"
+            ).innerText =
+                count + "/" + lessons.length;
+
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                localStorage.getItem(
+                    "xp"
+                ) || "0";
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                localStorage.getItem(
+                    "coins"
+                ) || "0";
+
+
+            if (
+                count === lessons.length
+            ) {
+
+                document.getElementById(
+                    "completeBox"
+                ).style.display =
+                    "block";
+
+            }
+
+        }
+
+
+        /* =========================================================
+           XP
+        ========================================================= */
+
+        function addXP(amount) {
+
+            const current =
+                Number(
+                    localStorage.getItem(
+                        "xp"
+                    ) || 0
+                );
+
+
+            localStorage.setItem(
+                "xp",
+                current + amount
+            );
+
+        }
+
+
+        /* =========================================================
+           COINS
+        ========================================================= */
+
+        function addCoins(amount) {
+
+            const current =
+                Number(
+                    localStorage.getItem(
+                        "coins"
+                    ) || 0
+                );
+
+
+            localStorage.setItem(
+                "coins",
+                current + amount
+            );
+
+        }
+
+
+        /* =========================================================
+           AI INTERVIEW
+        ========================================================= */
+
+        function startAIInterview() {
+
+            localStorage.setItem(
+                "chatMode",
+                "Interview Practice"
+            );
+
+
+            localStorage.setItem(
+                "interviewPracticeQuestion",
+                lessons[0].question
+            );
+
+
+            localStorage.removeItem(
+                "interviewPracticeAnswer"
+            );
+
+
+            localStorage.setItem(
+                "salesRoleplayActive",
+                "true"
+            );
+
+
+            localStorage.setItem(
+                "salesRoleplayQuestionNumber",
+                "1"
+            );
+
+
+            window.location.href =
+                "chat.html?interview=1";
+
+        }
+
+
+        /* =========================================================
+           NORMAL AI PRACTICE
+        ========================================================= */
+
+        function openChatPractice() {
+
+            localStorage.setItem(
+                "chatMode",
+                "Interview Practice"
+            );
+
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        /* =========================================================
+           FINAL SCREEN
+        ========================================================= */
+
+        function showFinalScreen() {
+
+            document.getElementById(
+                "courseScreen"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "finalScreen"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "finalQuestions"
+            ).innerText =
+                completedLessons.length;
+
+        }
+
+
+        /* =========================================================
+           RESTART INTERVIEW
+        ========================================================= */
+
+        function restartInterview() {
+
+            completedLessons = [];
+
+
+            localStorage.removeItem(
+                "interviewEnglishLessonsV3"
+            );
+
+
+            localStorage.removeItem(
+                "interviewCompleted"
+            );
+
+
+            document.getElementById(
+                "courseScreen"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "finalScreen"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "completeBox"
+            ).style.display =
+                "none";
+
+
+            renderLessons();
+
+            updateProgress();
+
+        }
+
+
+        /* =========================================================
+           BACK
+        ========================================================= */
+
+        function goBack() {
+
+            window.location.href =
+                "job.html";
+
+        }
+
+
+        /* =========================================================
+           INIT
+        ========================================================= */
+
+        renderLessons();
+
+        updateProgress();
+        /* =========================
+           PREMIUM ACCESS CHECK
+        ========================= */
+
+        function checkInterviewPremium() {
+
+            const email = localStorage.getItem("userEmail");
+
+            const premiumKey = email
+                ? "premiumActive_" + email
+                : "premiumActive";
+
+            const isPremium =
+                localStorage.getItem(premiumKey) === "true";
+            if (
+                isPremium ||
+                localStorage.getItem("premiumActive") === "true"
+            ) {
+                return true;
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+        /* =========================
+           CHECK ON PAGE LOAD
+        ========================= */
+
+        if (!checkInterviewPremium()) {
+
+            document.body.innerHTML = `
+        <div style="
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:25px;
+            background:#020617;
+            color:white;
+            font-family:Arial,sans-serif;
+            text-align:center;
+        ">
+
+            <div style="
+                max-width:420px;
+                padding:30px;
+                border-radius:24px;
+                background:linear-gradient(
+                    135deg,
+                    rgba(139,92,246,.25),
+                    rgba(56,189,248,.15)
+                );
+                border:1px solid rgba(255,255,255,.15);
+            ">
+
+                <div style="
+                    font-size:55px;
+                    margin-bottom:15px;
+                ">
+                    👑
+                </div>
+
+                <h2 style="margin-bottom:12px;">
+                    Premium Feature
+                </h2>
+
+                <p style="
+                    color:#cbd5e1;
+                    line-height:1.6;
+                    margin-bottom:20px;
+                ">
+                    Interview Practice is available
+                    with SpeakMate Premium.
+                </p>
+
+                <button
+                    onclick="window.location.href='premium.html'"
+                    style="
+                        border:none;
+                        padding:13px 22px;
+                        border-radius:12px;
+                        color:white;
+                        font-weight:bold;
+                        font-size:15px;
+                        cursor:pointer;
+                        background:linear-gradient(
+                            135deg,
+                            #8b5cf6,
+                            #6366f1
+                        );
+                    "
+                >
+                    👑 Go Premium
+                </button>
+
+                <br><br>
+
+                <button
+                    onclick="history.back()"
+                    style="
+                        border:none;
+                        padding:10px 20px;
+                        border-radius:10px;
+                        color:white;
+                        background:#334155;
+                        cursor:pointer;
+                    "
+                >
+                    ← Go Back
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

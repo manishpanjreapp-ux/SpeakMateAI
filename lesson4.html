@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 4 - Daily Conversation | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            color: #facc15;
+            margin-top: 0;
+        }
+
+        .word {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+
+        .pronunciation {
+            color: #86efac;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .listen {
+            background: #2563eb;
+            border: none;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 9px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .listen:hover {
+            background: #1d4ed8;
+        }
+
+        .example {
+            background: rgba(56, 189, 248, 0.10);
+            border-left: 4px solid #38bdf8;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .dialogue {
+            background: rgba(34, 197, 94, 0.10);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 9px 0;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(250, 204, 21, 0.10);
+            border-left: 4px solid #facc15;
+            padding: 13px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .main-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .main-btn:hover {
+            background: #16a34a;
+        }
+
+        .ai-btn {
+            background: #7c3aed;
+        }
+
+        .ai-btn:hover {
+            background: #6d28d9;
+        }
+
+        .complete {
+            background: #16a34a;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #7c3aed;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        ul {
+            line-height: 1.9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🗣️ Lesson 4: Daily Conversation</h1>
+
+        <p class="subtitle">
+            Learn useful English sentences for everyday life.
+        </p>
+
+
+        <!-- INTRO -->
+
+        <div class="card">
+            <h2>🎯 What You Will Learn</h2>
+
+            <ul>
+                <li>Daily life mein English conversation</li>
+                <li>Greeting aur small talk</li>
+                <li>Questions poochna aur answers dena</li>
+                <li>Help maangna</li>
+                <li>Permission lena</li>
+                <li>Common daily English sentences</li>
+            </ul>
+
+            <span class="badge">⭐ Beginner Conversation</span>
+        </div>
+
+
+        <!-- MORNING -->
+
+        <div class="card">
+            <h2>🌅 Morning Conversation</h2>
+
+            <div class="word">
+                <div class="english">Good morning!</div>
+                <div class="hindi">सुप्रभात!</div>
+                <div class="pronunciation">गुड मॉर्निंग</div>
+                <button class="listen" onclick="speak('Good morning!')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Did you sleep well?</div>
+                <div class="hindi">क्या आपकी नींद अच्छी हुई?</div>
+                <div class="pronunciation">डिड यू स्लीप वेल</div>
+                <button class="listen" onclick="speak('Did you sleep well?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Yes, I slept well.</div>
+                <div class="hindi">हाँ, मैं अच्छी तरह सोया।</div>
+                <div class="pronunciation">येस, आइ स्लेप्ट वेल</div>
+                <button class="listen" onclick="speak('Yes, I slept well.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What are you doing?</div>
+                <div class="hindi">आप क्या कर रहे हैं?</div>
+                <div class="pronunciation">व्हाट आर यू डूइंग</div>
+                <button class="listen" onclick="speak('What are you doing?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am getting ready.</div>
+                <div class="hindi">मैं तैयार हो रहा हूँ।</div>
+                <div class="pronunciation">आइ ऐम गेटिंग रेडी</div>
+                <button class="listen" onclick="speak('I am getting ready.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am going to work.</div>
+                <div class="hindi">मैं काम पर जा रहा हूँ।</div>
+                <div class="pronunciation">आइ ऐम गोइंग टू वर्क</div>
+                <button class="listen" onclick="speak('I am going to work.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- COMMON QUESTIONS -->
+
+        <div class="card">
+            <h2>❓ Common Daily Questions</h2>
+
+            <div class="word">
+                <div class="english">How are you?</div>
+                <div class="hindi">आप कैसे हैं?</div>
+                <div class="pronunciation">हाउ आर यू</div>
+                <button class="listen" onclick="speak('How are you?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What are you doing?</div>
+                <div class="hindi">आप क्या कर रहे हैं?</div>
+                <button class="listen" onclick="speak('What are you doing?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Where are you going?</div>
+                <div class="hindi">आप कहाँ जा रहे हैं?</div>
+                <button class="listen" onclick="speak('Where are you going?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What are you looking for?</div>
+                <div class="hindi">आप क्या ढूँढ रहे हैं?</div>
+                <button class="listen" onclick="speak('What are you looking for?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What happened?</div>
+                <div class="hindi">क्या हुआ?</div>
+                <button class="listen" onclick="speak('What happened?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Are you busy?</div>
+                <div class="hindi">क्या आप व्यस्त हैं?</div>
+                <button class="listen" onclick="speak('Are you busy?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Are you free?</div>
+                <div class="hindi">क्या आप खाली हैं?</div>
+                <button class="listen" onclick="speak('Are you free?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can you help me?</div>
+                <div class="hindi">क्या आप मेरी मदद कर सकते हैं?</div>
+                <button class="listen" onclick="speak('Can you help me?')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- USEFUL ANSWERS -->
+
+        <div class="card">
+            <h2>💬 Useful Answers</h2>
+
+            <div class="word">
+                <div class="english">I am fine, thank you.</div>
+                <div class="hindi">मैं ठीक हूँ, धन्यवाद।</div>
+                <button class="listen" onclick="speak('I am fine, thank you.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am good.</div>
+                <div class="hindi">मैं अच्छा हूँ / मैं ठीक हूँ।</div>
+                <button class="listen" onclick="speak('I am good.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am a little busy.</div>
+                <div class="hindi">मैं थोड़ा व्यस्त हूँ।</div>
+                <button class="listen" onclick="speak('I am a little busy.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am free now.</div>
+                <div class="hindi">मैं अभी खाली हूँ।</div>
+                <button class="listen" onclick="speak('I am free now.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I don't know.</div>
+                <div class="hindi">मुझे नहीं पता।</div>
+                <button class="listen" onclick="speak('I don’t know.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I understand.</div>
+                <div class="hindi">मैं समझता हूँ।</div>
+                <button class="listen" onclick="speak('I understand.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I don't understand.</div>
+                <div class="hindi">मैं नहीं समझता।</div>
+                <button class="listen" onclick="speak('I don’t understand.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Please wait.</div>
+                <div class="hindi">कृपया इंतज़ार करें।</div>
+                <button class="listen" onclick="speak('Please wait.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- POLITE ENGLISH -->
+
+        <div class="card">
+            <h2>🙏 Polite English</h2>
+
+            <div class="word">
+                <div class="english">Please help me.</div>
+                <div class="hindi">कृपया मेरी मदद करें।</div>
+                <button class="listen" onclick="speak('Please help me.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Thank you so much.</div>
+                <div class="hindi">बहुत-बहुत धन्यवाद।</div>
+                <button class="listen" onclick="speak('Thank you so much.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">You're welcome.</div>
+                <div class="hindi">कोई बात नहीं / आपका स्वागत है।</div>
+                <button class="listen" onclick="speak('You are welcome.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Excuse me.</div>
+                <div class="hindi">माफ कीजिए / सुनिए।</div>
+                <button class="listen" onclick="speak('Excuse me.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Sorry, I am late.</div>
+                <div class="hindi">माफ कीजिए, मुझे देर हो गई।</div>
+                <button class="listen" onclick="speak('Sorry, I am late.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">No problem.</div>
+                <div class="hindi">कोई समस्या नहीं।</div>
+                <button class="listen" onclick="speak('No problem.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- DAILY ACTIONS -->
+
+        <div class="card">
+            <h2>🏃 Daily Actions</h2>
+
+            <div class="word">
+                <div class="english">I am eating breakfast.</div>
+                <div class="hindi">मैं नाश्ता कर रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am eating breakfast.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am drinking water.</div>
+                <div class="hindi">मैं पानी पी रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am drinking water.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am going home.</div>
+                <div class="hindi">मैं घर जा रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am going home.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am watching TV.</div>
+                <div class="hindi">मैं टीवी देख रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am watching TV.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am studying English.</div>
+                <div class="hindi">मैं अंग्रेज़ी पढ़ रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am studying English.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am working right now.</div>
+                <div class="hindi">मैं अभी काम कर रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am working right now.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am going to sleep.</div>
+                <div class="hindi">मैं सोने जा रहा हूँ।</div>
+                <button class="listen" onclick="speak('I am going to sleep.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- PERMISSION -->
+
+        <div class="card">
+            <h2>🙋 Asking for Permission</h2>
+
+            <div class="word">
+                <div class="english">Can I come in?</div>
+                <div class="hindi">क्या मैं अंदर आ सकता हूँ?</div>
+                <button class="listen" onclick="speak('Can I come in?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can I sit here?</div>
+                <div class="hindi">क्या मैं यहाँ बैठ सकता हूँ?</div>
+                <button class="listen" onclick="speak('Can I sit here?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can I use your phone?</div>
+                <div class="hindi">क्या मैं आपका फोन इस्तेमाल कर सकता हूँ?</div>
+                <button class="listen" onclick="speak('Can I use your phone?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">May I ask you a question?</div>
+                <div class="hindi">क्या मैं आपसे एक सवाल पूछ सकता हूँ?</div>
+                <button class="listen" onclick="speak('May I ask you a question?')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- OPINIONS -->
+
+        <div class="card">
+            <h2>💭 Expressing Your Opinion</h2>
+
+            <div class="word">
+                <div class="english">I think so.</div>
+                <div class="hindi">मुझे ऐसा लगता है।</div>
+                <button class="listen" onclick="speak('I think so.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I don't think so.</div>
+                <div class="hindi">मुझे ऐसा नहीं लगता।</div>
+                <button class="listen" onclick="speak('I don’t think so.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I agree with you.</div>
+                <div class="hindi">मैं आपसे सहमत हूँ।</div>
+                <button class="listen" onclick="speak('I agree with you.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">That's a good idea.</div>
+                <div class="hindi">यह एक अच्छा विचार है।</div>
+                <button class="listen" onclick="speak('That is a good idea.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- REAL CONVERSATION -->
+
+        <div class="card">
+            <h2>🎭 Real Daily Conversation</h2>
+
+            <div class="dialogue">
+                <b>Person A:</b> Good morning! How are you?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> Good morning! I am fine, thank you. How are you?
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> I am good. What are you doing?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I am getting ready for work.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> Are you busy today?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> Yes, I am a little busy.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> Okay. See you later!
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> Sure. See you!
+            </div>
+
+            <button class="main-btn"
+                onclick="speak('Good morning! How are you? I am fine, thank you. How are you? I am good. What are you doing? I am getting ready for work. Are you busy today? Yes, I am a little busy. Okay. See you later! Sure. See you!')">
+                🔊 Listen to Full Conversation
+            </button>
+        </div>
+
+
+        <!-- IMPORTANT TIP -->
+
+        <div class="card">
+            <h2>💡 English Speaking Tip</h2>
+
+            <div class="tip">
+                Daily conversation improve karne ke liye English ko sirf read mat karo.
+                <br><br>
+                👉 Sentence ko <b>zor se bolo</b>.<br>
+                👉 Listen button se pronunciation suno.<br>
+                👉 Phir same sentence khud bolo.<br>
+                👉 Roz 10–15 minutes practice karo.
+            </div>
+        </div>
+
+
+        <!-- PRACTICE -->
+
+        <div class="card">
+            <h2>🎤 Speaking Practice</h2>
+
+            <p>
+                Neeche ke sentences ko khud English mein bolne ki practice karo:
+            </p>
+
+            <div class="example">
+                1. Main theek hoon.<br>
+                2. Aap kya kar rahe hain?<br>
+                3. Aap kahan ja rahe hain?<br>
+                4. Kya aap meri madad kar sakte hain?<br>
+                5. Mujhe nahi pata.<br>
+                6. Main English padh raha hoon.<br>
+                7. Kya main andar aa sakta hoon?<br>
+                8. Dhanyavaad.<br>
+                9. Koi problem nahi.<br>
+                10. Main abhi busy hoon.
+            </div>
+        </div>
+
+
+        <!-- AI -->
+
+        <div class="card">
+            <h2>🤖 AI Conversation Practice</h2>
+
+            <p>
+                Ab AI ke saath real daily conversation practice karo.
+                AI se English mein baat karo aur questions poochho.
+            </p>
+
+            <button class="main-btn ai-btn" onclick="openAI()">
+                🤖 Practice with AI
+            </button>
+        </div>
+
+
+        <!-- COMPLETE -->
+
+        <div class="card">
+            <h2>🏆 Lesson Complete</h2>
+
+            <p>Lesson 4 complete karne par:</p>
+
+            <p>⭐ <b>+10 XP</b></p>
+            <p>🪙 <b>+5 Coins</b></p>
+
+            <button class="main-btn complete" onclick="completeLesson()">
+                ✅ Complete Lesson 4
+            </button>
+
+            <button class="main-btn" onclick="location.href='quiz4.html'">
+                📝 Take Lesson 4 Quiz
+            </button>
+
+            <button class="main-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<br>Home</a>
+        <a href="course.html">📚<br>Course</a>
+        <a href="chat.html">🤖<br>AI Chat</a>
+        <a href="profile.html">👤<br>Profile</a>
+    </div>
+
+
+    <script>
+
+        function speak(text) {
+
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function openAI() {
+            location.href = "chat.html";
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson4Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("✅ Lesson 4 is already completed!");
+                return;
+            }
+
+            let xp =
+                Number(localStorage.getItem("xp") || 0);
+
+            let coins =
+                Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem("lesson4Completed", "true");
+
+            // Compatibility with old progression
+            localStorage.setItem("lesson5Unlocked", "true");
+
+            alert(
+                "🎉 Lesson 4 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

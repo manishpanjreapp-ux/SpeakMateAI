@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3 - Family | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            color: #facc15;
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .word {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 12px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+
+        .pronunciation {
+            color: #86efac;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        .listen {
+            background: #2563eb;
+            width: auto;
+            padding: 8px 14px;
+            font-size: 14px;
+        }
+
+        .listen:hover {
+            background: #1d4ed8;
+        }
+
+        .example {
+            background: rgba(56, 189, 248, 0.10);
+            border-left: 4px solid #38bdf8;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .dialogue {
+            background: rgba(34, 197, 94, 0.10);
+            padding: 12px;
+            border-radius: 12px;
+            margin: 8px 0;
+        }
+
+        .tip {
+            background: rgba(250, 204, 21, 0.10);
+            border-left: 4px solid #facc15;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .complete {
+            background: #16a34a;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #7c3aed;
+            padding: 7px 12px;
+            border-radius: 20px;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>👨‍👩‍👧‍👦 Lesson 3: Family</h1>
+        <p class="subtitle">
+            Learn how to talk about your family in English.
+        </p>
+
+        <div class="card">
+            <h2>🎯 What You Will Learn</h2>
+
+            <ul>
+                <li>Family members ke English names</li>
+                <li>Apni family ke baare mein batana</li>
+                <li>Family members ke baare mein questions poochna</li>
+                <li>Family size batana</li>
+                <li>Simple family conversation</li>
+            </ul>
+
+            <span class="badge">⭐ Beginner Level</span>
+        </div>
+
+
+        <div class="card">
+            <h2>👨‍👩‍👧 Family Vocabulary</h2>
+
+            <div class="word">
+                <div class="english">Father</div>
+                <div class="hindi">पिता / पापा</div>
+                <div class="pronunciation">Pronunciation: फादर</div>
+                <button class="listen" onclick="speak('Father')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Mother</div>
+                <div class="hindi">माँ</div>
+                <div class="pronunciation">Pronunciation: मदर</div>
+                <button class="listen" onclick="speak('Mother')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Brother</div>
+                <div class="hindi">भाई</div>
+                <div class="pronunciation">Pronunciation: ब्रदर</div>
+                <button class="listen" onclick="speak('Brother')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Sister</div>
+                <div class="hindi">बहन</div>
+                <div class="pronunciation">Pronunciation: सिस्टर</div>
+                <button class="listen" onclick="speak('Sister')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Son</div>
+                <div class="hindi">बेटा</div>
+                <div class="pronunciation">Pronunciation: सन</div>
+                <button class="listen" onclick="speak('Son')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Daughter</div>
+                <div class="hindi">बेटी</div>
+                <div class="pronunciation">Pronunciation: डॉटर</div>
+                <button class="listen" onclick="speak('Daughter')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Husband</div>
+                <div class="hindi">पति</div>
+                <div class="pronunciation">Pronunciation: हज़्बंड</div>
+                <button class="listen" onclick="speak('Husband')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Wife</div>
+                <div class="hindi">पत्नी</div>
+                <div class="pronunciation">Pronunciation: वाइफ</div>
+                <button class="listen" onclick="speak('Wife')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Grandfather</div>
+                <div class="hindi">दादा / नाना</div>
+                <div class="pronunciation">Pronunciation: ग्रैंडफादर</div>
+                <button class="listen" onclick="speak('Grandfather')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Grandmother</div>
+                <div class="hindi">दादी / नानी</div>
+                <div class="pronunciation">Pronunciation: ग्रैंडमदर</div>
+                <button class="listen" onclick="speak('Grandmother')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Uncle</div>
+                <div class="hindi">चाचा / मामा / फूफा आदि</div>
+                <div class="pronunciation">Pronunciation: अंकल</div>
+                <button class="listen" onclick="speak('Uncle')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Aunt</div>
+                <div class="hindi">चाची / मामी / बुआ आदि</div>
+                <div class="pronunciation">Pronunciation: आंट</div>
+                <button class="listen" onclick="speak('Aunt')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Cousin</div>
+                <div class="hindi">चचेरा / ममेरा / फुफेरा / मौसेरा भाई या बहन</div>
+                <div class="pronunciation">Pronunciation: कज़िन</div>
+                <button class="listen" onclick="speak('Cousin')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>🗣️ Talking About Your Family</h2>
+
+            <div class="word">
+                <div class="english">I have a small family.</div>
+                <div class="hindi">मेरा परिवार छोटा है।</div>
+                <div class="pronunciation">आइ हैव अ स्मॉल फैमिली</div>
+                <button class="listen" onclick="speak('I have a small family.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I have a big family.</div>
+                <div class="hindi">मेरा परिवार बड़ा है।</div>
+                <div class="pronunciation">आइ हैव अ बिग फैमिली</div>
+                <button class="listen" onclick="speak('I have a big family.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">There are four people in my family.</div>
+                <div class="hindi">मेरे परिवार में चार लोग हैं।</div>
+                <div class="pronunciation">देयर आर फोर पीपल इन माय फैमिली</div>
+                <button class="listen" onclick="speak('There are four people in my family.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">My father is a businessman.</div>
+                <div class="hindi">मेरे पिता एक बिजनेसमैन हैं।</div>
+                <div class="pronunciation">माय फादर इज़ अ बिज़नेसमैन</div>
+                <button class="listen" onclick="speak('My father is a businessman.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">My mother is a teacher.</div>
+                <div class="hindi">मेरी माँ एक टीचर हैं।</div>
+                <div class="pronunciation">माय मदर इज़ अ टीचर</div>
+                <button class="listen" onclick="speak('My mother is a teacher.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I have one brother.</div>
+                <div class="hindi">मेरा एक भाई है।</div>
+                <div class="pronunciation">आइ हैव वन ब्रदर</div>
+                <button class="listen" onclick="speak('I have one brother.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I have one sister.</div>
+                <div class="hindi">मेरी एक बहन है।</div>
+                <div class="pronunciation">आइ हैव वन सिस्टर</div>
+                <button class="listen" onclick="speak('I have one sister.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">My brother is younger than me.</div>
+                <div class="hindi">मेरा भाई मुझसे छोटा है।</div>
+                <div class="pronunciation">माय ब्रदर इज़ यंगर दैन मी</div>
+                <button class="listen" onclick="speak('My brother is younger than me.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">My sister is older than me.</div>
+                <div class="hindi">मेरी बहन मुझसे बड़ी है।</div>
+                <div class="pronunciation">माय सिस्टर इज़ ओल्डर दैन मी</div>
+                <button class="listen" onclick="speak('My sister is older than me.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I love my family.</div>
+                <div class="hindi">मैं अपने परिवार से प्यार करता हूँ।</div>
+                <div class="pronunciation">आइ लव माय फैमिली</div>
+                <button class="listen" onclick="speak('I love my family.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>❓ Family Questions</h2>
+
+            <div class="word">
+                <div class="english">How many people are there in your family?</div>
+                <div class="hindi">आपके परिवार में कितने लोग हैं?</div>
+                <button class="listen" onclick="speak('How many people are there in your family?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Do you have any brothers?</div>
+                <div class="hindi">क्या आपका कोई भाई है?</div>
+                <button class="listen" onclick="speak('Do you have any brothers?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Do you have any sisters?</div>
+                <div class="hindi">क्या आपकी कोई बहन है?</div>
+                <button class="listen" onclick="speak('Do you have any sisters?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What does your father do?</div>
+                <div class="hindi">आपके पिता क्या काम करते हैं?</div>
+                <button class="listen" onclick="speak('What does your father do?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">What does your mother do?</div>
+                <div class="hindi">आपकी माँ क्या काम करती हैं?</div>
+                <button class="listen" onclick="speak('What does your mother do?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Where does your family live?</div>
+                <div class="hindi">आपका परिवार कहाँ रहता है?</div>
+                <button class="listen" onclick="speak('Where does your family live?')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>💬 Useful Answers</h2>
+
+            <div class="example">
+                <b>Q:</b> How many people are there in your family?<br>
+                <b>A:</b> There are four people in my family.
+            </div>
+
+            <div class="example">
+                <b>Q:</b> Do you have a brother?<br>
+                <b>A:</b> Yes, I have one brother.
+            </div>
+
+            <div class="example">
+                <b>Q:</b> Do you have a sister?<br>
+                <b>A:</b> Yes, I have one sister.
+            </div>
+
+            <div class="example">
+                <b>Q:</b> What does your father do?<br>
+                <b>A:</b> My father is a businessman.
+            </div>
+
+            <div class="example">
+                <b>Q:</b> Where does your family live?<br>
+                <b>A:</b> My family lives in Delhi.
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>🎭 Family Conversation</h2>
+
+            <div class="dialogue">
+                <b>Person A:</b> Tell me about your family.
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I have a small family.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> How many people are there in your family?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> There are four people in my family.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> Do you have any brothers or sisters?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> Yes, I have one brother and one sister.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> Do you love your family?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> Yes, I love my family very much.
+            </div>
+        </div>
+
+
+        <div class="card">
+            <h2>📝 Practice</h2>
+
+            <p>Ab English mein apni family ke baare mein 5 sentences bolne ki practice karo:</p>
+
+            <div class="tip">
+                <b>Example:</b><br><br>
+
+                My name is Manish.<br>
+                I have a small family.<br>
+                There are four people in my family.<br>
+                I have one brother.<br>
+                I love my family.
+            </div>
+
+            <button
+                onclick="speak('My name is Manish. I have a small family. There are four people in my family. I have one brother. I love my family.')">
+                🔊 Listen to Full Practice
+            </button>
+        </div>
+
+
+        <div class="card">
+            <h2>🤖 AI Family Practice</h2>
+
+            <p>
+                AI ke saath family ke baare mein English conversation practice karo.
+            </p>
+
+            <button onclick="openAI()">
+                🤖 Practice with AI
+            </button>
+        </div>
+
+
+        <div class="card">
+            <h2>🎯 Lesson Complete</h2>
+
+            <p>
+                Lesson complete karne par aapko:
+            </p>
+
+            <p>⭐ +10 XP</p>
+            <p>🪙 +5 Coins</p>
+
+            <button class="complete" onclick="completeLesson()">
+                ✅ Complete Lesson 3
+            </button>
+
+            <button onclick="location.href='quiz3.html'">
+                📝 Take Lesson 3 Quiz
+            </button>
+
+            <button onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<br>Home</a>
+        <a href="course.html">📚<br>Course</a>
+        <a href="chat.html">🤖<br>AI Chat</a>
+        <a href="profile.html">👤<br>Profile</a>
+    </div>
+
+
+    <script>
+
+        function speak(text) {
+
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function openAI() {
+            location.href = "chat.html";
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson3Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("✅ Lesson 3 is already completed!");
+                return;
+            }
+
+            let xp = Number(localStorage.getItem("xp") || 0);
+            let coins = Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem("lesson3Completed", "true");
+
+            // Compatibility with old progression system
+            localStorage.setItem("lesson4Unlocked", "true");
+
+            alert(
+                "🎉 Lesson 3 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

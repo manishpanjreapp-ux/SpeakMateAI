@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7 - Shopping English | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 20px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+
+        h2 {
+            color: #38bdf8;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #facc15;
+            margin-bottom: 8px;
+        }
+
+        .word {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 14px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .meaning {
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+
+        .pronunciation {
+            color: #86efac;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background: #16a34a;
+        }
+
+        .listen-btn {
+            width: auto;
+            padding: 8px 14px;
+            font-size: 14px;
+            background: #2563eb;
+        }
+
+        .listen-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .dialogue {
+            background: #111827;
+            padding: 15px;
+            border-radius: 14px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .shopkeeper {
+            color: #facc15;
+        }
+
+        .customer {
+            color: #4ade80;
+        }
+
+        .tip {
+            background: rgba(56, 189, 248, 0.12);
+            border-left: 4px solid #38bdf8;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .practice-box {
+            background: #111827;
+            padding: 15px;
+            border-radius: 14px;
+            margin-top: 10px;
+        }
+
+        .reward {
+            text-align: center;
+            margin-top: 25px;
+            padding: 18px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            border-radius: 18px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+
+        .example {
+            margin-top: 10px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🛍️ Lesson 7: Shopping English</h1>
+        <p class="subtitle">
+            Learn how to speak English while shopping in a store or market.
+        </p>
+
+        <!-- INTRO -->
+        <div class="section">
+            <h2>🎯 What You Will Learn</h2>
+
+            <ul>
+                <li>How to ask the price</li>
+                <li>How to ask for a different size</li>
+                <li>How to ask for a different color</li>
+                <li>How to bargain politely</li>
+                <li>How to buy something in English</li>
+                <li>How to ask for a discount</li>
+                <li>How to talk with a shopkeeper</li>
+            </ul>
+        </div>
+
+        <!-- BASIC WORDS -->
+        <div class="section">
+            <h2>📚 Important Shopping Words</h2>
+
+            <div class="word">
+                <div class="english">Price</div>
+                <div class="meaning">कीमत</div>
+                <div class="pronunciation">Pronunciation: प्राइस</div>
+                <button class="listen-btn" onclick="speak('Price')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Cheap</div>
+                <div class="meaning">सस्ता</div>
+                <div class="pronunciation">Pronunciation: चीप</div>
+                <button class="listen-btn" onclick="speak('Cheap')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Expensive</div>
+                <div class="meaning">महंगा</div>
+                <div class="pronunciation">Pronunciation: एक्सपेंसिव</div>
+                <button class="listen-btn" onclick="speak('Expensive')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Size</div>
+                <div class="meaning">आकार / नाप</div>
+                <div class="pronunciation">Pronunciation: साइज़</div>
+                <button class="listen-btn" onclick="speak('Size')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Color</div>
+                <div class="meaning">रंग</div>
+                <div class="pronunciation">Pronunciation: कलर</div>
+                <button class="listen-btn" onclick="speak('Color')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Discount</div>
+                <div class="meaning">छूट</div>
+                <div class="pronunciation">Pronunciation: डिस्काउंट</div>
+                <button class="listen-btn" onclick="speak('Discount')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Cash</div>
+                <div class="meaning">नकद पैसे</div>
+                <div class="pronunciation">Pronunciation: कैश</div>
+                <button class="listen-btn" onclick="speak('Cash')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Bill</div>
+                <div class="meaning">बिल</div>
+                <div class="pronunciation">Pronunciation: बिल</div>
+                <button class="listen-btn" onclick="speak('Bill')">🔊 Listen</button>
+            </div>
+        </div>
+
+        <!-- USEFUL SENTENCES -->
+        <div class="section">
+            <h2>🗣️ Useful Shopping Sentences</h2>
+
+            <div class="word">
+                <div class="english">How much is this?</div>
+                <div class="meaning">यह कितने का है?</div>
+                <div class="pronunciation">हाउ मच इज़ दिस?</div>
+                <button class="listen-btn" onclick="speak('How much is this?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">How much does this cost?</div>
+                <div class="meaning">इसकी कीमत कितनी है?</div>
+                <div class="pronunciation">हाउ मच डज़ दिस कॉस्ट?</div>
+                <button class="listen-btn" onclick="speak('How much does this cost?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Do you have this in a larger size?</div>
+                <div class="meaning">क्या आपके पास इसका बड़ा साइज़ है?</div>
+                <div class="pronunciation">डू यू हैव दिस इन अ लार्जर साइज़?</div>
+                <button class="listen-btn" onclick="speak('Do you have this in a larger size?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Do you have this in black?</div>
+                <div class="meaning">क्या यह काले रंग में है?</div>
+                <div class="pronunciation">डू यू हैव दिस इन ब्लैक?</div>
+                <button class="listen-btn" onclick="speak('Do you have this in black?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can I try this on?</div>
+                <div class="meaning">क्या मैं इसे पहनकर देख सकता हूँ?</div>
+                <div class="pronunciation">कैन आई ट्राइ दिस ऑन?</div>
+                <button class="listen-btn" onclick="speak('Can I try this on?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Do you have a discount?</div>
+                <div class="meaning">क्या कुछ छूट मिलेगी?</div>
+                <div class="pronunciation">डू यू हैव अ डिस्काउंट?</div>
+                <button class="listen-btn" onclick="speak('Do you have a discount?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can you make it cheaper?</div>
+                <div class="meaning">क्या आप इसे थोड़ा सस्ता कर सकते हैं?</div>
+                <div class="pronunciation">कैन यू मेक इट चीपर?</div>
+                <button class="listen-btn" onclick="speak('Can you make it cheaper?')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I will take it.</div>
+                <div class="meaning">मैं इसे ले लूँगा।</div>
+                <div class="pronunciation">आई विल टेक इट.</div>
+                <button class="listen-btn" onclick="speak('I will take it.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">I am just looking.</div>
+                <div class="meaning">मैं बस देख रहा हूँ।</div>
+                <div class="pronunciation">आई एम जस्ट लुकिंग.</div>
+                <button class="listen-btn" onclick="speak('I am just looking.')">🔊 Listen</button>
+            </div>
+
+            <div class="word">
+                <div class="english">Can I pay by card?</div>
+                <div class="meaning">क्या मैं कार्ड से भुगतान कर सकता हूँ?</div>
+                <div class="pronunciation">कैन आई पे बाय कार्ड?</div>
+                <button class="listen-btn" onclick="speak('Can I pay by card?')">🔊 Listen</button>
+            </div>
+        </div>
+
+        <!-- COLORS -->
+        <div class="section">
+            <h2>🎨 Colors</h2>
+
+            <div class="example">
+                <b>Red</b> = लाल<br>
+                <b>Blue</b> = नीला<br>
+                <b>Black</b> = काला<br>
+                <b>White</b> = सफेद<br>
+                <b>Green</b> = हरा<br>
+                <b>Yellow</b> = पीला
+            </div>
+
+            <button onclick="speak('I would like this shirt in blue.')">
+                🔊 Listen: I would like this shirt in blue.
+            </button>
+        </div>
+
+        <!-- SIZES -->
+        <div class="section">
+            <h2>👕 Sizes</h2>
+
+            <div class="example">
+                <b>Small (S)</b> = छोटा<br>
+                <b>Medium (M)</b> = मध्यम<br>
+                <b>Large (L)</b> = बड़ा<br>
+                <b>Extra Large (XL)</b> = बहुत बड़ा
+            </div>
+
+            <button onclick="speak('Do you have this shirt in medium size?')">
+                🔊 Listen: Do you have this shirt in medium size?
+            </button>
+        </div>
+
+        <!-- DIALOGUE -->
+        <div class="section">
+            <h2>💬 Real Shopping Conversation</h2>
+
+            <div class="dialogue">
+
+                <p>
+                    <span class="shopkeeper"><b>Shopkeeper:</b></span>
+                    Hello! Can I help you?
+                </p>
+
+                <p>
+                    <span class="customer"><b>Customer:</b></span>
+                    Yes, I am looking for a black shirt.
+                </p>
+
+                <p>
+                    <span class="shopkeeper"><b>Shopkeeper:</b></span>
+                    Sure. What size do you need?
+                </p>
+
+                <p>
+                    <span class="customer"><b>Customer:</b></span>
+                    I need a medium size.
+                </p>
+
+                <p>
+                    <span class="shopkeeper"><b>Shopkeeper:</b></span>
+                    Here you are.
+                </p>
+
+                <p>
+                    <span class="customer"><b>Customer:</b></span>
+                    How much is this?
+                </p>
+
+                <p>
+                    <span class="shopkeeper"><b>Shopkeeper:</b></span>
+                    It is 1,000 rupees.
+                </p>
+
+                <p>
+                    <span class="customer"><b>Customer:</b></span>
+                    Can you give me a discount?
+                </p>
+
+                <p>
+                    <span class="shopkeeper"><b>Shopkeeper:</b></span>
+                    I can give you 10% off.
+                </p>
+
+                <p>
+                    <span class="customer"><b>Customer:</b></span>
+                    Okay. I will take it.
+                </p>
+
+            </div>
+
+            <button
+                onclick="speak('Hello! Can I help you? Yes, I am looking for a black shirt. Sure. What size do you need? I need a medium size. How much is this? It is one thousand rupees. Can you give me a discount? I can give you ten percent off. Okay. I will take it.')">
+                🔊 Listen to Full Conversation
+            </button>
+        </div>
+
+        <!-- BARGAINING -->
+        <div class="section">
+            <h2>💰 Polite Bargaining</h2>
+
+            <div class="word">
+                <div class="english">Can you give me a better price?</div>
+                <div class="meaning">क्या आप मुझे बेहतर कीमत दे सकते हैं?</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Is there any discount?</div>
+                <div class="meaning">क्या कोई छूट है?</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Can you lower the price?</div>
+                <div class="meaning">क्या आप कीमत कम कर सकते हैं?</div>
+            </div>
+
+            <div class="word">
+                <div class="english">That's a little expensive.</div>
+                <div class="meaning">यह थोड़ा महंगा है।</div>
+            </div>
+
+            <div class="word">
+                <div class="english">What is your best price?</div>
+                <div class="meaning">आपकी सबसे अच्छी कीमत क्या है?</div>
+            </div>
+
+            <button onclick="speak('What is your best price?')">
+                🔊 Listen
+            </button>
+        </div>
+
+        <!-- QUESTIONS -->
+        <div class="section">
+            <h2>❓ Shopping Questions & Answers</h2>
+
+            <div class="practice-box">
+                <b>Q: How much is this?</b><br>
+                A: It is five hundred rupees.
+            </div>
+
+            <div class="practice-box">
+                <b>Q: Do you have a larger size?</b><br>
+                A: Yes, we do.
+            </div>
+
+            <div class="practice-box">
+                <b>Q: Do you have this in blue?</b><br>
+                A: Yes, we have it in blue.
+            </div>
+
+            <div class="practice-box">
+                <b>Q: Can I pay by card?</b><br>
+                A: Yes, you can.
+            </div>
+
+            <div class="practice-box">
+                <b>Q: Do you have a discount?</b><br>
+                A: Yes, we can give you 10% off.
+            </div>
+        </div>
+
+        <!-- ONLINE SHOPPING -->
+        <div class="section">
+            <h2>📱 Online Shopping English</h2>
+
+            <div class="word">
+                <div class="english">Add to cart</div>
+                <div class="meaning">कार्ट में डालना</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Buy now</div>
+                <div class="meaning">अभी खरीदें</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Delivery</div>
+                <div class="meaning">डिलीवरी</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Return</div>
+                <div class="meaning">वापस करना</div>
+            </div>
+
+            <div class="word">
+                <div class="english">Order</div>
+                <div class="meaning">ऑर्डर</div>
+            </div>
+
+            <div class="example">
+                <b>Example:</b><br>
+                I want to order this shirt online.
+                <br><br>
+                Meaning: मैं यह शर्ट ऑनलाइन ऑर्डर करना चाहता हूँ।
+            </div>
+
+            <button onclick="speak('I want to order this shirt online.')">
+                🔊 Listen
+            </button>
+        </div>
+
+        <!-- TIPS -->
+        <div class="section">
+            <h2>💡 English Speaking Tips</h2>
+
+            <div class="tip">
+                ❌ Don't say: <b>What price this?</b><br>
+                ✅ Say: <b>How much is this?</b>
+            </div>
+
+            <div class="tip">
+                ❌ Don't say: <b>Give discount.</b><br>
+                ✅ Say: <b>Can you give me a discount?</b>
+            </div>
+
+            <div class="tip">
+                ❌ Don't say: <b>I take this.</b><br>
+                ✅ Say: <b>I will take it.</b>
+            </div>
+
+            <div class="tip">
+                हमेशा polite English use करो। "Please", "Can you", और "Could you" conversation को ज्यादा natural बनाते
+                हैं।
+            </div>
+        </div>
+
+        <!-- SPEAKING PRACTICE -->
+        <div class="section">
+            <h2>🎤 Speaking Practice</h2>
+
+            <p>
+                नीचे दिए गए sentences को ज़ोर से बोलने की कोशिश करो:
+            </p>
+
+            <div class="practice-box">
+                1. How much is this?<br><br>
+                2. Do you have a larger size?<br><br>
+                3. Do you have this in black?<br><br>
+                4. Can you give me a discount?<br><br>
+                5. I will take it.
+            </div>
+
+            <button onclick="speak('How much is this?')">
+                🔊 Practice 1
+            </button>
+
+            <button onclick="speak('Do you have a larger size?')">
+                🔊 Practice 2
+            </button>
+
+            <button onclick="speak('Can you give me a discount?')">
+                🔊 Practice 3
+            </button>
+
+            <button onclick="speak('I will take it.')">
+                🔊 Practice 4
+            </button>
+        </div>
+
+        <!-- AI -->
+        <div class="section">
+            <h2>🤖 Practice With AI</h2>
+
+            <p>
+                Shopping conversation की practice करने के लिए AI से बात करो।
+            </p>
+
+            <button onclick="window.location.href='chat.html'">
+                🤖 Start Shopping Conversation
+            </button>
+        </div>
+
+        <!-- COMPLETE -->
+        <div class="reward">
+            <h2>🏆 Lesson Complete</h2>
+
+            <p>
+                Lesson complete करने पर आपको:
+            </p>
+
+            <p>
+                ⭐ <b>+10 XP</b><br>
+                🪙 <b>+5 Coins</b>
+            </p>
+
+            <button onclick="completeLesson()">
+                ✅ Complete Lesson & Get Reward
+            </button>
+
+            <button onclick="window.location.href='quiz7.html'">
+                📝 Take Quiz 7
+            </button>
+
+            <button onclick="window.location.href='course.html'">
+                📚 Back to Course
+            </button>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <a href="home.html">🏠<span>Home</span></a>
+        <a href="course.html">📚<span>Course</span></a>
+        <a href="chat.html">🤖<span>AI</span></a>
+        <a href="profile.html">👤<span>Profile</span></a>
+    </div>
+
+    <script>
+
+        function speak(text) {
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson7Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("✅ Lesson 7 already completed!\nYou have already received the reward.");
+                return;
+            }
+
+            let xp = Number(localStorage.getItem("xp") || 0);
+            let coins = Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem("lesson7Completed", "true");
+
+            // Compatibility with older progression system
+            localStorage.setItem("lesson8Unlocked", "true");
+
+            alert(
+                "🎉 Lesson 7 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins\n\n" +
+                "Great job! Keep learning! 🚀"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 6 - Time | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .score-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #22c55e;
+            transition: 0.3s;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: #1e293b;
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #334155;
+            transform: translateY(-1px);
+        }
+
+        .option.correct {
+            background: #166534;
+            border-color: #22c55e;
+        }
+
+        .option.wrong {
+            background: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .option.selected {
+            border-color: #38bdf8;
+        }
+
+        .option:disabled {
+            cursor: default;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 14px;
+            padding: 13px;
+            border-radius: 12px;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .check-btn,
+        .result-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .check-btn:hover,
+        .result-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result h2 {
+            color: #22c55e;
+        }
+
+        .big-score {
+            font-size: 42px;
+            color: #facc15;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .reward {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid #22c55e;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        .try-btn {
+            background: #7c3aed;
+        }
+
+        .try-btn:hover {
+            background: #6d28d9;
+        }
+
+        .course-btn {
+            background: #f59e0b;
+        }
+
+        .course-btn:hover {
+            background: #d97706;
+        }
+
+        .lesson-btn {
+            background: #0891b2;
+        }
+
+        .lesson-btn:hover {
+            background: #0e7490;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>⏰ Quiz 6: Time</h1>
+
+        <p class="subtitle">
+            Time, AM/PM, daily routine, clock & common time questions
+        </p>
+
+        <div class="score-box">
+
+            <div>
+                Question <span id="currentQuestion">1</span> / 10
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+        </div>
+
+
+        <div id="quizArea"></div>
+
+
+        <div class="result" id="resultBox">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="big-score" id="finalScore">
+                0/10
+            </div>
+
+            <p id="resultMessage"></p>
+
+            <div class="reward" id="rewardBox"></div>
+
+            <button class="result-btn lesson-btn" onclick="location.href='lesson6.html'">
+                📖 Review Lesson 6
+            </button>
+
+            <button class="result-btn course-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="result-btn try-btn" onclick="location.reload()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠<br>Home
+        </a>
+
+        <a href="course.html">
+            📚<br>Course
+        </a>
+
+        <a href="chat.html">
+            🤖<br>AI Chat
+        </a>
+
+        <a href="profile.html">
+            👤<br>Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "“अभी कितने बजे हैं?” को English में कैसे पूछेंगे?",
+                options: [
+                    "What time is it?",
+                    "What age is it?",
+                    "How many time is it?",
+                    "Where time is it?"
+                ],
+                answer: 0,
+                explanation:
+                    "“अभी कितने बजे हैं?” के लिए natural English sentence है: What time is it?"
+            },
+
+            {
+                question: "8:00 को English में कैसे बोलेंगे?",
+                options: [
+                    "Eight thirty",
+                    "Eight o'clock",
+                    "Eight fifteen",
+                    "Eight forty"
+                ],
+                answer: 1,
+                explanation:
+                    "8:00 को Eight o'clock कहा जाता है।"
+            },
+
+            {
+                question: "8:30 का सही English expression कौन-सा है?",
+                options: [
+                    "Eight fifteen",
+                    "Eight forty",
+                    "Eight thirty",
+                    "Nine thirty"
+                ],
+                answer: 2,
+                explanation:
+                    "8:30 को Eight thirty या half past eight कहा जा सकता है।"
+            },
+
+            {
+                question: "अगर आप सुबह 6 बजे उठते हैं, तो कौन-सा sentence सही है?",
+                options: [
+                    "I wake up at 6 PM.",
+                    "I wake up at 6 AM.",
+                    "I wake up on 6 AM.",
+                    "I wake up in 6 AM."
+                ],
+                answer: 1,
+                explanation:
+                    "सुबह 6 बजे के लिए I wake up at 6 AM सही sentence है।"
+            },
+
+            {
+                question: "दोपहर 1 बजे lunch करने के लिए कौन-सा sentence सही है?",
+                options: [
+                    "I have lunch at 1 PM.",
+                    "I have lunch at 1 AM.",
+                    "I have lunch on 1 PM.",
+                    "I have lunch in 1 PM."
+                ],
+                answer: 0,
+                explanation:
+                    "दोपहर 1 बजे के लिए 1 PM use होता है और specific time के साथ at आता है।"
+            },
+
+            {
+                question: "“आप कितने बजे काम पर जाते हैं?” का सही English translation कौन-सा है?",
+                options: [
+                    "What time do you go to work?",
+                    "What age do you go to work?",
+                    "Where time do you work?",
+                    "How many do you go to work?"
+                ],
+                answer: 0,
+                explanation:
+                    "“आप कितने बजे काम पर जाते हैं?” = What time do you go to work?"
+            },
+
+            {
+                question: "“मुझे कितने बजे आना चाहिए?” को English में कैसे कहेंगे?",
+                options: [
+                    "What time should I come?",
+                    "What age should I come?",
+                    "How old should I come?",
+                    "What time I should coming?"
+                ],
+                answer: 0,
+                explanation:
+                    "सही sentence है: What time should I come?"
+            },
+
+            {
+                question: "“Good night” आम तौर पर किस समय या situation में use किया जाता है?",
+                options: [
+                    "सोने या रात को विदा लेते समय",
+                    "सुबह उठते समय",
+                    "दोपहर का lunch करते समय",
+                    "सुबह किसी से पहली बार मिलने पर"
+                ],
+                answer: 0,
+                explanation:
+                    "Good night आम तौर पर रात में सोने से पहले या रात को विदा लेते समय कहा जाता है।"
+            },
+
+            {
+                question: "किस sentence में specific time के साथ “at” का सही use हुआ है?",
+                options: [
+                    "The meeting starts at 10 AM.",
+                    "The meeting starts in 10 AM.",
+                    "The meeting starts on 10 AM.",
+                    "The meeting starts to 10 AM."
+                ],
+                answer: 0,
+                explanation:
+                    "Specific clock time के साथ at use होता है: The meeting starts at 10 AM."
+            },
+
+            {
+                question: "The time 9:45 can be described as “quarter to ten.”",
+                trueFalse: true,
+                options: [
+                    "सही",
+                    "गलत"
+                ],
+                answer: 0,
+                explanation:
+                    "9:45, 10 बजे से 15 मिनट पहले है, इसलिए इसे quarter to ten कहा जा सकता है।"
+            }
+
+        ];
+
+
+        let current = 0;
+        let score = 0;
+        let answered = false;
+
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const quizArea =
+                document.getElementById("quizArea");
+
+            const q = questions[current];
+
+
+            document.getElementById("currentQuestion").textContent =
+                current + 1;
+
+
+            document.getElementById("progressBar").style.width =
+                ((current + 1) / questions.length * 100) + "%";
+
+
+            let html = `
+    <div class="question-card">
+
+      <div class="question-number">
+        Question ${current + 1}
+      </div>
+
+      <div class="question">
+        ${q.question}
+      </div>
+  `;
+
+
+            q.options.forEach((option, index) => {
+
+                html += `
+      <button
+        class="option"
+        onclick="selectAnswer(${index})"
+        id="option${index}">
+        ${q.trueFalse ? option :
+                        String.fromCharCode(65 + index) + ". " + option}
+      </button>
+    `;
+
+            });
+
+
+            html += `
+      <div class="feedback" id="feedback"></div>
+    </div>
+  `;
+
+
+            quizArea.innerHTML = html;
+        }
+
+
+        function selectAnswer(selected) {
+
+            if (answered) return;
+
+            answered = true;
+
+            const q = questions[current];
+
+            const buttons =
+                document.querySelectorAll(".option");
+
+
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+
+
+            if (selected === q.answer) {
+
+                score++;
+
+                buttons[selected].classList.add("correct");
+
+                showFeedback(
+                    true,
+                    q.explanation
+                );
+
+            } else {
+
+                buttons[selected].classList.add("wrong");
+
+                buttons[q.answer].classList.add("correct");
+
+                showFeedback(
+                    false,
+                    q.explanation
+                );
+
+            }
+
+
+            setTimeout(nextQuestion, 1400);
+        }
+
+
+        function showFeedback(isCorrect, text) {
+
+            const feedback =
+                document.getElementById("feedback");
+
+            feedback.style.display = "block";
+
+
+            if (isCorrect) {
+
+                feedback.innerHTML =
+                    "✅ सही जवाब!<br>" + text;
+
+            } else {
+
+                feedback.innerHTML =
+                    "❌ गलत जवाब।<br>" + text;
+
+            }
+        }
+
+
+        function nextQuestion() {
+
+            current++;
+
+
+            if (current < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quizArea").style.display =
+                "none";
+
+            document.querySelector(".score-box").style.display =
+                "none";
+
+            document.getElementById("resultBox").style.display =
+                "block";
+
+
+            document.getElementById("finalScore").textContent =
+                score + "/10";
+
+
+            let message = "";
+
+
+            if (score === 10) {
+
+                message =
+                    "🏆 Perfect! Time English par tumhari pakad excellent hai!";
+
+            } else if (score >= 8) {
+
+                message =
+                    "🔥 Excellent! Bahut badhiya performance!";
+
+            } else if (score >= 5) {
+
+                message =
+                    "👍 Good job! Thodi aur practice se tum aur better kar sakte ho.";
+
+            } else {
+
+                message =
+                    "💪 Koi baat nahi! Lesson 6 ko revise karo aur phir try karo.";
+
+            }
+
+
+            document.getElementById("resultMessage").textContent =
+                message;
+
+
+            giveReward();
+        }
+
+
+        function giveReward() {
+
+            const rewardBox =
+                document.getElementById("rewardBox");
+
+
+            if (score >= 5) {
+
+                const alreadyCompleted =
+                    localStorage.getItem("quiz6Completed") === "true";
+
+
+                if (alreadyCompleted) {
+
+                    rewardBox.innerHTML = `
+        ✅ Quiz 6 already completed.<br><br>
+        🎁 Reward pehle hi mil chuka hai.
+      `;
+
+                    return;
+                }
+
+
+                let xp =
+                    Number(localStorage.getItem("xp") || 0);
+
+                let coins =
+                    Number(localStorage.getItem("coins") || 0);
+
+
+                xp += 20;
+                coins += 10;
+
+
+                localStorage.setItem("xp", xp);
+                localStorage.setItem("coins", coins);
+
+                localStorage.setItem(
+                    "quiz6Completed",
+                    "true"
+                );
+
+
+                rewardBox.innerHTML = `
+      🎉 Quiz Passed!<br><br>
+      ⭐ <b>+20 XP</b><br>
+      🪙 <b>+10 Coins</b><br><br>
+      Keep learning! 🚀
+    `;
+
+            } else {
+
+                rewardBox.innerHTML = `
+      📚 Quiz pass karne ke liye
+      कम से कम 5/10 score चाहिए।<br><br>
+      Lesson 6 revise karke phir try karo.
+    `;
+
+            }
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>

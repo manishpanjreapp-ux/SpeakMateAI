@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 8 - Travel English | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 20px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .progress-area {
+            margin-bottom: 20px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+
+        progress {
+            width: 100%;
+            height: 18px;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: #1f2937;
+            color: white;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #38bdf8;
+            transform: translateY(-1px);
+        }
+
+        .option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .option:disabled {
+            cursor: default;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .next-btn,
+        .result-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover,
+        .result-btn:hover {
+            background: #16a34a;
+            transform: scale(1.02);
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .score {
+            font-size: 42px;
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .reward {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 14px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            line-height: 1.6;
+        }
+
+        .review-btn {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .review-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>✈️ Quiz 8</h1>
+
+        <p class="subtitle">
+            Travel English
+        </p>
+
+        <div class="progress-area">
+
+            <div class="progress-text">
+                <span id="progressText">Question 1 of 10</span>
+                <span id="scoreText">Score: 0</span>
+            </div>
+
+            <progress id="progressBar" value="1" max="10"></progress>
+
+        </div>
+
+        <div id="quizArea"></div>
+
+        <div id="result" class="result">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="score" id="finalScore">
+                0/10
+            </div>
+
+            <p id="resultMessage"></p>
+
+            <div id="rewardBox" class="reward"></div>
+
+            <button class="review-btn" onclick="location.href='lesson8.html'">
+                📖 Review Lesson 8
+            </button>
+
+            <button class="review-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="result-btn" onclick="restartQuiz()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠
+            <span>Home</span>
+        </a>
+
+        <a href="course.html">
+            📚
+            <span>Course</span>
+        </a>
+
+        <a href="chat.html">
+            🤖
+            <span>AI</span>
+        </a>
+
+        <a href="profile.html">
+            👤
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "What does 'passport' mean?",
+                options: [
+                    "A travel document",
+                    "A hotel room",
+                    "A train ticket",
+                    "A suitcase"
+                ],
+                answer: 0,
+                explanation:
+                    "A passport is an official travel document used for international travel and identification."
+            },
+
+            {
+                question: "Which sentence correctly asks for directions to a hotel?",
+                options: [
+                    "Where hotel going?",
+                    "How can I get to the hotel?",
+                    "How hotel I get?",
+                    "Hotel where go?"
+                ],
+                answer: 1,
+                explanation:
+                    "How can I get to the hotel? is a natural and correct way to ask for directions."
+            },
+
+            {
+                question: "What does 'luggage' mean?",
+                options: [
+                    "Travel bags and belongings",
+                    "A boarding gate",
+                    "A hotel booking",
+                    "A flight schedule"
+                ],
+                answer: 0,
+                explanation:
+                    "Luggage means the bags and personal belongings that you take when traveling."
+            },
+
+            {
+                question: "Which sentence would you use to ask about the cost of a taxi ride?",
+                options: [
+                    "How much will it cost?",
+                    "How many will it take?",
+                    "What time is money?",
+                    "How price will go?"
+                ],
+                answer: 0,
+                explanation:
+                    "How much will it cost? is the natural way to ask about the price of a taxi ride."
+            },
+
+            {
+                question: "What should you say if you cannot understand someone speaking quickly?",
+                options: [
+                    "Can you speak slowly?",
+                    "Can you talk bigger?",
+                    "Please speak faster.",
+                    "Can you make English?"
+                ],
+                answer: 0,
+                explanation:
+                    "Can you speak slowly? is a polite way to ask someone to reduce their speaking speed."
+            },
+
+            {
+                question: "Which sentence is appropriate at a hotel when you already have a booking?",
+                options: [
+                    "I have a reservation.",
+                    "I have a destination.",
+                    "I have a luggage.",
+                    "I have a departure."
+                ],
+                answer: 0,
+                explanation:
+                    "I have a reservation tells the hotel staff that you already have a booking."
+            },
+
+            {
+                question: "What does 'departure' refer to in travel?",
+                options: [
+                    "The time or act of leaving",
+                    "The time of arriving",
+                    "The hotel breakfast",
+                    "The baggage collection area"
+                ],
+                answer: 0,
+                explanation:
+                    "Departure refers to leaving a place, such as when a flight or train leaves."
+            },
+
+            {
+                question: "Which sentence correctly asks where your luggage can be collected?",
+                options: [
+                    "Where can I collect my luggage?",
+                    "Where I luggage collect?",
+                    "Where luggage I can?",
+                    "Can luggage where collect?"
+                ],
+                answer: 0,
+                explanation:
+                    "Where can I collect my luggage? is the correct sentence."
+            },
+
+            {
+                question: "Which phrase is polite when asking a stranger for help?",
+                options: [
+                    "Could you help me?",
+                    "Help me now.",
+                    "You help me.",
+                    "Give help."
+                ],
+                answer: 0,
+                explanation:
+                    "Could you help me? is a polite and natural way to ask someone for assistance."
+            },
+
+            {
+                question:
+                    "True or False: 'Go straight and turn left' can be used to give directions.",
+                options: [
+                    "True",
+                    "False"
+                ],
+                answer: 0,
+                explanation:
+                    "Go straight and turn left is a common way to give simple directions."
+            }
+
+        ];
+
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("progressText").textContent =
+                "Question " +
+                (currentQuestion + 1) +
+                " of " +
+                questions.length;
+
+            document.getElementById("scoreText").textContent =
+                "Score: " + score;
+
+            document.getElementById("progressBar").value =
+                currentQuestion + 1;
+
+
+            let html = `
+        <div class="question-box">
+
+          <div class="question-number">
+            Question ${currentQuestion + 1}
+          </div>
+
+          <div class="question">
+            ${q.question}
+          </div>
+      `;
+
+
+            q.options.forEach((option, index) => {
+
+                html += `
+          <button
+            class="option"
+            onclick="selectAnswer(${index})"
+            id="option${index}">
+            ${String.fromCharCode(65 + index)}. ${option}
+          </button>
+        `;
+
+            });
+
+
+            html += `
+
+          <div
+            id="feedback"
+            class="feedback"
+            style="display:none;">
+          </div>
+
+          <button
+            id="nextButton"
+            class="next-btn"
+            onclick="nextQuestion()"
+            style="display:none;">
+            ${currentQuestion === questions.length - 1
+                    ? "🏁 Finish Quiz"
+                    : "➡️ Next Question"
+                }
+          </button>
+
+        </div>
+      `;
+
+
+            document.getElementById("quizArea").innerHTML =
+                html;
+
+        }
+
+
+        function selectAnswer(selectedIndex) {
+
+            if (answered) {
+                return;
+            }
+
+            answered = true;
+
+            const q = questions[currentQuestion];
+
+            const options =
+                document.querySelectorAll(".option");
+
+
+            options.forEach((button, index) => {
+
+                button.disabled = true;
+
+                if (index === q.answer) {
+                    button.classList.add("correct");
+                }
+
+                if (
+                    index === selectedIndex &&
+                    selectedIndex !== q.answer
+                ) {
+                    button.classList.add("wrong");
+                }
+
+            });
+
+
+            if (selectedIndex === q.answer) {
+                score++;
+            }
+
+
+            document.getElementById("scoreText").textContent =
+                "Score: " + score;
+
+
+            const feedback =
+                document.getElementById("feedback");
+
+
+            if (selectedIndex === q.answer) {
+
+                feedback.innerHTML =
+                    "✅ Correct! " + q.explanation;
+
+            } else {
+
+                feedback.innerHTML =
+                    "❌ Not quite. " + q.explanation;
+
+            }
+
+
+            feedback.style.display =
+                "block";
+
+
+            document.getElementById("nextButton").style.display =
+                "block";
+
+        }
+
+
+        function nextQuestion() {
+
+            if (!answered) {
+                return;
+            }
+
+            currentQuestion++;
+
+
+            if (currentQuestion < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quizArea").style.display =
+                "none";
+
+            document.getElementById("result").style.display =
+                "block";
+
+
+            document.getElementById("progressText").textContent =
+                "Quiz Complete";
+
+            document.getElementById("progressBar").value =
+                questions.length;
+
+
+            document.getElementById("finalScore").textContent =
+                score + "/" + questions.length;
+
+
+            let message = "";
+
+
+            if (score >= 9) {
+
+                message =
+                    "🏆 Excellent! Your Travel English is very strong.";
+
+            } else if (score >= 7) {
+
+                message =
+                    "👏 Great job! Keep practicing your travel conversations.";
+
+            } else if (score >= 5) {
+
+                message =
+                    "👍 Good effort! Review Lesson 8 once more.";
+
+            } else {
+
+                message =
+                    "📖 Keep practicing. Review Lesson 8 and try again.";
+
+            }
+
+
+            document.getElementById("resultMessage").textContent =
+                message;
+
+
+            const rewardBox =
+                document.getElementById("rewardBox");
+
+
+            if (score >= 5) {
+
+                const alreadyCompleted =
+                    localStorage.getItem("quiz8Completed") === "true";
+
+
+                if (!alreadyCompleted) {
+
+                    let xp =
+                        Number(localStorage.getItem("xp") || 0);
+
+                    let coins =
+                        Number(localStorage.getItem("coins") || 0);
+
+
+                    xp += 20;
+                    coins += 10;
+
+
+                    localStorage.setItem("xp", xp);
+                    localStorage.setItem("coins", coins);
+
+                    localStorage.setItem(
+                        "quiz8Completed",
+                        "true"
+                    );
+
+
+                    rewardBox.innerHTML = `
+            🎁 <b>Quiz Reward</b><br><br>
+            ⭐ +20 XP<br>
+            🪙 +10 Coins
+          `;
+
+                } else {
+
+                    rewardBox.innerHTML = `
+            ✅ Quiz 8 already completed.<br>
+            Your reward was already collected.
+          `;
+
+                }
+
+            } else {
+
+                rewardBox.innerHTML = `
+          ❌ Score 5 or more is required to earn the reward.
+          <br><br>
+          Review Lesson 8 and try again!
+        `;
+
+            }
+
+        }
+
+
+        function restartQuiz() {
+
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+
+
+            document.getElementById("quizArea").style.display =
+                "block";
+
+            document.getElementById("result").style.display =
+                "none";
+
+
+            loadQuestion();
+
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>

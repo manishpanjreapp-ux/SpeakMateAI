@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 3 - Family | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            background: #1f2937;
+            border-radius: 20px;
+            height: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #22c55e;
+            transition: 0.3s;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .option.correct {
+            background: #15803d;
+        }
+
+        .option.wrong {
+            background: #b91c1c;
+        }
+
+        .option:disabled {
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .correct-text {
+            background: rgba(34, 197, 94, 0.15);
+            border-left: 4px solid #22c55e;
+        }
+
+        .wrong-text {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid #ef4444;
+        }
+
+        .result {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 40px;
+            color: #facc15;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        button.action {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button.action:hover {
+            background: #16a34a;
+        }
+
+        .secondary {
+            background: #2563eb !important;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📝 Quiz 3: Family</h1>
+
+        <p class="subtitle">
+            Test your knowledge from Lesson 3
+        </p>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 1 of 10</div>
+
+            <div class="question">
+                What is the English word for "माँ"?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                A. Sister
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 1)">
+                B. Mother
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                C. Daughter
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                D. Aunt
+            </button>
+
+            <div class="feedback" id="feedback1"></div>
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 2 of 10</div>
+
+            <div class="question">
+                "Brother" का Hindi meaning क्या है?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                A. बहन
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 2)">
+                B. भाई
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                C. पिता
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                D. बेटा
+            </button>
+
+            <div class="feedback" id="feedback2"></div>
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 3 of 10</div>
+
+            <div class="question">
+                How do you say "मेरे परिवार में चार लोग हैं"?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                A. My family is four people.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 3)">
+                B. There are four people in my family.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                C. Four people my family.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                D. My four family people.
+            </button>
+
+            <div class="feedback" id="feedback3"></div>
+        </div>
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 4 of 10</div>
+
+            <div class="question">
+                "Father" का Hindi meaning क्या है?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 4)">
+                A. पिता / पापा
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                B. भाई
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                C. चाचा
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                D. बेटा
+            </button>
+
+            <div class="feedback" id="feedback4"></div>
+        </div>
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 5 of 10</div>
+
+            <div class="question">
+                How do you ask "आपके परिवार में कितने लोग हैं?"
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                A. How old is your family?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 5)">
+                B. How many people are there in your family?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                C. How family people you have?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                D. What is your family?
+            </button>
+
+            <div class="feedback" id="feedback5"></div>
+        </div>
+
+
+        <!-- QUESTION 6 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 6 of 10</div>
+
+            <div class="question">
+                "I have one sister." का Hindi meaning क्या है?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                A. मेरा एक भाई है।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 6)">
+                B. मेरी एक बहन है।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                C. मेरी दो बहनें हैं।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                D. मेरी एक बेटी है।
+            </button>
+
+            <div class="feedback" id="feedback6"></div>
+        </div>
+
+
+        <!-- QUESTION 7 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 7 of 10</div>
+
+            <div class="question">
+                What does your father do?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                A. आपके पिता कहाँ रहते हैं?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 7)">
+                B. आपके पिता क्या काम करते हैं?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                C. आपके पिता कितने साल के हैं?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                D. आपके पिता कब आते हैं?
+            </button>
+
+            <div class="feedback" id="feedback7"></div>
+        </div>
+
+
+        <!-- QUESTION 8 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 8 of 10</div>
+
+            <div class="question">
+                "I love my family." का सही meaning क्या है?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                A. मैं अपने दोस्तों से प्यार करता हूँ।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 8)">
+                B. मैं अपने परिवार से प्यार करता हूँ।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                C. मेरा परिवार मुझसे प्यार करता है।
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                D. मैं अपने भाई से प्यार करता हूँ।
+            </button>
+
+            <div class="feedback" id="feedback8"></div>
+        </div>
+
+
+        <!-- QUESTION 9 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 9 of 10</div>
+
+            <div class="question">
+                "Grandmother" का Hindi meaning क्या है?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                A. दादा / नाना
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 9)">
+                B. दादी / नानी
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                C. चाची / मामी
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                D. बहन
+            </button>
+
+            <div class="feedback" id="feedback9"></div>
+        </div>
+
+
+        <!-- QUESTION 10 -->
+
+        <div class="question-card">
+            <div class="question-number">Question 10 of 10</div>
+
+            <div class="question">
+                Which sentence is correct?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                A. I has one brother.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 10)">
+                B. I have one brother.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                C. I having one brother.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                D. I am have one brother.
+            </button>
+
+            <div class="feedback" id="feedback10"></div>
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="result" id="result">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="score" id="score"></div>
+
+            <p id="resultMessage"></p>
+
+            <p id="reward"></p>
+
+            <button class="action" onclick="location.href='lesson3.html'">
+                📖 Review Lesson 3
+            </button>
+
+            <button class="action secondary" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="action" onclick="location.reload()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<br>Home</a>
+        <a href="course.html">📚<br>Course</a>
+        <a href="chat.html">🤖<br>AI Chat</a>
+        <a href="profile.html">👤<br>Profile</a>
+    </div>
+
+
+    <script>
+
+        let score = 0;
+        let answered = 0;
+        let finished = false;
+
+        const totalQuestions = 10;
+
+
+        function checkAnswer(button, correct, questionNumber) {
+
+            if (button.disabled || finished) {
+                return;
+            }
+
+            const card = button.parentElement;
+            const options = card.querySelectorAll(".option");
+            const feedback = document.getElementById("feedback" + questionNumber);
+
+            options.forEach(function (option) {
+                option.disabled = true;
+            });
+
+            answered++;
+
+            if (correct) {
+
+                score++;
+
+                button.classList.add("correct");
+
+                feedback.innerHTML =
+                    "✅ <b>Correct!</b><br>" +
+                    getExplanation(questionNumber);
+
+                feedback.className = "feedback show correct-text";
+
+            } else {
+
+                button.classList.add("wrong");
+
+                feedback.innerHTML =
+                    "❌ <b>Wrong answer.</b><br>" +
+                    getExplanation(questionNumber);
+
+                feedback.className = "feedback show wrong-text";
+
+                // Show correct answer
+                options.forEach(function (option) {
+
+                    if (
+                        (questionNumber === 1 && option.innerText.includes("Mother")) ||
+                        (questionNumber === 2 && option.innerText.includes("भाई")) ||
+                        (questionNumber === 3 && option.innerText.includes("There are four")) ||
+                        (questionNumber === 4 && option.innerText.includes("पिता")) ||
+                        (questionNumber === 5 && option.innerText.includes("How many people")) ||
+                        (questionNumber === 6 && option.innerText.includes("मेरी एक बहन")) ||
+                        (questionNumber === 7 && option.innerText.includes("क्या काम")) ||
+                        (questionNumber === 8 && option.innerText.includes("अपने परिवार")) ||
+                        (questionNumber === 9 && option.innerText.includes("दादी")) ||
+                        (questionNumber === 10 && option.innerText.includes("I have one"))
+                    ) {
+                        option.classList.add("correct");
+                    }
+
+                });
+            }
+
+            updateProgress();
+
+            if (answered === totalQuestions) {
+                setTimeout(showResult, 700);
+            }
+        }
+
+
+        function getExplanation(questionNumber) {
+
+            const explanations = {
+
+                1:
+                    "Mother = माँ. Example: My mother is a teacher.",
+
+                2:
+                    "Brother = भाई. Example: I have one brother.",
+
+                3:
+                    "There are four people in my family = मेरे परिवार में चार लोग हैं।",
+
+                4:
+                    "Father = पिता / पापा. Example: My father is a businessman.",
+
+                5:
+                    "How many people are there in your family? = आपके परिवार में कितने लोग हैं?",
+
+                6:
+                    "I have one sister = मेरी एक बहन है।",
+
+                7:
+                    "What does your father do? = आपके पिता क्या काम करते हैं?",
+
+                8:
+                    "I love my family = मैं अपने परिवार से प्यार करता हूँ।",
+
+                9:
+                    "Grandmother = दादी / नानी.",
+
+                10:
+                    "I के साथ have आता है: I have one brother."
+            };
+
+            return explanations[questionNumber];
+        }
+
+
+        function updateProgress() {
+
+            const percentage =
+                (answered / totalQuestions) * 100;
+
+            document.getElementById("progressBar").style.width =
+                percentage + "%";
+        }
+
+
+        function showResult() {
+
+            finished = true;
+
+            document.getElementById("result").classList.add("show");
+
+            document.getElementById("score").innerText =
+                score + " / " + totalQuestions;
+
+            let message = "";
+            let rewardText = "";
+
+            if (score === 10) {
+
+                message = "🏆 Perfect! Excellent work!";
+                rewardText = "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else if (score >= 8) {
+
+                message = "🔥 Excellent! You understand this lesson very well.";
+                rewardText = "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else if (score >= 5) {
+
+                message = "👍 Good job! Keep practicing.";
+                rewardText = "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else {
+
+                message = "💪 Keep learning! Review Lesson 3 and try again.";
+                rewardText = "Complete 5 or more questions correctly to earn rewards.";
+            }
+
+            document.getElementById("resultMessage").innerText =
+                message;
+
+            document.getElementById("reward").innerText =
+                rewardText;
+
+
+            // Reward only once if score is 5 or more
+
+            const alreadyCompleted =
+                localStorage.getItem("quiz3Completed") === "true";
+
+            if (!alreadyCompleted && score >= 5) {
+
+                let xp =
+                    Number(localStorage.getItem("xp") || 0);
+
+                let coins =
+                    Number(localStorage.getItem("coins") || 0);
+
+                xp += 20;
+                coins += 10;
+
+                localStorage.setItem("xp", xp);
+                localStorage.setItem("coins", coins);
+
+                localStorage.setItem("quiz3Completed", "true");
+
+            }
+
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

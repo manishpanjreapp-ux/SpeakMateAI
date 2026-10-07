@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workplace Communication - SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #183d5d 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #123d35 0%, transparent 35%),
+                linear-gradient(135deg, #06101c, #0b1d2d, #06101c);
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 24px 0 60px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .topbar button {
+            border: none;
+            color: #fff;
+            padding: 11px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12) !important;
+        }
+
+        .profile-btn {
+            background: #2563eb;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #b9c8d7;
+            line-height: 1.6;
+        }
+
+        .progress-box {
+            margin-top: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #d7e3ee;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+            background: #182b3d;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #22c55e;
+            transition: .3s;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255, 255, 255, .06);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .stat span {
+            color: #9fb1c1;
+            font-size: 13px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 22px;
+            margin-top: 5px;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+
+        .lesson {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 20px;
+            padding: 21px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .lesson:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .10);
+        }
+
+        .lesson h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .lesson p {
+            color: #b3c3d1;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: #26384a;
+            color: #dce8f2;
+            font-size: 12px;
+        }
+
+        .badge.completed {
+            background: #166534;
+            color: #dcfce7;
+        }
+
+        .practice-box {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 24px;
+            padding: 25px;
+        }
+
+        .practice-box h2 {
+            margin-bottom: 8px;
+        }
+
+        .practice-box>p {
+            color: #aebdca;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .scenario {
+            background: #10283d;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .scenario-label {
+            color: #7dd3fc;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .scenario-question {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+            border: 1px solid #344b60;
+            background: #091827;
+            color: white;
+            padding: 13px;
+            border-radius: 12px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea:focus {
+            border-color: #3b82f6;
+        }
+
+        .practice-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .practice-buttons button {
+            border: none;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #2563eb;
+        }
+
+        .practice-buttons button:nth-child(2) {
+            background: #7c3aed;
+        }
+
+        .practice-buttons button:nth-child(3) {
+            background: #475569;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #10283d;
+            color: #dbe7ef;
+            line-height: 1.6;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .78);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow: auto;
+            background: #091827;
+            border: 1px solid #30475b;
+            border-radius: 22px;
+            padding: 25px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #c2d0dc;
+            line-height: 1.7;
+            margin-bottom: 13px;
+        }
+
+        .example {
+            background: #10283d;
+            border-radius: 14px;
+            padding: 16px;
+            margin: 15px 0;
+        }
+
+        .example strong {
+            color: #7dd3fc;
+        }
+
+        .example p {
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .modal-buttons button {
+            border: none;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #2563eb;
+        }
+
+        .modal-buttons .complete {
+            background: #22c55e;
+        }
+
+        .modal-buttons .close {
+            background: #475569;
+        }
+
+        .success-box {
+            display: none;
+            margin-top: 20px;
+            background: #123c29;
+            border: 1px solid #166534;
+            padding: 18px;
+            border-radius: 15px;
+            line-height: 1.6;
+        }
+
+        @media(max-width:600px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .hero h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .practice-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <button class="back-btn" onclick="goBack()">
+                ← Jobs
+            </button>
+
+            <button class="profile-btn" onclick="goProfile()">
+                Profile
+            </button>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <h1>🏢 Workplace Communication</h1>
+
+            <p>
+                Learn practical English for talking with colleagues,
+                managers, customers and your workplace team.
+            </p>
+
+
+            <div class="progress-box">
+
+                <div class="progress-info">
+
+                    <span>Course Progress</span>
+
+                    <span id="progressText">0%</span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill" id="progressFill"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span>XP</span>
+
+                    <strong id="xpValue">0</strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Coins</span>
+
+                    <strong id="coinValue">0</strong>
+
+                </div>
+
+                <div class="stat">
+
+                    <span>Lessons</span>
+
+                    <strong id="lessonCount">0/5</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LESSONS -->
+
+        <div class="lesson-grid">
+
+
+            <div class="lesson" onclick="openLesson(0)">
+
+                <h3>👋 Talking With Colleagues</h3>
+
+                <p>
+                    Learn simple and professional ways to
+                    communicate with coworkers.
+                </p>
+
+                <span class="badge" id="badge0">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(1)">
+
+                <h3>👨‍💼 Talking With Your Manager</h3>
+
+                <p>
+                    Learn how to speak professionally with
+                    your manager or supervisor.
+                </p>
+
+                <span class="badge" id="badge1">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(2)">
+
+                <h3>🆘 Asking for Help</h3>
+
+                <p>
+                    Learn polite ways to ask colleagues or
+                    managers for help.
+                </p>
+
+                <span class="badge" id="badge2">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(3)">
+
+                <h3>🤝 Teamwork & Meetings</h3>
+
+                <p>
+                    Learn useful English for meetings,
+                    teamwork and discussions.
+                </p>
+
+                <span class="badge" id="badge3">
+                    Start Lesson
+                </span>
+
+            </div>
+
+
+            <div class="lesson" onclick="openLesson(4)">
+
+                <h3>📞 Talking With Customers</h3>
+
+                <p>
+                    Learn polite and professional English
+                    for customer communication.
+                </p>
+
+                <span class="badge" id="badge4">
+                    Start Lesson
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SPEAKING PRACTICE -->
+
+        <div class="practice-box">
+
+            <h2>🎙️ Workplace Speaking Practice</h2>
+
+            <p>
+                Practice real workplace situations.
+                Speak your answer or type it below.
+            </p>
+
+
+            <div class="scenario">
+
+                <div class="scenario-label">
+                    YOUR WORKPLACE SITUATION
+                </div>
+
+                <div class="scenario-question" id="scenarioQuestion">
+                    Your manager asks:
+                    "Can you give me an update on your work?"
+                </div>
+
+            </div>
+
+
+            <textarea id="practiceAnswer" placeholder="Type your answer here..."></textarea>
+
+
+            <div class="practice-buttons">
+
+                <button onclick="startSpeaking()">
+                    🎙️ Speak
+                </button>
+
+                <button onclick="checkPractice()">
+                    ✅ Check Answer
+                </button>
+
+                <button onclick="newScenario()">
+                    🔄 New Situation
+                </button>
+
+            </div>
+
+
+            <div class="feedback" id="practiceFeedback"></div>
+
+        </div>
+
+
+        <div class="success-box" id="successBox">
+            🎉 <strong>Workplace Communication Complete!</strong>
+            <br>
+            You have completed all five lessons.
+            Keep practicing your workplace English every day.
+        </div>
+
+    </div>
+
+
+    <!-- LESSON MODAL -->
+
+    <div class="modal" id="lessonModal">
+
+        <div class="modal-content">
+
+            <h2 id="lessonTitle"></h2>
+
+            <p id="lessonDescription"></p>
+
+
+            <div class="example">
+
+                <strong>Useful English:</strong>
+
+                <p id="lessonExample"></p>
+
+            </div>
+
+
+            <p>
+                <strong>Meaning:</strong>
+            </p>
+
+            <p id="lessonMeaning"></p>
+
+
+            <div class="modal-buttons">
+
+                <button onclick="listenLesson()">
+                    🔊 Listen
+                </button>
+
+                <button class="complete" onclick="completeLesson()">
+                    ✅ Complete Lesson
+                </button>
+
+                <button class="close" onclick="closeLesson()">
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /*
+        ====================================================
+        WORKPLACE COMMUNICATION
+        ====================================================
+        
+        Only the Complete Lesson button marks
+        a lesson as completed.
+        
+        Opening / listening / speaking practice
+        does NOT complete the lesson.
+        
+        Completed lessons can ALWAYS be opened again.
+        
+        XP + Coins are awarded only once per lesson.
+        ====================================================
+        */
+
+
+        const PROGRESS_KEY =
+            "workplaceCommunicationLessonsV2";
+
+
+        const lessons = [
+
+            {
+                title: "👋 Talking With Colleagues",
+
+                description:
+                    "Learn simple and professional ways to communicate with coworkers during your daily work.",
+
+                example:
+                    `Good morning! How are you?
+
+How is your work going?
+
+Could you please help me with this?
+
+Sure, I will help you.
+
+Thank you for your help.
+
+Let's discuss this together.`,
+
+                meaning:
+                    "These sentences help you communicate politely and naturally with your coworkers."
+            },
+
+
+            {
+                title: "👨‍💼 Talking With Your Manager",
+
+                description:
+                    "Learn how to speak respectfully and professionally with your manager or supervisor.",
+
+                example:
+                    `Good morning, sir.
+
+I would like to discuss my work with you.
+
+Could you please give me some feedback?
+
+I have completed the task you assigned to me.
+
+Please let me know if anything needs to be changed.
+
+Thank you for your guidance.`,
+
+                meaning:
+                    "These expressions help you communicate clearly and respectfully with your manager."
+            },
+
+
+            {
+                title: "🆘 Asking for Help",
+
+                description:
+                    "Learn polite ways to ask your colleagues or manager for help when you have a problem.",
+
+                example:
+                    `Excuse me, could you please help me with this task?
+
+I am having some difficulty understanding this.
+
+Could you please explain it to me?
+
+Would you mind showing me how to do this?
+
+Thank you for your help.`,
+
+                meaning:
+                    "These sentences allow you to ask for help without sounding rude or unclear."
+            },
+
+
+            {
+                title: "🤝 Teamwork & Meetings",
+
+                description:
+                    "Learn useful English for team discussions, meetings and sharing ideas.",
+
+                example:
+                    `I agree with your idea.
+
+I would like to add something.
+
+Can we discuss this further?
+
+What do you think about this?
+
+Let's work on this together.
+
+I think we should focus on the main issue first.`,
+
+                meaning:
+                    "These expressions help you participate confidently in meetings and teamwork."
+            },
+
+
+            {
+                title: "📞 Talking With Customers",
+
+                description:
+                    "Learn polite and professional English for speaking with customers.",
+
+                example:
+                    `Good morning. How may I help you?
+
+Thank you for contacting us.
+
+I understand your concern.
+
+Let me check that for you.
+
+Could you please give me a moment?
+
+Thank you for your patience.
+
+Is there anything else I can help you with?`,
+
+                meaning:
+                    "These phrases help you remain polite, helpful and professional when speaking with customers."
+            }
+
+        ];
+
+
+        let currentLesson = 0;
+
+
+        /* ==========================================
+           SPEAKING SCENARIOS
+        ========================================== */
+
+        const scenarios = [
+
+            {
+                question:
+                    'Your manager asks: "Can you give me an update on your work?"',
+
+                sample:
+                    "Sure. I have completed most of the task and I am working on the remaining part. I expect to finish it today."
+            },
+
+            {
+                question:
+                    'A colleague asks: "Can you help me with this task?"',
+
+                sample:
+                    "Sure, I would be happy to help you. Please show me what you need help with."
+            },
+
+            {
+                question:
+                    'You do not understand something at work. What would you say?',
+
+                sample:
+                    "Excuse me, could you please explain this to me again? I want to make sure I understand it correctly."
+            },
+
+            {
+                question:
+                    'You are in a team meeting and want to share your idea.',
+
+                sample:
+                    "I would like to suggest an idea. I think we could try a different approach to solve this problem."
+            },
+
+            {
+                question:
+                    'A customer is unhappy. How would you respond?',
+
+                sample:
+                    "I understand your concern. I am sorry for the inconvenience. Let me check the issue and help you resolve it."
+            },
+
+            {
+                question:
+                    'You need more time to finish a task. What would you tell your manager?',
+
+                sample:
+                    "I am making progress, but I need a little more time to complete the task properly. I expect to finish it by tomorrow."
+            }
+
+        ];
+
+
+        let currentScenario = 0;
+
+
+        /* ==========================================
+           GET COMPLETED LESSONS
+        ========================================== */
+
+        function getCompletedLessons() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem(PROGRESS_KEY) || "[]"
+                );
+
+            } catch (error) {
+
+                return [];
+
+            }
+        }
+
+
+        /* ==========================================
+           OPEN LESSON
+        ========================================== */
+
+        function openLesson(index) {
+
+            currentLesson = index;
+
+            const lesson =
+                lessons[index];
+
+
+            document.getElementById(
+                "lessonTitle"
+            ).innerText =
+                lesson.title;
+
+
+            document.getElementById(
+                "lessonDescription"
+            ).innerText =
+                lesson.description;
+
+
+            document.getElementById(
+                "lessonExample"
+            ).innerText =
+                lesson.example;
+
+
+            document.getElementById(
+                "lessonMeaning"
+            ).innerText =
+                lesson.meaning;
+
+
+            /*
+               IMPORTANT:
+        
+               Opening a lesson never completes it.
+            */
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "flex";
+        }
+
+
+        /* ==========================================
+           CLOSE LESSON
+        ========================================== */
+
+        function closeLesson() {
+
+            document.getElementById(
+                "lessonModal"
+            ).style.display =
+                "none";
+        }
+
+
+        /* ==========================================
+           LISTEN
+        ========================================== */
+
+        function listenLesson() {
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+
+                alert(
+                    "Speech is not supported in this browser."
+                );
+
+                return;
+            }
+
+
+            speechSynthesis.cancel();
+
+
+            const speech =
+                new SpeechSynthesisUtterance(
+                    lessons[currentLesson].example
+                );
+
+
+            speech.lang =
+                "en-US";
+
+
+            speech.rate =
+                0.9;
+
+
+            speechSynthesis.speak(
+                speech
+            );
+        }
+
+
+        /* ==========================================
+           COMPLETE LESSON
+        ========================================== */
+
+        function completeLesson() {
+
+            let completed =
+                getCompletedLessons();
+
+
+            /*
+               Already completed?
+        
+               No additional XP or coins.
+            */
+
+            if (
+                completed.includes(currentLesson)
+            ) {
+
+                closeLesson();
+
+                updateProgress();
+
+                return;
+            }
+
+
+            /*
+               Only this button completes
+               the lesson.
+            */
+
+            completed.push(currentLesson);
+
+
+            localStorage.setItem(
+                PROGRESS_KEY,
+                JSON.stringify(completed)
+            );
+
+
+            addXP(10);
+
+            addCoins(5);
+
+
+            updateProgress();
+
+
+            closeLesson();
+
+
+            alert(
+                "🎉 Lesson completed!\n+10 XP\n+5 Coins"
+            );
+        }
+
+
+        /* ==========================================
+           XP
+        ========================================== */
+
+        function addXP(amount) {
+
+            let xp =
+                Number(
+                    localStorage.getItem("xp") || 0
+                );
+
+
+            xp += amount;
+
+
+            localStorage.setItem(
+                "xp",
+                xp
+            );
+        }
+
+
+        /* ==========================================
+           COINS
+        ========================================== */
+
+        function addCoins(amount) {
+
+            let coins =
+                Number(
+                    localStorage.getItem("coins") || 0
+                );
+
+
+            coins += amount;
+
+
+            localStorage.setItem(
+                "coins",
+                coins
+            );
+        }
+
+
+        /* ==========================================
+           SPEECH RECOGNITION
+        ========================================== */
+
+        function startSpeaking() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+
+            if (!SpeechRecognition) {
+
+                alert(
+                    "🎙️ Speech recognition is not supported in this browser. You can type your answer instead."
+                );
+
+                return;
+            }
+
+
+            const recognition =
+                new SpeechRecognition();
+
+
+            recognition.lang =
+                "en-US";
+
+
+            recognition.interimResults =
+                false;
+
+
+            recognition.maxAlternatives =
+                1;
+
+
+            recognition.onstart = function () {
+
+                document.getElementById(
+                    "practiceFeedback"
+                ).style.display =
+                    "block";
+
+                document.getElementById(
+                    "practiceFeedback"
+                ).innerText =
+                    "🎙️ Listening... Please speak now.";
+            };
+
+
+            recognition.onresult =
+                function (event) {
+
+                    const transcript =
+                        event.results[0][0].transcript;
+
+
+                    document.getElementById(
+                        "practiceAnswer"
+                    ).value =
+                        transcript;
+
+
+                    document.getElementById(
+                        "practiceFeedback"
+                    ).innerText =
+                        "✅ I heard: " +
+                        transcript;
+                };
+
+
+            recognition.onerror =
+                function () {
+
+                    document.getElementById(
+                        "practiceFeedback"
+                    ).style.display =
+                        "block";
+
+                    document.getElementById(
+                        "practiceFeedback"
+                    ).innerText =
+                        "⚠️ I could not understand the speech. Please try again or type your answer.";
+                };
+
+
+            recognition.start();
+        }
+
+
+        /* ==========================================
+           CHECK PRACTICE
+        ========================================== */
+
+        function checkPractice() {
+
+            const answer =
+                document.getElementById(
+                    "practiceAnswer"
+                ).value.trim();
+
+
+            const feedback =
+                document.getElementById(
+                    "practiceFeedback"
+                );
+
+
+            feedback.style.display =
+                "block";
+
+
+            if (answer.length === 0) {
+
+                feedback.innerText =
+                    "✍️ Please type or speak your answer first.";
+
+                return;
+            }
+
+
+            const sample =
+                scenarios[currentScenario].sample;
+
+
+            /*
+               Simple beginner-friendly feedback.
+        
+               This is not a real AI evaluation.
+            */
+
+            const words =
+                answer
+                    .toLowerCase()
+                    .split(/\s+/);
+
+
+            const usefulWords = [
+                "please",
+                "thank",
+                "help",
+                "understand",
+                "work",
+                "task",
+                "sure",
+                "sorry",
+                "could",
+                "would",
+                "think",
+                "complete",
+                "today",
+                "tomorrow"
+            ];
+
+
+            let matches = 0;
+
+
+            usefulWords.forEach(
+                function (word) {
+
+                    if (words.includes(word)) {
+                        matches++;
+                    }
+
+                }
+            );
+
+
+            if (matches >= 3) {
+
+                feedback.innerHTML =
+                    "🌟 <strong>Good answer!</strong><br><br>" +
+                    "Your response sounds professional. Keep practicing to make your speaking more natural.<br><br>" +
+                    "<strong>Sample answer:</strong><br>" +
+                    sample;
+
+            } else {
+
+                feedback.innerHTML =
+                    "👍 Good attempt! Try to make your answer a little more complete and polite.<br><br>" +
+                    "<strong>Sample answer:</strong><br>" +
+                    sample;
+            }
+        }
+
+
+        /* ==========================================
+           NEW SCENARIO
+        ========================================== */
+
+        function newScenario() {
+
+            currentScenario++;
+
+            if (
+                currentScenario >= scenarios.length
+            ) {
+
+                currentScenario = 0;
+            }
+
+
+            document.getElementById(
+                "scenarioQuestion"
+            ).innerText =
+                scenarios[currentScenario].question;
+
+
+            document.getElementById(
+                "practiceAnswer"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "practiceFeedback"
+            ).style.display =
+                "none";
+        }
+
+
+        /* ==========================================
+           UPDATE PROGRESS
+        ========================================== */
+
+        function updateProgress() {
+
+            const completed =
+                getCompletedLessons();
+
+
+            const progress =
+                completed.length * 20;
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                progress + "%";
+
+
+            document.getElementById(
+                "progressText"
+            ).innerText =
+                progress + "%";
+
+
+            document.getElementById(
+                "lessonCount"
+            ).innerText =
+                completed.length + "/5";
+
+
+            /*
+               Update badges.
+        
+               Completed lessons remain clickable.
+            */
+
+            for (
+                let i = 0;
+                i < 5;
+                i++
+            ) {
+
+                const badge =
+                    document.getElementById(
+                        "badge" + i
+                    );
+
+
+                if (
+                    completed.includes(i)
+                ) {
+
+                    badge.innerText =
+                        "✓ COMPLETED";
+
+                    badge.classList.add(
+                        "completed"
+                    );
+
+                } else {
+
+                    badge.innerText =
+                        "Start Lesson";
+
+                    badge.classList.remove(
+                        "completed"
+                    );
+                }
+            }
+
+
+            /*
+               Tell job.html that the
+               complete module is finished.
+            */
+
+            if (
+                completed.length === 5
+            ) {
+
+                localStorage.setItem(
+                    "workplaceCommunicationCompleted",
+                    "true"
+                );
+
+
+                document.getElementById(
+                    "successBox"
+                ).style.display =
+                    "block";
+
+            } else {
+
+                localStorage.removeItem(
+                    "workplaceCommunicationCompleted"
+                );
+
+
+                document.getElementById(
+                    "successBox"
+                ).style.display =
+                    "none";
+            }
+
+
+            updateStats();
+        }
+
+
+        /* ==========================================
+           UPDATE STATS
+        ========================================== */
+
+        function updateStats() {
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                localStorage.getItem("xp") || 0;
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                localStorage.getItem("coins") || 0;
+        }
+
+
+        /* ==========================================
+           NAVIGATION
+        ========================================== */
+
+        function goBack() {
+
+            window.location.href =
+                "job.html";
+        }
+
+
+        function goProfile() {
+
+            window.location.href =
+                "profile.html";
+        }
+
+
+        /* ==========================================
+           START
+        ========================================== */
+
+        updateProgress();
+
+    </script>
+
+</body>
+
+</html>

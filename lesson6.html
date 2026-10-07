@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6 - Time | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            color: #facc15;
+            margin-top: 0;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .clock {
+            font-size: 26px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .english-word {
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .listen {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 12px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .listen:hover {
+            background: #1d4ed8;
+        }
+
+        .sentence {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .translation {
+            color: #cbd5e1;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .example {
+            background: rgba(56, 189, 248, 0.10);
+            border-left: 4px solid #38bdf8;
+            padding: 13px;
+            border-radius: 8px;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .tip {
+            background: rgba(250, 204, 21, 0.10);
+            border-left: 4px solid #facc15;
+            padding: 13px;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        .dialogue {
+            background: rgba(34, 197, 94, 0.10);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 9px 0;
+            line-height: 1.7;
+        }
+
+        .main-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .main-btn:hover {
+            background: #16a34a;
+        }
+
+        .ai-btn {
+            background: #7c3aed;
+        }
+
+        .ai-btn:hover {
+            background: #6d28d9;
+        }
+
+        .complete {
+            background: #16a34a;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #7c3aed;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        ul {
+            line-height: 1.9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>⏰ Lesson 6: Time</h1>
+
+        <p class="subtitle">
+            Learn how to ask, tell and talk about time in English.
+        </p>
+
+
+        <!-- INTRO -->
+
+        <div class="card">
+            <h2>🎯 What You Will Learn</h2>
+
+            <ul>
+                <li>Time poochhna</li>
+                <li>Time batana</li>
+                <li>O'clock ka use</li>
+                <li>AM aur PM</li>
+                <li>Morning, afternoon, evening aur night</li>
+                <li>Daily schedule batana</li>
+                <li>Meeting aur appointment ka time</li>
+                <li>Time related common questions</li>
+            </ul>
+
+            <span class="badge">⭐ Beginner Time English</span>
+        </div>
+
+
+        <!-- ASKING TIME -->
+
+        <div class="card">
+            <h2>🕐 Asking the Time</h2>
+
+            <div class="sentence">
+                <div class="english">What time is it?</div>
+                <div class="translation">अभी कितने बजे हैं?</div>
+                <button class="listen" onclick="speak('What time is it?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What is the time?</div>
+                <div class="translation">समय क्या है?</div>
+                <button class="listen" onclick="speak('What is the time?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Could you tell me the time?</div>
+                <div class="translation">क्या आप मुझे समय बता सकते हैं?</div>
+                <button class="listen" onclick="speak('Could you tell me the time?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Do you have the time?</div>
+                <div class="translation">क्या आपको समय पता है?</div>
+                <button class="listen" onclick="speak('Do you have the time?')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- O CLOCK -->
+
+        <div class="card">
+            <h2>🕒 O'clock</h2>
+
+            <p>
+                Jab minutes <b>00</b> ho, tab hum commonly <b>o'clock</b> use kar sakte hain.
+            </p>
+
+            <div class="time-grid">
+
+                <div class="time-box">
+                    <div class="clock">1:00</div>
+                    <div class="english-word">One o'clock</div>
+                    <div class="hindi">एक बजे</div>
+                    <button class="listen" onclick="speak('One o’clock')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">2:00</div>
+                    <div class="english-word">Two o'clock</div>
+                    <div class="hindi">दो बजे</div>
+                    <button class="listen" onclick="speak('Two o’clock')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">5:00</div>
+                    <div class="english-word">Five o'clock</div>
+                    <div class="hindi">पाँच बजे</div>
+                    <button class="listen" onclick="speak('Five o’clock')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">8:00</div>
+                    <div class="english-word">Eight o'clock</div>
+                    <div class="hindi">आठ बजे</div>
+                    <button class="listen" onclick="speak('Eight o’clock')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">10:00</div>
+                    <div class="english-word">Ten o'clock</div>
+                    <div class="hindi">दस बजे</div>
+                    <button class="listen" onclick="speak('Ten o’clock')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">12:00</div>
+                    <div class="english-word">Twelve o'clock</div>
+                    <div class="hindi">बारह बजे</div>
+                    <button class="listen" onclick="speak('Twelve o’clock')">🔊</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- COMMON TIMES -->
+
+        <div class="card">
+            <h2>⏱️ Common Times</h2>
+
+            <div class="time-grid">
+
+                <div class="time-box">
+                    <div class="clock">7:15</div>
+                    <div class="english-word">Seven fifteen</div>
+                    <div class="hindi">सात बजकर पंद्रह मिनट</div>
+                    <button class="listen" onclick="speak('Seven fifteen')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">8:30</div>
+                    <div class="english-word">Eight thirty</div>
+                    <div class="hindi">साढ़े आठ</div>
+                    <button class="listen" onclick="speak('Eight thirty')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">9:45</div>
+                    <div class="english-word">Nine forty-five</div>
+                    <div class="hindi">पौने दस</div>
+                    <button class="listen" onclick="speak('Nine forty-five')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">10:20</div>
+                    <div class="english-word">Ten twenty</div>
+                    <div class="hindi">दस बजकर बीस मिनट</div>
+                    <button class="listen" onclick="speak('Ten twenty')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">11:10</div>
+                    <div class="english-word">Eleven ten</div>
+                    <div class="hindi">ग्यारह बजकर दस मिनट</div>
+                    <button class="listen" onclick="speak('Eleven ten')">🔊</button>
+                </div>
+
+                <div class="time-box">
+                    <div class="clock">4:50</div>
+                    <div class="english-word">Four fifty</div>
+                    <div class="hindi">पाँच बजने में दस मिनट</div>
+                    <button class="listen" onclick="speak('Four fifty')">🔊</button>
+                </div>
+
+            </div>
+
+            <div class="tip">
+                💡 Daily conversation mein digital time ko directly bolna easy hai:
+                8:30 → Eight thirty, 7:15 → Seven fifteen.
+            </div>
+        </div>
+
+
+        <!-- HALF / QUARTER -->
+
+        <div class="card">
+            <h2>🕧 Half & Quarter</h2>
+
+            <div class="sentence">
+                <div class="english">It's half past eight.</div>
+                <div class="translation">साढ़े आठ बजे हैं।</div>
+                <button class="listen" onclick="speak('It’s half past eight.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">It's half past six.</div>
+                <div class="translation">साढ़े छह बजे हैं।</div>
+                <button class="listen" onclick="speak('It’s half past six.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">It's quarter past three.</div>
+                <div class="translation">सवा तीन बजे हैं।</div>
+                <button class="listen" onclick="speak('It’s quarter past three.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">It's quarter to five.</div>
+                <div class="translation">पाँच बजने में पंद्रह मिनट हैं।</div>
+                <button class="listen" onclick="speak('It’s quarter to five.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="tip">
+                <b>Past</b> = घंटे के बाद के मिनट<br>
+                <b>To</b> = अगले घंटे तक बचे हुए मिनट
+            </div>
+        </div>
+
+
+        <!-- AM PM -->
+
+        <div class="card">
+            <h2>🌅 AM & PM</h2>
+
+            <div class="sentence">
+                <div class="english">I wake up at 6 AM.</div>
+                <div class="translation">मैं सुबह 6 बजे उठता हूँ।</div>
+                <button class="listen" onclick="speak('I wake up at six A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have lunch at 1 PM.</div>
+                <div class="translation">मैं दोपहर 1 बजे lunch करता हूँ।</div>
+                <button class="listen" onclick="speak('I have lunch at one P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I come home at 7 PM.</div>
+                <div class="translation">मैं शाम 7 बजे घर आता हूँ।</div>
+                <button class="listen" onclick="speak('I come home at seven P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I go to bed at 11 PM.</div>
+                <div class="translation">मैं रात 11 बजे सोने जाता हूँ।</div>
+                <button class="listen" onclick="speak('I go to bed at eleven P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="tip">
+                🌅 <b>AM</b> = midnight ke baad se noon tak<br>
+                🌙 <b>PM</b> = noon ke baad se midnight tak
+            </div>
+        </div>
+
+
+        <!-- PARTS OF DAY -->
+
+        <div class="card">
+            <h2>🌞 Parts of the Day</h2>
+
+            <div class="sentence">
+                <div class="english">Good morning!</div>
+                <div class="translation">सुप्रभात / शुभ प्रभात</div>
+                <button class="listen" onclick="speak('Good morning!')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Good afternoon!</div>
+                <div class="translation">शुभ दोपहर</div>
+                <button class="listen" onclick="speak('Good afternoon!')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Good evening!</div>
+                <div class="translation">शुभ संध्या / शाम की शुभकामनाएँ</div>
+                <button class="listen" onclick="speak('Good evening!')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Good night!</div>
+                <div class="translation">शुभ रात्रि</div>
+                <button class="listen" onclick="speak('Good night!')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- DAILY ROUTINE -->
+
+        <div class="card">
+            <h2>📅 Daily Schedule</h2>
+
+            <div class="sentence">
+                <div class="english">I wake up at 6 AM.</div>
+                <div class="translation">मैं सुबह 6 बजे उठता हूँ।</div>
+                <button class="listen" onclick="speak('I wake up at six A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have breakfast at 7 AM.</div>
+                <div class="translation">मैं सुबह 7 बजे नाश्ता करता हूँ।</div>
+                <button class="listen" onclick="speak('I have breakfast at seven A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I go to work at 9 AM.</div>
+                <div class="translation">मैं सुबह 9 बजे काम पर जाता हूँ।</div>
+                <button class="listen" onclick="speak('I go to work at nine A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have lunch at 1 PM.</div>
+                <div class="translation">मैं दोपहर 1 बजे lunch करता हूँ।</div>
+                <button class="listen" onclick="speak('I have lunch at one P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I finish work at 6 PM.</div>
+                <div class="translation">मैं शाम 6 बजे काम खत्म करता हूँ।</div>
+                <button class="listen" onclick="speak('I finish work at six P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I go to bed at 11 PM.</div>
+                <div class="translation">मैं रात 11 बजे सोने जाता हूँ।</div>
+                <button class="listen" onclick="speak('I go to bed at eleven P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- TIME QUESTIONS -->
+
+        <div class="card">
+            <h2>❓ Useful Time Questions</h2>
+
+            <div class="sentence">
+                <div class="english">What time do you wake up?</div>
+                <div class="translation">आप कितने बजे उठते हैं?</div>
+                <button class="listen" onclick="speak('What time do you wake up?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What time do you go to work?</div>
+                <div class="translation">आप कितने बजे काम पर जाते हैं?</div>
+                <button class="listen" onclick="speak('What time do you go to work?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What time does the class start?</div>
+                <div class="translation">क्लास कितने बजे शुरू होती है?</div>
+                <button class="listen" onclick="speak('What time does the class start?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What time does the movie start?</div>
+                <div class="translation">फिल्म कितने बजे शुरू होती है?</div>
+                <button class="listen" onclick="speak('What time does the movie start?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What time should I come?</div>
+                <div class="translation">मुझे कितने बजे आना चाहिए?</div>
+                <button class="listen" onclick="speak('What time should I come?')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">What time should we meet?</div>
+                <div class="translation">हमें कितने बजे मिलना चाहिए?</div>
+                <button class="listen" onclick="speak('What time should we meet?')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- AT TIME -->
+
+        <div class="card">
+            <h2>📌 "At" का Use</h2>
+
+            <p>
+                Specific time ke saath generally <b>at</b> use hota hai.
+            </p>
+
+            <div class="example">
+                <b>at 5 PM</b><br>
+                <b>at 8 AM</b><br>
+                <b>at noon</b><br>
+                <b>at midnight</b><br>
+                <b>at 10:30</b>
+            </div>
+
+            <div class="sentence">
+                <div class="english">The meeting starts at 10 AM.</div>
+                <div class="translation">मीटिंग सुबह 10 बजे शुरू होती है।</div>
+                <button class="listen" onclick="speak('The meeting starts at ten A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- BEFORE AFTER -->
+
+        <div class="card">
+            <h2>⏳ Before & After</h2>
+
+            <div class="sentence">
+                <div class="english">I wake up before 7 AM.</div>
+                <div class="translation">मैं सुबह 7 बजे से पहले उठता हूँ।</div>
+                <button class="listen" onclick="speak('I wake up before seven A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I go home after 6 PM.</div>
+                <div class="translation">मैं शाम 6 बजे के बाद घर जाता हूँ।</div>
+                <button class="listen" onclick="speak('I go home after six P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Call me after 8 PM.</div>
+                <div class="translation">मुझे रात 8 बजे के बाद call करना।</div>
+                <button class="listen" onclick="speak('Call me after eight P M.')">
+                    🔊 Listen
+                </button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Please come before 9 AM.</div>
+                <div class="translation">कृपया सुबह 9 बजे से पहले आइए।</div>
+                <button class="listen" onclick="speak('Please come before nine A M.')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CONVERSATION -->
+
+        <div class="card">
+            <h2>🎭 Real Conversation</h2>
+
+            <div class="dialogue">
+                <b>Person A:</b> What time do you wake up?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I wake up at 6 AM.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> What time do you go to work?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I go to work at 9 AM.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> What time do you come home?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I come home at 7 PM.
+            </div>
+
+            <button class="main-btn"
+                onclick="speak('What time do you wake up? I wake up at six A M. What time do you go to work? I go to work at nine A M. What time do you come home? I come home at seven P M.')">
+                🔊 Listen to Conversation
+            </button>
+        </div>
+
+
+        <!-- PRACTICE -->
+
+        <div class="card">
+            <h2>🎤 Speaking Practice</h2>
+
+            <p>
+                In sentences ko English mein bolne ki practice karo:
+            </p>
+
+            <div class="example">
+                1. Main subah 6 baje uthta hoon.<br><br>
+
+                2. Main 8 baje breakfast karta hoon.<br><br>
+
+                3. Main 9 baje kaam par jata hoon.<br><br>
+
+                4. Main shaam 6 baje ghar aata hoon.<br><br>
+
+                5. Aap kitne baje uthte hain?<br><br>
+
+                6. Meeting kitne baje shuru hoti hai?<br><br>
+
+                7. Mujhe kitne baje aana chahiye?<br><br>
+
+                8. Abhi kitne baje hain?
+            </div>
+        </div>
+
+
+        <!-- AI PRACTICE -->
+
+        <div class="card">
+            <h2>🤖 AI Time Practice</h2>
+
+            <p>
+                AI ke saath time aur daily routine ki English conversation practice karo.
+            </p>
+
+            <button class="main-btn ai-btn" onclick="openAI()">
+                🤖 Practice with AI
+            </button>
+        </div>
+
+
+        <!-- COMPLETE -->
+
+        <div class="card">
+            <h2>🏆 Lesson Complete</h2>
+
+            <p>Lesson 6 complete karne par:</p>
+
+            <p>⭐ <b>+10 XP</b></p>
+            <p>🪙 <b>+5 Coins</b></p>
+
+            <button class="main-btn complete" onclick="completeLesson()">
+                ✅ Complete Lesson 6
+            </button>
+
+            <button class="main-btn" onclick="location.href='quiz6.html'">
+                📝 Take Lesson 6 Quiz
+            </button>
+
+            <button class="main-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠<br>Home
+        </a>
+
+        <a href="course.html">
+            📚<br>Course
+        </a>
+
+        <a href="chat.html">
+            🤖<br>AI Chat
+        </a>
+
+        <a href="profile.html">
+            👤<br>Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function speak(text) {
+
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function openAI() {
+            location.href = "chat.html";
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson6Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("✅ Lesson 6 is already completed!");
+                return;
+            }
+
+            let xp =
+                Number(localStorage.getItem("xp") || 0);
+
+            let coins =
+                Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem("lesson6Completed", "true");
+
+            // Compatibility with old progression system
+            localStorage.setItem("lesson7Unlocked", "true");
+
+            alert(
+                "🎉 Lesson 6 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

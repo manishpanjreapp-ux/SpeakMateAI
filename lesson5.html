@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5 - Numbers | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h2 {
+            color: #facc15;
+            margin-top: 0;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .number-box {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .word {
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .pronunciation {
+            color: #86efac;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .listen {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 7px 12px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        .listen:hover {
+            background: #1d4ed8;
+        }
+
+        .sentence {
+            background: rgba(0, 0, 0, 0.20);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+
+        .example {
+            background: rgba(56, 189, 248, 0.10);
+            border-left: 4px solid #38bdf8;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+
+        .tip {
+            background: rgba(250, 204, 21, 0.10);
+            border-left: 4px solid #facc15;
+            padding: 13px;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        .dialogue {
+            background: rgba(34, 197, 94, 0.10);
+            padding: 13px;
+            border-radius: 12px;
+            margin: 9px 0;
+            line-height: 1.7;
+        }
+
+        .main-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .main-btn:hover {
+            background: #16a34a;
+        }
+
+        .ai-btn {
+            background: #7c3aed;
+        }
+
+        .ai-btn:hover {
+            background: #6d28d9;
+        }
+
+        .complete {
+            background: #16a34a;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #7c3aed;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        ul {
+            line-height: 1.9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🔢 Lesson 5: Numbers</h1>
+
+        <p class="subtitle">
+            Learn numbers, counting, age, prices and phone numbers in English.
+        </p>
+
+
+        <!-- INTRO -->
+
+        <div class="card">
+            <h2>🎯 What You Will Learn</h2>
+
+            <ul>
+                <li>1 se 100 tak numbers</li>
+                <li>Large numbers bolna</li>
+                <li>Age batana</li>
+                <li>Phone number bolna</li>
+                <li>Price aur money ke numbers</li>
+                <li>Counting karna</li>
+                <li>Daily conversation mein numbers use karna</li>
+            </ul>
+
+            <span class="badge">⭐ Beginner Numbers</span>
+        </div>
+
+
+        <!-- 1 TO 20 -->
+
+        <div class="card">
+            <h2>🔢 Numbers 1–20</h2>
+
+            <div class="number-grid">
+
+                <div class="number-box">
+                    <div class="number">1</div>
+                    <div class="word">One</div>
+                    <div class="pronunciation">वन</div>
+                    <button class="listen" onclick="speak('One')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">2</div>
+                    <div class="word">Two</div>
+                    <div class="pronunciation">टू</div>
+                    <button class="listen" onclick="speak('Two')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">3</div>
+                    <div class="word">Three</div>
+                    <div class="pronunciation">थ्री</div>
+                    <button class="listen" onclick="speak('Three')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">4</div>
+                    <div class="word">Four</div>
+                    <div class="pronunciation">फोर</div>
+                    <button class="listen" onclick="speak('Four')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">5</div>
+                    <div class="word">Five</div>
+                    <div class="pronunciation">फाइव</div>
+                    <button class="listen" onclick="speak('Five')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">6</div>
+                    <div class="word">Six</div>
+                    <div class="pronunciation">सिक्स</div>
+                    <button class="listen" onclick="speak('Six')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">7</div>
+                    <div class="word">Seven</div>
+                    <div class="pronunciation">सेवन</div>
+                    <button class="listen" onclick="speak('Seven')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">8</div>
+                    <div class="word">Eight</div>
+                    <div class="pronunciation">एट</div>
+                    <button class="listen" onclick="speak('Eight')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">9</div>
+                    <div class="word">Nine</div>
+                    <div class="pronunciation">नाइन</div>
+                    <button class="listen" onclick="speak('Nine')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">10</div>
+                    <div class="word">Ten</div>
+                    <div class="pronunciation">टेन</div>
+                    <button class="listen" onclick="speak('Ten')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">11</div>
+                    <div class="word">Eleven</div>
+                    <div class="pronunciation">इलेवन</div>
+                    <button class="listen" onclick="speak('Eleven')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">12</div>
+                    <div class="word">Twelve</div>
+                    <div class="pronunciation">ट्वेल्व</div>
+                    <button class="listen" onclick="speak('Twelve')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">13</div>
+                    <div class="word">Thirteen</div>
+                    <div class="pronunciation">थर्टीन</div>
+                    <button class="listen" onclick="speak('Thirteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">14</div>
+                    <div class="word">Fourteen</div>
+                    <div class="pronunciation">फोर्टीन</div>
+                    <button class="listen" onclick="speak('Fourteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">15</div>
+                    <div class="word">Fifteen</div>
+                    <div class="pronunciation">फिफ्टीन</div>
+                    <button class="listen" onclick="speak('Fifteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">16</div>
+                    <div class="word">Sixteen</div>
+                    <div class="pronunciation">सिक्स्टीन</div>
+                    <button class="listen" onclick="speak('Sixteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">17</div>
+                    <div class="word">Seventeen</div>
+                    <div class="pronunciation">सेवेन्टीन</div>
+                    <button class="listen" onclick="speak('Seventeen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">18</div>
+                    <div class="word">Eighteen</div>
+                    <div class="pronunciation">एटीन</div>
+                    <button class="listen" onclick="speak('Eighteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">19</div>
+                    <div class="word">Nineteen</div>
+                    <div class="pronunciation">नाइन्टीन</div>
+                    <button class="listen" onclick="speak('Nineteen')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">20</div>
+                    <div class="word">Twenty</div>
+                    <div class="pronunciation">ट्वेंटी</div>
+                    <button class="listen" onclick="speak('Twenty')">🔊</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- TENS -->
+
+        <div class="card">
+            <h2>🔢 Tens: 30–100</h2>
+
+            <div class="number-grid">
+
+                <div class="number-box">
+                    <div class="number">30</div>
+                    <div class="word">Thirty</div>
+                    <div class="pronunciation">थर्टी</div>
+                    <button class="listen" onclick="speak('Thirty')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">40</div>
+                    <div class="word">Forty</div>
+                    <div class="pronunciation">फोर्टी</div>
+                    <button class="listen" onclick="speak('Forty')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">50</div>
+                    <div class="word">Fifty</div>
+                    <div class="pronunciation">फिफ्टी</div>
+                    <button class="listen" onclick="speak('Fifty')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">60</div>
+                    <div class="word">Sixty</div>
+                    <div class="pronunciation">सिक्स्टी</div>
+                    <button class="listen" onclick="speak('Sixty')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">70</div>
+                    <div class="word">Seventy</div>
+                    <div class="pronunciation">सेवेंटी</div>
+                    <button class="listen" onclick="speak('Seventy')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">80</div>
+                    <div class="word">Eighty</div>
+                    <div class="pronunciation">एटी</div>
+                    <button class="listen" onclick="speak('Eighty')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">90</div>
+                    <div class="word">Ninety</div>
+                    <div class="pronunciation">नाइंटी</div>
+                    <button class="listen" onclick="speak('Ninety')">🔊</button>
+                </div>
+
+                <div class="number-box">
+                    <div class="number">100</div>
+                    <div class="word">One Hundred</div>
+                    <div class="pronunciation">वन हंड्रेड</div>
+                    <button class="listen" onclick="speak('One hundred')">🔊</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- COMBINING NUMBERS -->
+
+        <div class="card">
+            <h2>🧩 Numbers Ko Combine Karna</h2>
+
+            <div class="example">
+                21 = Twenty-one<br>
+                22 = Twenty-two<br>
+                25 = Twenty-five<br>
+                31 = Thirty-one<br>
+                45 = Forty-five<br>
+                fifty = 50<br>
+                67 = Sixty-seven<br>
+                78 = Seventy-eight<br>
+                89 = Eighty-nine<br>
+                99 = Ninety-nine
+            </div>
+
+            <button class="main-btn"
+                onclick="speak('Twenty-one. Twenty-two. Twenty-five. Thirty-one. Forty-five. Fifty. Sixty-seven. Seventy-eight. Eighty-nine. Ninety-nine.')">
+                🔊 Listen to Numbers
+            </button>
+        </div>
+
+
+        <!-- LARGE NUMBERS -->
+
+        <div class="card">
+            <h2>💯 Large Numbers</h2>
+
+            <div class="sentence">
+                <div class="english">100 = One hundred</div>
+                <div class="hindi">एक सौ</div>
+                <button class="listen" onclick="speak('One hundred')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">500 = Five hundred</div>
+                <div class="hindi">पाँच सौ</div>
+                <button class="listen" onclick="speak('Five hundred')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">1,000 = One thousand</div>
+                <div class="hindi">एक हजार</div>
+                <button class="listen" onclick="speak('One thousand')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">5,000 = Five thousand</div>
+                <div class="hindi">पाँच हजार</div>
+                <button class="listen" onclick="speak('Five thousand')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">10,000 = Ten thousand</div>
+                <div class="hindi">दस हजार</div>
+                <button class="listen" onclick="speak('Ten thousand')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">100,000 = One hundred thousand</div>
+                <div class="hindi">एक लाख</div>
+                <button class="listen" onclick="speak('One hundred thousand')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">1,000,000 = One million</div>
+                <div class="hindi">दस लाख</div>
+                <button class="listen" onclick="speak('One million')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="card">
+            <h2>🎂 Talking About Age</h2>
+
+            <div class="sentence">
+                <div class="english">I am 20 years old.</div>
+                <div class="hindi">मैं 20 साल का हूँ।</div>
+                <button class="listen" onclick="speak('I am twenty years old.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I am 25 years old.</div>
+                <div class="hindi">मैं 25 साल का हूँ।</div>
+                <button class="listen" onclick="speak('I am twenty-five years old.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">How old are you?</div>
+                <div class="hindi">आपकी उम्र कितनी है?</div>
+                <button class="listen" onclick="speak('How old are you?')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">How old is your brother?</div>
+                <div class="hindi">आपके भाई की उम्र कितनी है?</div>
+                <button class="listen" onclick="speak('How old is your brother?')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- PHONE NUMBER -->
+
+        <div class="card">
+            <h2>📱 Phone Numbers</h2>
+
+            <p>
+                English mein phone number usually har digit ko separately bola ja sakta hai.
+            </p>
+
+            <div class="example">
+                <b>Example:</b><br><br>
+
+                9876543210<br><br>
+
+                Nine - Eight - Seven - Six - Five - Four - Three - Two - One - Zero
+            </div>
+
+            <button class="main-btn" onclick="speak('Nine. Eight. Seven. Six. Five. Four. Three. Two. One. Zero.')">
+                🔊 Listen
+            </button>
+
+            <div class="tip">
+                💡 Phone number practice karte waqt digits ko clearly aur slowly bolo.
+            </div>
+        </div>
+
+
+        <!-- MONEY -->
+
+        <div class="card">
+            <h2>💰 Numbers & Money</h2>
+
+            <div class="sentence">
+                <div class="english">It costs 50 rupees.</div>
+                <div class="hindi">इसकी कीमत 50 रुपये है।</div>
+                <button class="listen" onclick="speak('It costs fifty rupees.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">This costs 100 rupees.</div>
+                <div class="hindi">इसकी कीमत 100 रुपये है।</div>
+                <button class="listen" onclick="speak('This costs one hundred rupees.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">How much is this?</div>
+                <div class="hindi">यह कितने का है?</div>
+                <button class="listen" onclick="speak('How much is this?')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">How much does it cost?</div>
+                <div class="hindi">इसकी कीमत कितनी है?</div>
+                <button class="listen" onclick="speak('How much does it cost?')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have 500 rupees.</div>
+                <div class="hindi">मेरे पास 500 रुपये हैं।</div>
+                <button class="listen" onclick="speak('I have five hundred rupees.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- COUNTING -->
+
+        <div class="card">
+            <h2>🧮 Counting Practice</h2>
+
+            <div class="example">
+                One, two, three, four, five.<br>
+                Six, seven, eight, nine, ten.<br>
+                Eleven, twelve, thirteen, fourteen, fifteen.<br>
+                Sixteen, seventeen, eighteen, nineteen, twenty.
+            </div>
+
+            <button class="main-btn"
+                onclick="speak('One, two, three, four, five. Six, seven, eight, nine, ten. Eleven, twelve, thirteen, fourteen, fifteen. Sixteen, seventeen, eighteen, nineteen, twenty.')">
+                🔊 Listen to Counting
+            </button>
+        </div>
+
+
+        <!-- DAILY SENTENCES -->
+
+        <div class="card">
+            <h2>🗣️ Daily Number Sentences</h2>
+
+            <div class="sentence">
+                <div class="english">I have two brothers.</div>
+                <div class="hindi">मेरे दो भाई हैं।</div>
+                <button class="listen" onclick="speak('I have two brothers.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have one sister.</div>
+                <div class="hindi">मेरी एक बहन है।</div>
+                <button class="listen" onclick="speak('I have one sister.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">There are five people here.</div>
+                <div class="hindi">यहाँ पाँच लोग हैं।</div>
+                <button class="listen" onclick="speak('There are five people here.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I need two tickets.</div>
+                <div class="hindi">मुझे दो टिकट चाहिए।</div>
+                <button class="listen" onclick="speak('I need two tickets.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Give me three apples.</div>
+                <div class="hindi">मुझे तीन सेब दीजिए।</div>
+                <button class="listen" onclick="speak('Give me three apples.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I have ten minutes.</div>
+                <div class="hindi">मेरे पास दस मिनट हैं।</div>
+                <button class="listen" onclick="speak('I have ten minutes.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">Wait for five minutes.</div>
+                <div class="hindi">पाँच मिनट इंतज़ार करो।</div>
+                <button class="listen" onclick="speak('Wait for five minutes.')">🔊 Listen</button>
+            </div>
+
+            <div class="sentence">
+                <div class="english">I need one more.</div>
+                <div class="hindi">मुझे एक और चाहिए।</div>
+                <button class="listen" onclick="speak('I need one more.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <!-- CONVERSATION -->
+
+        <div class="card">
+            <h2>🎭 Real Conversation</h2>
+
+            <div class="dialogue">
+                <b>Person A:</b> How many people are there in your family?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> There are four people in my family.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> How old are you?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> I am twenty-five years old.
+            </div>
+
+            <div class="dialogue">
+                <b>Person A:</b> How much is this?
+            </div>
+
+            <div class="dialogue">
+                <b>Person B:</b> It costs one hundred rupees.
+            </div>
+
+            <button class="main-btn"
+                onclick="speak('How many people are there in your family? There are four people in my family. How old are you? I am twenty-five years old. How much is this? It costs one hundred rupees.')">
+                🔊 Listen to Conversation
+            </button>
+        </div>
+
+
+        <!-- TIPS -->
+
+        <div class="card">
+            <h2>💡 Important Tips</h2>
+
+            <div class="tip">
+                <b>1.</b> 13–19 numbers ke end mein usually “teen” sound aati hai.<br><br>
+
+                <b>2.</b> 20, 30, 40, 50 jaise numbers ko tens numbers kehte hain.<br><br>
+
+                <b>3.</b> Age batane ke liye “I am … years old” use karo.<br><br>
+
+                <b>4.</b> Price poochhne ke liye “How much is this?” bahut useful hai.<br><br>
+
+                <b>5.</b> Phone number bolte waqt har digit clearly bolo.
+            </div>
+        </div>
+
+
+        <!-- PRACTICE -->
+
+        <div class="card">
+            <h2>🎤 Speaking Practice</h2>
+
+            <p>
+                In Hindi sentences ko English mein bolne ki practice karo:
+            </p>
+
+            <div class="example">
+                1. Main 25 saal ka hoon.<br><br>
+                2. Mere do bhai hain.<br><br>
+                3. Mere parivaar mein chaar log hain.<br><br>
+                4. Iski keemat 100 rupaye hai.<br><br>
+                5. Mujhe do tickets chahiye.<br><br>
+                6. Mujhe paanch minute do.<br><br>
+                7. Yeh kitne ka hai?<br><br>
+                8. Aapki age kitni hai?
+            </div>
+        </div>
+
+
+        <!-- AI -->
+
+        <div class="card">
+            <h2>🤖 AI Numbers Practice</h2>
+
+            <p>
+                AI ke saath numbers, age, prices aur daily conversation ki practice karo.
+            </p>
+
+            <button class="main-btn ai-btn" onclick="openAI()">
+                🤖 Practice with AI
+            </button>
+        </div>
+
+
+        <!-- COMPLETE -->
+
+        <div class="card">
+            <h2>🏆 Lesson Complete</h2>
+
+            <p>Lesson 5 complete karne par:</p>
+
+            <p>⭐ <b>+10 XP</b></p>
+            <p>🪙 <b>+5 Coins</b></p>
+
+            <button class="main-btn complete" onclick="completeLesson()">
+                ✅ Complete Lesson 5
+            </button>
+
+            <button class="main-btn" onclick="location.href='quiz5.html'">
+                📝 Take Lesson 5 Quiz
+            </button>
+
+            <button class="main-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠<br>Home
+        </a>
+
+        <a href="course.html">
+            📚<br>Course
+        </a>
+
+        <a href="chat.html">
+            🤖<br>AI Chat
+        </a>
+
+        <a href="profile.html">
+            👤<br>Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function speak(text) {
+
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function openAI() {
+            location.href = "chat.html";
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson5Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("✅ Lesson 5 is already completed!");
+                return;
+            }
+
+            let xp =
+                Number(localStorage.getItem("xp") || 0);
+
+            let coins =
+                Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem("lesson5Completed", "true");
+
+            // Compatibility with old progression system
+            localStorage.setItem("lesson6Unlocked", "true");
+
+            alert(
+                "🎉 Lesson 5 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

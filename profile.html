@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .profile-header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 25px 15px;
+            border-radius: 22px;
+            margin-bottom: 18px;
+        }
+
+        .avatar {
+            width: 85px;
+            height: 85px;
+            background: linear-gradient(135deg, #38bdf8, #22c55e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 42px;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .profile-header h1 {
+            color: white;
+            margin: 5px 0;
+        }
+
+        .profile-header p {
+            margin: 5px 0;
+            color: #e2e8f0;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 7px 14px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 17px 10px;
+            border-radius: 17px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 27px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 18px;
+            border-radius: 18px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .section h2 {
+            color: #38bdf8;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .xp-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .xp-info span:last-child {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .progress-wrap progress {
+            width: 100%;
+            height: 18px;
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #cbd5e1;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        .course-row {
+            background: #111827;
+            padding: 13px;
+            border-radius: 12px;
+            margin: 9px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-name {
+            font-weight: bold;
+        }
+
+        .course-status {
+            font-size: 13px;
+            color: #22c55e;
+        }
+
+        .course-status.locked {
+            color: #f59e0b;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .achievement {
+            background: #111827;
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+            opacity: 0.45;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+
+        .achievement-icon {
+            font-size: 30px;
+        }
+
+        .achievement-title {
+            font-weight: bold;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .achievement-status {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .achievement.unlocked .achievement-status {
+            color: #22c55e;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .certificate-card h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .certificate-card p {
+            line-height: 1.5;
+        }
+
+        .locked-certificate {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+
+        .locked-certificate h2 {
+            color: #f87171;
+        }
+
+        .action-button {
+            margin-top: 10px;
+        }
+
+        .logout-btn {
+            background: #dc2626;
+        }
+
+        .logout-btn:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- PROFILE HEADER -->
+
+        <div class="profile-header">
+
+            <div class="avatar">
+                👤
+            </div>
+
+            <h1 id="userName">
+                Manish
+            </h1>
+
+            <p>
+                English Learner
+            </p>
+
+            <div class="level-badge">
+                ⭐ Level <span id="level">1</span>
+            </div>
+
+        </div>
+
+
+        <!-- MAIN STATS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div class="stat-value" id="totalXP">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total XP
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🪙
+                </div>
+
+                <div class="stat-value" id="totalCoins">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Coins
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div class="stat-value" id="streak">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Day Streak
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <div class="stat-value">
+                    <span id="lessonCount">0</span>/10
+                </div>
+
+                <div class="stat-label">
+                    Lessons
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- XP PROGRESS -->
+
+        <div class="section">
+
+            <h2>⭐ Level Progress</h2>
+
+            <div class="xp-info">
+
+                <span>
+                    Level <span id="currentLevel">1</span>
+                </span>
+
+                <span id="levelXP">
+                    0 / 100 XP
+                </span>
+
+            </div>
+
+            <div class="progress-wrap">
+
+                <progress id="xpBar" value="0" max="100">
+                </progress>
+
+            </div>
+
+            <div class="progress-text">
+                Keep learning to reach the next level!
+            </div>
+
+        </div>
+
+
+        <!-- COURSE PROGRESS -->
+
+        <div class="section">
+
+            <h2>📚 Course Progress</h2>
+
+            <div class="course-row">
+                <span class="course-name">
+                    Lessons Completed
+                </span>
+
+                <span class="course-status" id="lessonProgress">
+                    0 / 10
+                </span>
+            </div>
+
+
+            <div class="course-row">
+                <span class="course-name">
+                    Quizzes Passed
+                </span>
+
+                <span class="course-status" id="quizProgress">
+                    0 / 10
+                </span>
+            </div>
+
+
+            <div class="course-row">
+                <span class="course-name">
+                    Final Test
+                </span>
+
+                <span class="course-status locked" id="finalTestStatus">
+                    🔒 Not Passed
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <div class="section">
+
+            <h2>🥇 Achievements</h2>
+
+            <div class="achievement-grid">
+
+
+                <div class="achievement" id="achievementChat">
+
+                    <div class="achievement-icon">
+                        🤖
+                    </div>
+
+                    <div class="achievement-title">
+                        First Chat
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+
+                <div class="achievement" id="achievementXP">
+
+                    <div class="achievement-icon">
+                        ⭐
+                    </div>
+
+                    <div class="achievement-title">
+                        100 XP
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+
+                <div class="achievement" id="achievementCoins">
+
+                    <div class="achievement-icon">
+                        🪙
+                    </div>
+
+                    <div class="achievement-title">
+                        100 Coins
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+
+                <div class="achievement" id="achievementStreak">
+
+                    <div class="achievement-icon">
+                        🔥
+                    </div>
+
+                    <div class="achievement-title">
+                        7 Day Streak
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+
+                <div class="achievement" id="achievementLessons">
+
+                    <div class="achievement-icon">
+                        📚
+                    </div>
+
+                    <div class="achievement-title">
+                        Course Complete
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+
+                <div class="achievement" id="achievementFinal">
+
+                    <div class="achievement-icon">
+                        🏆
+                    </div>
+
+                    <div class="achievement-title">
+                        English Graduate
+                    </div>
+
+                    <div class="achievement-status">
+                        🔒 Locked
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CERTIFICATE -->
+
+        <div class="certificate-card" id="certificateCard">
+
+            <h2>
+                🏆 Certificate
+            </h2>
+
+            <p id="certificateMessage">
+                Complete and pass the Final Test
+                to unlock your certificate.
+            </p>
+
+            <button onclick="openCertificate()">
+                🏆 View Certificate
+            </button>
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <button class="action-button" onclick="goToCourse()">
+            📚 Continue Course
+        </button>
+
+
+        <button class="action-button" onclick="goToChat()">
+            🤖 Practice With AI
+        </button>
+
+
+        <button class="action-button" onclick="goHome()">
+            🏠 Back to Home
+        </button>
+
+
+        <button class="action-button logout-btn" onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠
+            <span>Home</span>
+        </a>
+
+        <a href="course.html">
+            📚
+            <span>Course</span>
+        </a>
+
+        <a href="chat.html">
+            🤖
+            <span>AI</span>
+        </a>
+
+        <a href="profile.html">
+            👤
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function getNumber(key) {
+
+            return Number(
+                localStorage.getItem(key) || 0
+            );
+
+        }
+
+
+        function updateProfile() {
+
+            const xp = getNumber("xp");
+
+            const coins = getNumber("coins");
+
+            const streak = getNumber("streak");
+
+
+            // NAME
+
+            const savedName =
+                localStorage.getItem("userName") ||
+                localStorage.getItem("name") ||
+                "Manish";
+
+            document.getElementById("userName").textContent =
+                savedName;
+
+
+            // STATS
+
+            document.getElementById("totalXP").textContent =
+                xp;
+
+            document.getElementById("totalCoins").textContent =
+                coins;
+
+            document.getElementById("streak").textContent =
+                streak;
+
+
+            // LEVEL
+
+            const level =
+                Math.floor(xp / 100) + 1;
+
+            const currentLevelXP =
+                xp % 100;
+
+
+            document.getElementById("level").textContent =
+                level;
+
+            document.getElementById("currentLevel").textContent =
+                level;
+
+            document.getElementById("levelXP").textContent =
+                currentLevelXP + " / 100 XP";
+
+
+            document.getElementById("xpBar").value =
+                currentLevelXP;
+
+
+            // LESSON COUNT
+
+            let lessonsCompleted = 0;
+
+            for (let i = 1; i <= 10; i++) {
+
+                if (
+                    localStorage.getItem(
+                        "lesson" + i + "Completed"
+                    ) === "true"
+                ) {
+
+                    lessonsCompleted++;
+
+                }
+
+            }
+
+
+            document.getElementById("lessonCount").textContent =
+                lessonsCompleted;
+
+
+            document.getElementById("lessonProgress").textContent =
+                lessonsCompleted + " / 10";
+
+
+            // QUIZ COUNT
+
+            let quizzesCompleted = 0;
+
+            for (let i = 1; i <= 10; i++) {
+
+                if (
+                    localStorage.getItem(
+                        "quiz" + i + "Completed"
+                    ) === "true"
+                ) {
+
+                    quizzesCompleted++;
+
+                }
+
+            }
+
+
+            document.getElementById("quizProgress").textContent =
+                quizzesCompleted + " / 10";
+
+
+            // FINAL TEST
+
+            const finalCompleted =
+                localStorage.getItem(
+                    "finalTestCompleted"
+                ) === "true";
+
+
+            const finalStatus =
+                document.getElementById("finalTestStatus");
+
+            if (finalCompleted) {
+                finalStatus.textContent = "✅ Passed";
+                finalStatus.classList.remove("locked");
+            } else {
+                finalStatus.textContent = "🔒 Not Passed";
+                finalStatus.classList.add("locked");
+            }
+
+
+            // ACHIEVEMENTS
+
+            updateAchievement(
+                "achievementChat",
+                localStorage.getItem("chatUsed") === "true"
+            );
+
+
+            updateAchievement(
+                "achievementXP",
+                xp >= 100
+            );
+
+
+            updateAchievement(
+                "achievementCoins",
+                coins >= 100
+            );
+
+
+            updateAchievement(
+                "achievementStreak",
+                streak >= 7
+            );
+
+
+            updateAchievement(
+                "achievementLessons",
+                lessonsCompleted >= 10
+            );
+
+
+            updateAchievement(
+                "achievementFinal",
+                finalCompleted
+            );
+
+
+            // CERTIFICATE
+
+            const certificateCard =
+                document.getElementById(
+                    "certificateCard"
+                );
+
+            const certificateMessage =
+                document.getElementById(
+                    "certificateMessage"
+                );
+
+
+            if (finalCompleted) {
+
+                certificateCard.classList.remove(
+                    "locked-certificate"
+                );
+
+                certificateMessage.textContent =
+                    "🎉 Your English course certificate is unlocked!";
+
+            } else {
+
+                certificateCard.classList.add(
+                    "locked-certificate"
+                );
+
+                certificateMessage.textContent =
+                    "🔒 Pass the Final Test with at least 5/10 to unlock your certificate.";
+
+            }
+
+        }
+
+
+        function updateAchievement(
+            id,
+            unlocked
+        ) {
+
+            const element =
+                document.getElementById(id);
+
+            const status =
+                element.querySelector(
+                    ".achievement-status"
+                );
+
+
+            if (unlocked) {
+
+                element.classList.add(
+                    "unlocked"
+                );
+
+                status.textContent =
+                    "✅ Unlocked";
+
+            } else {
+
+                element.classList.remove(
+                    "unlocked"
+                );
+
+                status.textContent =
+                    "🔒 Locked";
+
+            }
+
+        }
+
+
+        function openCertificate() {
+
+            const finalCompleted =
+                localStorage.getItem(
+                    "finalTestCompleted"
+                ) === "true";
+
+
+            if (!finalCompleted) {
+
+                alert(
+                    "🔒 Certificate Locked!\n\n" +
+                    "First pass the Final Test with at least 5/10."
+                );
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "certificate.html";
+
+        }
+
+
+        function goToCourse() {
+
+            window.location.href =
+                "course.html";
+
+        }
+
+
+        function goToChat() {
+
+            localStorage.setItem(
+                "chatUsed",
+                "true"
+            );
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+        function logout() {
+
+            const confirmLogout =
+                confirm(
+                    "Are you sure you want to logout?"
+                );
+
+
+            if (confirmLogout) {
+
+                window.location.href =
+                    "Login.html";
+
+            }
+
+        }
+
+
+        updateProfile();
+
+        // Refresh profile whenever the page becomes visible again.
+        window.addEventListener("pageshow", updateProfile);
+        window.addEventListener("storage", updateProfile);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job English Basics | SpeakMate AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, #123c5c 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #25205b 0%, transparent 35%),
+                #07111f;
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 30px;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 560px;
+            margin: auto;
+            padding: 18px;
+        }
+
+        /* =========================
+   HEADER
+========================= */
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 14px;
+            background: #ffffff12;
+            border: 1px solid #ffffff18;
+            color: #fff;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        .header-title {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .header-sub {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* =========================
+   HERO
+========================= */
+
+        .hero {
+            background:
+                linear-gradient(135deg, #0369a1, #2563eb, #4f46e5);
+            border-radius: 26px;
+            padding: 24px;
+            box-shadow: 0 15px 40px #0006;
+            margin-bottom: 18px;
+        }
+
+        .hero-icon {
+            font-size: 43px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+   XP / PROGRESS
+========================= */
+
+        .progress-card {
+            background: #ffffff0c;
+            border: 1px solid #ffffff14;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 23px;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-title {
+            font-weight: bold;
+        }
+
+        .progress-number {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .progress-bg {
+            width: 100%;
+            height: 10px;
+            background: #ffffff15;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #38bdf8, #22d3ee);
+            border-radius: 20px;
+            transition: .4s;
+        }
+
+        /* =========================
+   STATS
+========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: #ffffff0b;
+            border: 1px solid #ffffff12;
+            border-radius: 18px;
+            padding: 14px;
+        }
+
+        .stat-icon {
+            font-size: 22px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        /* =========================
+   SECTION
+========================= */
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 13px;
+        }
+
+        /* =========================
+   LESSON CARDS
+========================= */
+
+        .lessons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .lesson-card {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            background: #ffffff0b;
+            border: 1px solid #ffffff14;
+            border-radius: 20px;
+            padding: 16px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .lesson-card:hover {
+            background: #ffffff13;
+            transform: translateY(-2px);
+        }
+
+        .lesson-card:active {
+            transform: scale(.98);
+        }
+
+        .lesson-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #38bdf820;
+            border-radius: 16px;
+            font-size: 26px;
+        }
+
+        .lesson-info {
+            flex: 1;
+        }
+
+        .lesson-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .lesson-desc {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .lesson-status {
+            font-size: 21px;
+            color: #64748b;
+        }
+
+        .completed {
+            border-color: #22c55e55;
+        }
+
+        .completed .lesson-icon {
+            background: #22c55e20;
+        }
+
+        .completed .lesson-status {
+            color: #22c55e;
+        }
+
+        /* =========================
+   QUIZ CARD
+========================= */
+
+        .quiz-card {
+            background:
+                linear-gradient(135deg, #312e81, #7c3aed);
+            border-radius: 24px;
+            padding: 21px;
+            margin-top: 10px;
+        }
+
+        .quiz-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .quiz-card h2 {
+            font-size: 21px;
+            margin-bottom: 7px;
+        }
+
+        .quiz-card p {
+            color: #ddd6fe;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .primary-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 14px;
+            margin-top: 15px;
+            background: #fff;
+            color: #4c1d95;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* =========================
+   MODAL
+========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: #000c;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 999;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 500px;
+            max-height: 92vh;
+            overflow-y: auto;
+            background: #101b2e;
+            border: 1px solid #ffffff18;
+            border-radius: 25px;
+            padding: 21px;
+            box-shadow: 0 20px 60px #0009;
+        }
+
+        .modal-close {
+            float: right;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 11px;
+            background: #ffffff12;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .modal-icon {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .modal-description {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .example-box {
+            background: #ffffff09;
+            border-left: 4px solid #38bdf8;
+            border-radius: 13px;
+            padding: 14px;
+            color: #e2e8f0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .meaning-box {
+            background: #22c55e12;
+            border: 1px solid #22c55e30;
+            border-radius: 13px;
+            padding: 14px;
+            color: #bbf7d0;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+   ACTION BUTTONS
+========================= */
+
+        .action-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 13px;
+            padding: 13px;
+            background: #ffffff12;
+            border: 1px solid #ffffff18;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .action-btn:hover {
+            background: #ffffff1c;
+        }
+
+        .speak-btn {
+            background: #2563eb;
+        }
+
+        .listen-btn {
+            background: #0f766e;
+        }
+
+        /* =========================
+   SPEAK AREA
+========================= */
+
+        .speak-area {
+            background: #ffffff08;
+            border: 1px solid #ffffff12;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .speak-label {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .target-sentence {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .mic-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 12px;
+            background: #dc2626;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .mic-btn.listening {
+            background: #f97316;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(.98);
+                opacity: .75;
+            }
+        }
+
+        .transcript {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            background: #00000025;
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 14px;
+            border-radius: 14px;
+            background: #38bdf812;
+            border: 1px solid #38bdf830;
+            color: #dbeafe;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+   COMPLETE BUTTON
+========================= */
+
+        .complete-btn {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            background: #22c55e;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .complete-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        /* =========================
+   QUIZ
+========================= */
+
+        .quiz-question {
+            font-size: 17px;
+            line-height: 1.5;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            width: 100%;
+            border: 1px solid #ffffff18;
+            border-radius: 13px;
+            padding: 14px;
+            background: #ffffff09;
+            color: #fff;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .option:hover {
+            background: #ffffff15;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .result-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .result-score {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .result-text {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+   MOBILE
+========================= */
+
+        @media(max-width:380px) {
+
+            .container {
+                padding: 14px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .lesson-card {
+                padding: 14px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <button class="back-btn" onclick="goBack()">
+                ←
+            </button>
+
+            <div>
+                <div class="header-title">
+                    Job English Basics
+                </div>
+
+                <div class="header-sub">
+                    Build your professional English
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-icon">
+                💼
+            </div>
+
+            <h1>
+                Become Job Ready
+            </h1>
+
+            <p>
+                Learn the English you need to introduce yourself,
+                talk about your experience, explain your skills
+                and communicate professionally at work.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+
+                <div class="progress-title">
+                    Course Progress
+                </div>
+
+                <div class="progress-number" id="progressText">
+                    0 / 5
+                </div>
+
+            </div>
+
+            <div class="progress-bg">
+
+                <div class="progress-fill" id="progressFill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div class="stat-value" id="xpDisplay">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Total XP
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div class="stat-value" id="coinsDisplay">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    Coins
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LESSONS -->
+
+        <div class="section-title">
+            📚 Job English Lessons
+        </div>
+
+        <div class="lessons">
+
+
+            <div class="lesson-card" id="lesson0" onclick="openLesson(0)">
+
+                <div class="lesson-icon">
+                    👋
+                </div>
+
+                <div class="lesson-info">
+
+                    <div class="lesson-title">
+                        Self Introduction
+                    </div>
+
+                    <div class="lesson-desc">
+                        Introduce yourself professionally.
+                    </div>
+
+                </div>
+
+                <div class="lesson-status" id="status0">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson1" onclick="openLesson(1)">
+
+                <div class="lesson-icon">
+                    💼
+                </div>
+
+                <div class="lesson-info">
+
+                    <div class="lesson-title">
+                        Talking About Experience
+                    </div>
+
+                    <div class="lesson-desc">
+                        Explain your previous work experience.
+                    </div>
+
+                </div>
+
+                <div class="lesson-status" id="status1">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson2" onclick="openLesson(2)">
+
+                <div class="lesson-icon">
+                    ⭐
+                </div>
+
+                <div class="lesson-info">
+
+                    <div class="lesson-title">
+                        Talking About Skills
+                    </div>
+
+                    <div class="lesson-desc">
+                        Talk about your professional strengths.
+                    </div>
+
+                </div>
+
+                <div class="lesson-status" id="status2">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson3" onclick="openLesson(3)">
+
+                <div class="lesson-icon">
+                    📞
+                </div>
+
+                <div class="lesson-info">
+
+                    <div class="lesson-title">
+                        Asking About a Job
+                    </div>
+
+                    <div class="lesson-desc">
+                        Learn polite job-related questions.
+                    </div>
+
+                </div>
+
+                <div class="lesson-status" id="status3">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="lesson-card" id="lesson4" onclick="openLesson(4)">
+
+                <div class="lesson-icon">
+                    🏢
+                </div>
+
+                <div class="lesson-info">
+
+                    <div class="lesson-title">
+                        Workplace English
+                    </div>
+
+                    <div class="lesson-desc">
+                        Communicate professionally at work.
+                    </div>
+
+                </div>
+
+                <div class="lesson-status" id="status4">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUIZ -->
+
+        <div class="quiz-card">
+
+            <div class="quiz-icon">
+                🧠
+            </div>
+
+            <h2>
+                Job English Mini Quiz
+            </h2>
+
+            <p>
+                Test what you learned from these lessons
+                and earn extra XP.
+            </p>
+
+            <button class="primary-btn" onclick="startQuiz()">
+                Start Quiz
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+     LESSON MODAL
+========================= -->
+
+    <div class="modal" id="lessonModal">
+
+        <div class="modal-box">
+
+            <button class="modal-close" onclick="closeModal()">
+                ✕
+            </button>
+
+            <div class="modal-icon" id="modalIcon">
+                👋
+            </div>
+
+            <div class="modal-title" id="modalTitle">
+                Self Introduction
+            </div>
+
+            <div class="modal-description" id="modalDescription">
+            </div>
+
+            <div class="example-box" id="exampleBox">
+            </div>
+
+            <div class="meaning-box" id="meaningBox">
+            </div>
+
+
+            <!-- LISTEN / SPEAK -->
+
+            <div class="action-row">
+
+                <button class="action-btn listen-btn" onclick="listenSentence()">
+                    🔊 Listen
+                </button>
+
+                <button class="action-btn speak-btn" onclick="startSpeaking()">
+                    🎙️ Practice
+                </button>
+
+            </div>
+
+
+            <div class="speak-area">
+
+                <div class="speak-label">
+                    🎙️ Speak this sentence:
+                </div>
+
+                <div class="target-sentence" id="targetSentence">
+                </div>
+
+                <button class="mic-btn" id="micButton" onclick="startSpeaking()">
+                    🎙️ Start Speaking
+                </button>
+
+                <div class="transcript" id="transcript">
+                    Your spoken sentence will appear here.
+                </div>
+
+                <div class="feedback" id="feedback">
+                </div>
+
+            </div>
+
+
+            <button class="complete-btn" id="completeBtn" onclick="completeLesson()">
+
+                ✓ Complete Lesson +10 XP
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+     QUIZ MODAL
+========================= -->
+
+    <div class="modal" id="quizModal">
+
+        <div class="modal-box">
+
+            <button class="modal-close" onclick="closeQuiz()">
+                ✕
+            </button>
+
+            <div class="modal-icon">
+                🧠
+            </div>
+
+            <div class="modal-title" id="quizTitle">
+                Question 1 / 5
+            </div>
+
+            <div class="quiz-question" id="quizQuestion">
+            </div>
+
+            <div class="options" id="quizOptions">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ==========================================
+           LESSON DATA
+        ========================================== */
+
+        const lessons = [
+
+            {
+                icon: "👋",
+
+                title: "Self Introduction",
+
+                description:
+                    "A professional introduction helps an employer understand who you are, what you do and what you can offer.",
+
+                example:
+                    "<b>Example:</b><br>Hello, my name is Alex. I am from India. I have two years of experience in sales. I am hardworking and eager to learn new skills.",
+
+                meaning:
+                    "Useful sentence: \"Hello, my name is Alex. It is nice to meet you.\"",
+
+                target:
+                    "Hello, my name is Alex."
+            },
+
+
+            {
+                icon: "💼",
+
+                title: "Talking About Experience",
+
+                description:
+                    "When talking about your experience, mention your previous role, responsibilities and years of experience.",
+
+                example:
+                    "<b>Example:</b><br>I worked as a sales executive for two years. My responsibilities included talking to customers and managing daily sales.",
+
+                meaning:
+                    "Useful sentence: \"I have two years of experience in sales.\"",
+
+                target:
+                    "I have two years of experience in sales."
+            },
+
+
+            {
+                icon: "⭐",
+
+                title: "Talking About Skills",
+
+                description:
+                    "Professional skills help employers understand what you can do. Keep your answer simple and specific.",
+
+                example:
+                    "<b>Example:</b><br>I have good communication skills. I can work well in a team and I am comfortable using computers.",
+
+                meaning:
+                    "Useful sentence: \"I have good communication skills.\"",
+
+                target:
+                    "I have good communication skills."
+            },
+
+
+            {
+                icon: "📞",
+
+                title: "Asking About a Job",
+
+                description:
+                    "Use polite and professional language when asking about a job opportunity.",
+
+                example:
+                    "<b>Example:</b><br>Hello, I would like to know if there are any job openings. Could you please tell me more about the position?",
+
+                meaning:
+                    "Useful sentence: \"Could you please tell me about the job opening?\"",
+
+                target:
+                    "Could you please tell me about the job opening?"
+            },
+
+
+            {
+                icon: "🏢",
+
+                title: "Workplace English",
+
+                description:
+                    "Professional workplace English helps you communicate clearly with managers, coworkers and customers.",
+
+                example:
+                    "<b>Example:</b><br>Could you please explain this task? I will complete it by tomorrow. Please let me know if you need any help.",
+
+                meaning:
+                    "Useful sentence: \"Could you please explain this task?\"",
+
+                target:
+                    "Could you please explain this task?"
+            }
+
+        ];
+
+
+        /* ==========================================
+           STORAGE
+        ========================================== */
+
+        let completed =
+            JSON.parse(
+                localStorage.getItem(
+                    "jobBasicsCompleted"
+                ) || "[]"
+            );
+
+        let currentLesson = 0;
+
+
+        /* ==========================================
+           OPEN LESSON
+        ========================================== */
+
+        function openLesson(index) {
+
+            currentLesson = index;
+
+            const lesson = lessons[index];
+
+            document.getElementById("modalIcon").innerText =
+                lesson.icon;
+
+            document.getElementById("modalTitle").innerText =
+                lesson.title;
+
+            document.getElementById("modalDescription").innerText =
+                lesson.description;
+
+            document.getElementById("exampleBox").innerHTML =
+                lesson.example;
+
+            document.getElementById("meaningBox").innerText =
+                "💡 " + lesson.meaning;
+
+            document.getElementById("targetSentence").innerText =
+                lesson.target;
+
+            document.getElementById("transcript").innerText =
+                "Your spoken sentence will appear here.";
+
+            document.getElementById("feedback").style.display =
+                "none";
+
+            const completeBtn =
+                document.getElementById("completeBtn");
+
+
+            if (completed.includes(index)) {
+
+                completeBtn.innerText =
+                    "✓ Lesson Completed";
+
+                completeBtn.disabled = true;
+
+            } else {
+
+                completeBtn.innerText =
+                    "✓ Complete Lesson +10 XP";
+
+                completeBtn.disabled = false;
+
+            }
+
+
+            document.getElementById("lessonModal").style.display =
+                "flex";
+        }
+
+
+        /* ==========================================
+           CLOSE LESSON
+        ========================================== */
+
+        function closeModal() {
+
+            document.getElementById("lessonModal").style.display =
+                "none";
+
+        }
+
+
+        /* ==========================================
+           TEXT TO SPEECH
+        ========================================== */
+
+        function listenSentence() {
+
+            const sentence =
+                lessons[currentLesson].target;
+
+            if (!("speechSynthesis" in window)) {
+
+                alert(
+                    "Your browser does not support voice playback."
+                );
+
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const speech =
+                new SpeechSynthesisUtterance(sentence);
+
+            speech.lang = "en-US";
+
+            speech.rate = 0.85;
+
+            speech.pitch = 1;
+
+            window.speechSynthesis.speak(speech);
+
+        }
+
+
+        /* ==========================================
+           SPEECH RECOGNITION
+        ========================================== */
+
+        let recognition = null;
+
+        function startSpeaking() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+
+            if (!SpeechRecognition) {
+
+                alert(
+                    "Speech recognition is not supported in this browser. Try Chrome."
+                );
+
+                return;
+            }
+
+
+            recognition =
+                new SpeechRecognition();
+
+            recognition.lang = "en-US";
+
+            recognition.continuous = false;
+
+            recognition.interimResults = false;
+
+            recognition.maxAlternatives = 1;
+
+
+            const mic =
+                document.getElementById("micButton");
+
+            mic.innerText =
+                "🎙️ Listening...";
+
+            mic.classList.add("listening");
+
+
+            document.getElementById("transcript").innerText =
+                "Listening...";
+
+
+            recognition.start();
+
+
+            recognition.onresult =
+                function (event) {
+
+                    const spoken =
+                        event.results[0][0].transcript;
+
+                    document.getElementById(
+                        "transcript"
+                    ).innerText =
+                        "You said: " + spoken;
+
+                    giveFeedback(spoken);
+
+                };
+
+
+            recognition.onerror =
+                function () {
+
+                    document.getElementById(
+                        "transcript"
+                    ).innerText =
+                        "Could not hear you. Please try again.";
+
+                    resetMic();
+
+                };
+
+
+            recognition.onend =
+                function () {
+
+                    resetMic();
+
+                };
+
+        }
+
+
+        /* ==========================================
+           RESET MIC
+        ========================================== */
+
+        function resetMic() {
+
+            const mic =
+                document.getElementById("micButton");
+
+            mic.innerText =
+                "🎙️ Start Speaking";
+
+            mic.classList.remove("listening");
+
+        }
+
+
+        /* ==========================================
+           SPEAKING FEEDBACK
+        ========================================== */
+
+        function giveFeedback(spoken) {
+
+            const target =
+                lessons[currentLesson].target;
+
+
+            const cleanSpoken =
+                spoken
+                    .toLowerCase()
+                    .replace(/[.,!?]/g, "")
+                    .trim();
+
+
+            const cleanTarget =
+                target
+                    .toLowerCase()
+                    .replace(/[.,!?]/g, "")
+                    .trim();
+
+
+            let feedbackText = "";
+
+
+            if (cleanSpoken === cleanTarget) {
+
+                feedbackText =
+                    "🎉 Excellent! Your sentence matches the target sentence. Great job!";
+
+            } else {
+
+                const targetWords =
+                    cleanTarget.split(/\s+/);
+
+                const spokenWords =
+                    cleanSpoken.split(/\s+/);
+
+
+                let matched = 0;
+
+
+                targetWords.forEach(
+                    function (word) {
+
+                        if (
+                            spokenWords.includes(word)
+                        ) {
+                            matched++;
+                        }
+
+                    }
+                );
+
+
+                const score =
+                    Math.round(
+                        (matched / targetWords.length) * 100
+                    );
+
+
+                if (score >= 80) {
+
+                    feedbackText =
+                        "🌟 Very good! Your sentence is close to the target. Try once more for a cleaner pronunciation.";
+
+                } else if (score >= 50) {
+
+                    feedbackText =
+                        "👍 Good attempt! Listen to the sentence once more and try speaking it slowly.";
+
+                } else {
+
+                    feedbackText =
+                        "💪 Keep practicing! Listen carefully and repeat the target sentence.";
+
+                }
+
+            }
+
+
+            const feedback =
+                document.getElementById("feedback");
+
+            feedback.innerText =
+                feedbackText;
+
+            feedback.style.display =
+                "block";
+
+        }
+
+
+        /* ==========================================
+           COMPLETE LESSON
+        ========================================== */
+
+        function completeLesson() {
+
+            if (completed.includes(currentLesson)) {
+
+                return;
+            }
+
+
+            completed.push(currentLesson);
+
+
+            localStorage.setItem(
+                "jobBasicsCompleted",
+                JSON.stringify(completed)
+            );
+
+
+            /* XP */
+
+            let xp =
+                parseInt(
+                    localStorage.getItem("xp") || "0"
+                );
+
+
+            xp += 10;
+
+
+            localStorage.setItem(
+                "xp",
+                xp
+            );
+
+
+            /* COINS */
+
+            let coins =
+                parseInt(
+                    localStorage.getItem("coins") || "0"
+                );
+
+
+            coins += 5;
+
+
+            localStorage.setItem(
+                "coins",
+                coins
+            );
+
+
+            updateUI();
+
+
+            closeModal();
+
+
+            alert(
+                "🎉 Lesson Completed!\n\n" +
+                "+10 XP\n" +
+                "+5 Coins"
+            );
+
+        }
+
+
+        /* ==========================================
+           UPDATE UI
+        ========================================== */
+
+        function updateUI() {
+
+            const count =
+                completed.length;
+
+
+            const total =
+                lessons.length;
+
+
+            const percent =
+                Math.round(
+                    (count / total) * 100
+                );
+
+
+            document.getElementById(
+                "progressText"
+            ).innerText =
+                count + " / " + total;
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                percent + "%";
+
+
+            const xp =
+                parseInt(
+                    localStorage.getItem("xp") || "0"
+                );
+
+
+            const coins =
+                parseInt(
+                    localStorage.getItem("coins") || "0"
+                );
+
+
+            document.getElementById(
+                "xpDisplay"
+            ).innerText =
+                xp;
+
+
+            document.getElementById(
+                "coinsDisplay"
+            ).innerText =
+                coins;
+
+
+            for (
+                let i = 0;
+                i < lessons.length;
+                i++
+            ) {
+
+                const card =
+                    document.getElementById(
+                        "lesson" + i
+                    );
+
+                const status =
+                    document.getElementById(
+                        "status" + i
+                    );
+
+
+                if (completed.includes(i)) {
+
+                    card.classList.add(
+                        "completed"
+                    );
+
+                    status.innerText =
+                        "✓";
+
+                } else {
+
+                    card.classList.remove(
+                        "completed"
+                    );
+
+                    status.innerText =
+                        "→";
+
+                }
+
+            }
+
+        }
+
+
+        /* ==========================================
+           QUIZ DATA
+        ========================================== */
+
+        const quizQuestions = [
+
+            {
+                question:
+                    "Which sentence is best for a professional introduction?",
+
+                options: [
+                    "Hello, my name is Alex.",
+                    "Give me a job.",
+                    "What are you doing?",
+                    "I need work."
+                ],
+
+                answer: 0
+            },
+
+
+            {
+                question:
+                    "Which sentence talks about work experience?",
+
+                options: [
+                    "I like English.",
+                    "I worked as a sales executive for two years.",
+                    "I live in India.",
+                    "I like computers."
+                ],
+
+                answer: 1
+            },
+
+
+            {
+                question:
+                    "Which one is a professional skill?",
+
+                options: [
+                    "Sleeping late",
+                    "Watching movies",
+                    "Good communication",
+                    "Playing games"
+                ],
+
+                answer: 2
+            },
+
+
+            {
+                question:
+                    "Which sentence is polite when asking about a job?",
+
+                options: [
+                    "Give me a job.",
+                    "I want work.",
+                    "Could you please tell me about the job opening?",
+                    "I need this job."
+                ],
+
+                answer: 2
+            },
+
+
+            {
+                question:
+                    "Which sentence is appropriate at work?",
+
+                options: [
+                    "Do it yourself.",
+                    "I don't care.",
+                    "Could you please explain this task?",
+                    "Give it to me."
+                ],
+
+                answer: 2
+            }
+
+        ];
+
+
+        let quizIndex = 0;
+
+        let quizScore = 0;
+
+
+        /* ==========================================
+           START QUIZ
+        ========================================== */
+
+        function startQuiz() {
+
+            quizIndex = 0;
+
+            quizScore = 0;
+
+            document.getElementById(
+                "quizModal"
+            ).style.display =
+                "flex";
+
+            showQuestion();
+
+        }
+
+
+        /* ==========================================
+           SHOW QUESTION
+        ========================================== */
+
+        function showQuestion() {
+
+            const question =
+                quizQuestions[quizIndex];
+
+
+            document.getElementById(
+                "quizTitle"
+            ).innerText =
+                "Question " +
+                (quizIndex + 1) +
+                " / " +
+                quizQuestions.length;
+
+
+            document.getElementById(
+                "quizQuestion"
+            ).innerText =
+                question.question;
+
+
+            const options =
+                document.getElementById(
+                    "quizOptions"
+                );
+
+
+            options.innerHTML = "";
+
+
+            question.options.forEach(
+                function (option, index) {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "option";
+
+
+                    button.innerText =
+                        option;
+
+
+                    button.onclick =
+                        function () {
+
+                            answerQuiz(index);
+
+                        };
+
+
+                    options.appendChild(
+                        button
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           ANSWER QUIZ
+        ========================================== */
+
+        function answerQuiz(answer) {
+
+            const correct =
+                quizQuestions[
+                    quizIndex
+                ].answer;
+
+
+            if (answer === correct) {
+
+                quizScore++;
+
+            }
+
+
+            quizIndex++;
+
+
+            if (
+                quizIndex <
+                quizQuestions.length
+            ) {
+
+                showQuestion();
+
+            } else {
+
+                finishQuiz();
+
+            }
+
+        }
+
+
+        /* ==========================================
+           FINISH QUIZ
+        ========================================== */
+
+        function finishQuiz() {
+
+            let xp =
+                parseInt(
+                    localStorage.getItem("xp") || "0"
+                );
+
+
+            let coins =
+                parseInt(
+                    localStorage.getItem("coins") || "0"
+                );
+
+
+            xp += 20;
+
+            coins += 10;
+
+
+            localStorage.setItem(
+                "xp",
+                xp
+            );
+
+
+            localStorage.setItem(
+                "coins",
+                coins
+            );
+
+
+            document.getElementById(
+                "quizTitle"
+            ).innerText =
+                "Quiz Complete!";
+
+
+            document.getElementById(
+                "quizQuestion"
+            ).innerHTML =
+
+                '<div class="quiz-result">' +
+
+                '<div class="result-icon">🏆</div>' +
+
+                '<div class="result-score">' +
+                quizScore +
+                ' / ' +
+                quizQuestions.length +
+                '</div>' +
+
+                '<div class="result-text">' +
+                'You earned +20 XP and +10 Coins.' +
+                '<br><br>' +
+                'Keep practicing to improve your job English.' +
+                '</div>' +
+
+                '</div>';
+
+
+            document.getElementById(
+                "quizOptions"
+            ).innerHTML =
+
+                '<button class="primary-btn" ' +
+                'onclick="closeQuiz()">' +
+                'Continue Learning' +
+                '</button>';
+
+
+            updateUI();
+
+        }
+
+
+        /* ==========================================
+           CLOSE QUIZ
+        ========================================== */
+
+        function closeQuiz() {
+
+            document.getElementById(
+                "quizModal"
+            ).style.display =
+                "none";
+
+        }
+
+
+        /* ==========================================
+           BACK TO JOB PAGE
+        ========================================== */
+
+        function goBack() {
+
+            window.location.href =
+                "job.html";
+
+        }
+
+
+        /* ==========================================
+           MODAL OUTSIDE CLICK
+        ========================================== */
+
+        document.getElementById(
+            "lessonModal"
+        ).addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    this
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "quizModal"
+        ).addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target ===
+                    this
+                ) {
+
+                    closeQuiz();
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           INITIALIZE
+        ========================================== */
+
+        updateUI();
+
+    </script>
+
+</body>
+
+</html>

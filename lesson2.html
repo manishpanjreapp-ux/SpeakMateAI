@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lesson 2 - Self Introduction | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .lesson-header {
+            margin-bottom: 20px;
+        }
+
+        .lesson-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .lesson-header p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg,
+                    rgba(56, 189, 248, 0.15),
+                    rgba(34, 197, 94, 0.12));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            text-align: left;
+            color: #38bdf8;
+        }
+
+        .phrase-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .english {
+            font-size: 19px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 7px;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .pronunciation {
+            color: #facc15;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            color: #a7f3d0;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .listen-btn {
+            width: auto;
+            padding: 9px 14px;
+            margin-top: 4px;
+            font-size: 14px;
+            background: #2563eb;
+        }
+
+        .listen-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .practice-box {
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.20);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .practice-box li {
+            margin-bottom: 9px;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .tip {
+            background: rgba(250, 204, 21, 0.10);
+            border: 1px solid rgba(250, 204, 21, 0.20);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: left;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .dialogue-box {
+            background: rgba(139, 92, 246, 0.10);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .dialogue-line {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .dialogue-person {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .reward {
+            background: rgba(250, 204, 21, 0.10);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            border-radius: 15px;
+            padding: 14px;
+            margin-top: 15px;
+            color: #fde68a;
+            line-height: 1.5;
+        }
+
+        .complete-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            margin-top: 25px;
+        }
+
+        .ai-btn {
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        .quiz-btn {
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+        }
+
+        .back-btn {
+            background: #475569;
+        }
+
+        .small-note {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        body {
+            padding-bottom: 90px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 68px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .bottom-nav a.active {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .bottom-nav span {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        // ============================
+        // LESSON 2 ACCESS LOCK
+        // ============================
+        (function enforceLessonAccess() {
+            const previousLessonCompleted =
+                localStorage.getItem("lesson1Completed") === "true";
+
+            const xp = Number(localStorage.getItem("xp") || 0);
+            const requiredXP = 10;
+
+            if (!previousLessonCompleted || xp < requiredXP) {
+                alert(
+                    "🔒 Lesson 2 is locked!\n\n" +
+                    "Complete Lesson 1 first and reach 10 XP."
+                );
+                window.location.replace("course.html");
+            }
+        })();
+    </script>
+
+
+    <script>
+        (function enforceLessonAccess() {
+            const previousLessonCompleted = localStorage.getItem("lesson1Completed") === "true";
+            const xp = Number(localStorage.getItem("xp") || 0);
+            const requiredXP = 10;
+
+            if (!previousLessonCompleted || xp < requiredXP) {
+                alert(
+                    "🔒 Lesson 2 is locked!\n\n" +
+                    "Complete Lesson 1 first and reach 10 XP."
+                );
+                window.location.replace("course.html");
+            }
+        })();
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="lesson-header">
+
+            <h1>🙋 Lesson 2</h1>
+
+            <p>
+                <strong>Self Introduction</strong><br>
+                Learn how to introduce yourself confidently in English.
+            </p>
+
+        </div>
+
+
+        <!-- INTRODUCTION -->
+        <div class="welcome-card">
+
+            <h3>🎯 What You Will Learn</h3>
+
+            <p>
+                In this lesson you will learn how to tell someone
+                your name, where you are from, where you live,
+                what you do, your hobbies, your interests and
+                other basic information about yourself.
+            </p>
+
+            <p class="small-note">
+                💡 Don't just read the sentences. Listen to them
+                and speak them aloud.
+            </p>
+
+        </div>
+
+
+        <!-- BASIC INTRODUCTION -->
+        <h2 class="section-title">🙋 Basic Introduction</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">My name is Manish.</div>
+
+            <div class="hindi">
+                🇮🇳 मेरा नाम मनीष है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: माय नेम इज़ मनीष
+            </div>
+
+            <div class="example">
+                💬 Example: Hello, my name is Manish.
+            </div>
+
+            <button class="listen-btn" onclick="speak('My name is Manish.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">What is your name?</div>
+
+            <div class="hindi">
+                🇮🇳 आपका नाम क्या है?
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: व्हाट इज़ योर नेम?
+            </div>
+
+            <div class="example">
+                💬 Example: Hi! What is your name?
+            </div>
+
+            <button class="listen-btn" onclick="speak('What is your name?')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">You can call me Manish.</div>
+
+            <div class="hindi">
+                🇮🇳 आप मुझे मनीष कह सकते हैं।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: यू कैन कॉल मी मनीष
+            </div>
+
+            <div class="example">
+                💬 Example: My name is Manish. You can call me Manish.
+            </div>
+
+            <button class="listen-btn" onclick="speak('You can call me Manish.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- PLACE -->
+        <h2 class="section-title">📍 Where Are You From?</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am from India.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं भारत से हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम फ्रॉम इंडिया
+            </div>
+
+            <div class="example">
+                💬 Example: I am from India.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am from India.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">Where are you from?</div>
+
+            <div class="hindi">
+                🇮🇳 आप कहाँ से हैं?
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: व्हेयर आर यू फ्रॉम?
+            </div>
+
+            <div class="example">
+                💬 Example: Nice to meet you. Where are you from?
+            </div>
+
+            <button class="listen-btn" onclick="speak('Where are you from?')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I live in Delhi.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं दिल्ली में रहता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ लिव इन दिल्ली
+            </div>
+
+            <div class="example">
+                💬 Example: I live in Delhi with my family.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I live in Delhi.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">Where do you live?</div>
+
+            <div class="hindi">
+                🇮🇳 आप कहाँ रहते हैं?
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: व्हेयर डू यू लिव?
+            </div>
+
+            <div class="example">
+                💬 Example: Where do you live?
+            </div>
+
+            <button class="listen-btn" onclick="speak('Where do you live?')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- PERSONAL INFORMATION -->
+        <h2 class="section-title">🧑 About Yourself</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am 25 years old.</div>
+
+            <div class="hindi">
+                🇮🇳 मेरी उम्र 25 साल है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम ट्वेंटी फाइव इयर्स ओल्ड
+            </div>
+
+            <div class="example">
+                💬 Example: I am 25 years old.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am 25 years old.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am a student.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं एक छात्र हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम अ स्टूडेंट
+            </div>
+
+            <div class="example">
+                💬 Example: I am a student.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am a student.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I work in a company.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं एक कंपनी में काम करता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ वर्क इन अ कंपनी
+            </div>
+
+            <div class="example">
+                💬 Example: I work in a software company.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I work in a company.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am learning English.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं अंग्रेज़ी सीख रहा हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम लर्निंग इंग्लिश
+            </div>
+
+            <div class="example">
+                💬 Example: I am learning English every day.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am learning English.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am a beginner.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं शुरुआती स्तर पर हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम अ बिगिनर
+            </div>
+
+            <div class="example">
+                💬 Example: I am a beginner in English.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am a beginner.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- HOBBIES -->
+        <h2 class="section-title">❤️ Hobbies & Interests</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">My hobby is reading.</div>
+
+            <div class="hindi">
+                🇮🇳 मेरा शौक पढ़ना है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: माय हॉबी इज़ रीडिंग
+            </div>
+
+            <div class="example">
+                💬 Example: My hobby is reading books.
+            </div>
+
+            <button class="listen-btn" onclick="speak('My hobby is reading.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I like listening to music.</div>
+
+            <div class="hindi">
+                🇮🇳 मुझे संगीत सुनना पसंद है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ लाइक लिसनिंग टू म्यूज़िक
+            </div>
+
+            <div class="example">
+                💬 Example: I like listening to music in my free time.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I like listening to music.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I like watching movies.</div>
+
+            <div class="hindi">
+                🇮🇳 मुझे फिल्में देखना पसंद है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ लाइक वॉचिंग मूवीज़
+            </div>
+
+            <div class="example">
+                💬 Example: I like watching movies on weekends.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I like watching movies.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I enjoy playing cricket.</div>
+
+            <div class="hindi">
+                🇮🇳 मुझे क्रिकेट खेलना पसंद है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एन्जॉय प्लेइंग क्रिकेट
+            </div>
+
+            <div class="example">
+                💬 Example: I enjoy playing cricket with my friends.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I enjoy playing cricket.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">In my free time, I watch videos.</div>
+
+            <div class="hindi">
+                🇮🇳 अपने खाली समय में मैं वीडियो देखता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: इन माय फ्री टाइम, आइ वॉच वीडियोज़
+            </div>
+
+            <div class="example">
+                💬 Example: In my free time, I watch English videos.
+            </div>
+
+            <button class="listen-btn" onclick="speak('In my free time, I watch videos.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- FAMILY -->
+        <h2 class="section-title">👨‍👩‍👧 Family</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I live with my family.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं अपने परिवार के साथ रहता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ लिव विद माय फैमिली
+            </div>
+
+            <div class="example">
+                💬 Example: I live with my family in India.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I live with my family.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I have a small family.</div>
+
+            <div class="hindi">
+                🇮🇳 मेरा छोटा परिवार है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ हैव अ स्मॉल फैमिली
+            </div>
+
+            <div class="example">
+                💬 Example: I have a small and happy family.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I have a small family.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- CONVERSATION -->
+        <h2 class="section-title">💬 Real-Life Conversation</h2>
+
+
+        <div class="dialogue-box">
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person A:</span>
+                Hello! What is your name?
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person B:</span>
+                Hello! My name is Manish.
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person A:</span>
+                Nice to meet you, Manish.
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person B:</span>
+                Nice to meet you too.
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person A:</span>
+                Where are you from?
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person B:</span>
+                I am from India.
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person A:</span>
+                What do you do?
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person B:</span>
+                I am learning English.
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person A:</span>
+                That's great!
+            </div>
+
+            <div class="dialogue-line">
+                <span class="dialogue-person">👤 Person B:</span>
+                Thank you!
+            </div>
+
+        </div>
+
+
+        <!-- MORE USEFUL PHRASES -->
+        <h2 class="section-title">⭐ More Useful Sentences</h2>
+
+
+        <div class="phrase-card">
+
+            <div class="english">Let me introduce myself.</div>
+
+            <div class="hindi">
+                🇮🇳 मुझे अपना परिचय देने दीजिए।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: लेट मी इंट्रोड्यूस मायसेल्फ
+            </div>
+
+            <div class="example">
+                💬 Example: Let me introduce myself. My name is Manish.
+            </div>
+
+            <button class="listen-btn" onclick="speak('Let me introduce myself.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I am interested in technology.</div>
+
+            <div class="hindi">
+                🇮🇳 मुझे तकनीक में रुचि है।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ एम इंटरेस्टेड इन टेक्नोलॉजी
+            </div>
+
+            <div class="example">
+                💬 Example: I am interested in artificial intelligence.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I am interested in technology.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I want to improve my English.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं अपनी अंग्रेज़ी सुधारना चाहता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ वॉन्ट टू इम्प्रूव माय इंग्लिश
+            </div>
+
+            <div class="example">
+                💬 Example: I want to improve my English speaking skills.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I want to improve my English.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <div class="phrase-card">
+
+            <div class="english">I practice English every day.</div>
+
+            <div class="hindi">
+                🇮🇳 मैं हर दिन अंग्रेज़ी का अभ्यास करता हूँ।
+            </div>
+
+            <div class="pronunciation">
+                🔊 Pronunciation: आइ प्रैक्टिस इंग्लिश एवरी डे
+            </div>
+
+            <div class="example">
+                💬 Example: I practice English every day with SpeakMate AI.
+            </div>
+
+            <button class="listen-btn" onclick="speak('I practice English every day.')">
+                🔊 Listen
+            </button>
+
+        </div>
+
+
+        <!-- PRACTICE -->
+        <h2 class="section-title">🧠 Your Practice</h2>
+
+        <div class="practice-box">
+
+            <p>
+                अब बिना देखकर अपना introduction English में बोलने की कोशिश करो:
+            </p>
+
+            <ol>
+
+                <li>Say your name.</li>
+
+                <li>Say where you are from.</li>
+
+                <li>Say where you live.</li>
+
+                <li>Say what you do.</li>
+
+                <li>Say your hobby.</li>
+
+                <li>Say why you are learning English.</li>
+
+            </ol>
+
+            <p class="small-note">
+                🎤 Example:<br><br>
+
+                Hello! My name is Manish.
+                I am from India.
+                I am learning English.
+                I like watching movies.
+                I practice English every day.
+                Nice to meet you!
+            </p>
+
+        </div>
+
+
+        <!-- TIP -->
+        <div class="tip">
+
+            💡 <strong>SpeakMate Tip</strong>
+
+            <br><br>
+
+            Introduction याद करने के बजाय अपने बारे में
+            English में बोलना सीखो।
+
+            <br><br>
+
+            रोज़ अपना introduction कम से कम
+            <strong>3 बार बोलो</strong>।
+
+        </div>
+
+
+        <!-- REWARD -->
+        <div class="reward">
+
+            🏆 <strong>Lesson Reward</strong>
+
+            <br><br>
+
+            Complete this lesson and earn:
+
+            <br><br>
+
+            ⭐ <strong>+10 XP</strong>
+            &nbsp;&nbsp;
+            🪙 <strong>+5 Coins</strong>
+
+        </div>
+
+
+        <!-- COMPLETE -->
+        <button class="complete-btn" onclick="completeLesson()">
+            ✅ Complete Lesson
+        </button>
+
+
+        <!-- AI -->
+        <button class="ai-btn" onclick="goToAI()">
+            🤖 Practice with AI
+        </button>
+
+
+        <!-- QUIZ -->
+        <button class="quiz-btn" onclick="goToQuiz()">
+            📝 Start Quiz 2
+        </button>
+
+
+        <!-- BACK -->
+        <button class="back-btn" onclick="goToCourse()">
+            📚 Back to Course
+        </button>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            <span>🏠</span>
+            Home
+        </a>
+
+        <a href="course.html" class="active">
+            <span>📚</span>
+            Course
+        </a>
+
+        <a href="chat.html">
+            <span>🤖</span>
+            AI Chat
+        </a>
+
+        <a href="quiz2.html">
+            <span>📝</span>
+            Quiz
+        </a>
+
+        <a href="profile.html">
+            <span>👤</span>
+            Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        // ============================
+        // TEXT TO SPEECH
+        // ============================
+
+        function speak(text) {
+
+            if (!("speechSynthesis" in window)) {
+
+                alert(
+                    "Sorry, your browser does not support voice playback."
+                );
+
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice =
+                new SpeechSynthesisUtterance(text);
+
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+
+        }
+
+
+        // ============================
+        // COMPLETE LESSON
+        // ============================
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson2Completed") === "true";
+
+
+            if (alreadyCompleted) {
+
+                alert(
+                    "✅ Lesson 2 is already completed!\n\n" +
+                    "You have already received the reward."
+                );
+
+                return;
+            }
+
+
+            let xp =
+                Number(localStorage.getItem("xp") || 0);
+
+            let coins =
+                Number(localStorage.getItem("coins") || 0);
+
+
+            xp += 10;
+            coins += 5;
+
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem(
+                "lesson2Completed",
+                "true"
+            );
+
+
+            // Compatibility with previous unlock system
+            localStorage.setItem(
+                "lesson3Unlocked",
+                "true"
+            );
+
+
+            alert(
+                "🎉 Lesson 2 Completed!\n\n" +
+                "⭐ +10 XP\n" +
+                "🪙 +5 Coins\n\n" +
+                "Great work! Keep practicing."
+            );
+
+        }
+
+
+        // ============================
+        // AI PRACTICE
+        // ============================
+
+        function goToAI() {
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        // ============================
+        // QUIZ 2
+        // ============================
+
+        function goToQuiz() {
+
+            window.location.href =
+                "quiz2.html";
+
+        }
+
+
+        // ============================
+        // COURSE
+        // ============================
+
+        function goToCourse() {
+
+            window.location.href =
+                "course.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

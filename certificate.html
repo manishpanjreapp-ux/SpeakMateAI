@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            padding: 20px 0 100px;
+        }
+
+        .certificate-page {
+            width: 92%;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .top-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .top-title h1 {
+            color: #38bdf8;
+            margin-bottom: 8px;
+        }
+
+        .certificate {
+            position: relative;
+            background: linear-gradient(135deg,
+                    #fff7ed,
+                    #ffffff,
+                    #eff6ff);
+
+            color: #111827;
+            border: 8px solid #f59e0b;
+            border-radius: 25px;
+            padding: 35px 25px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .certificate::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 2px solid #f59e0b;
+            border-radius: 18px;
+            pointer-events: none;
+        }
+
+        .certificate-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 42px;
+            margin-bottom: 5px;
+        }
+
+        .certificate h2 {
+            color: #1e3a8a;
+            font-size: 32px;
+            margin: 5px 0;
+        }
+
+        .subtitle {
+            color: #475569;
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .presented {
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .student-name {
+            color: #7c3aed;
+            font-size: 34px;
+            font-weight: bold;
+            margin: 10px 0 18px;
+            font-family: Georgia, serif;
+        }
+
+        .achievement {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #334155;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .course-name {
+            color: #1d4ed8;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .certificate-details {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .detail-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 10px 18px;
+            min-width: 110px;
+        }
+
+        .detail-box strong {
+            display: block;
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+
+        .detail-box span {
+            color: #475569;
+            font-size: 13px;
+        }
+
+        .seal {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f59e0b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 25px auto 10px;
+            font-size: 34px;
+            border: 5px solid #fde68a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .seal-text {
+            color: #92400e;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .certificate-footer {
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .locked {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid #ef4444;
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .locked h2 {
+            color: #ef4444;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            margin-top: 10px;
+        }
+
+        .print-btn {
+            background: #2563eb;
+        }
+
+        .home-btn {
+            background: #475569;
+        }
+
+        @media print {
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .top-title,
+            .action-buttons,
+            .bottom-nav {
+                display: none !important;
+            }
+
+            .certificate-page {
+                width: 100%;
+                max-width: none;
+            }
+
+            .certificate {
+                box-shadow: none;
+                min-height: 90vh;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="certificate-page">
+
+        <div class="top-title">
+
+            <h1>🏆 SpeakMate AI</h1>
+
+            <p>
+                Your English Learning Certificate
+            </p>
+
+        </div>
+
+
+        <div id="lockedBox" class="locked">
+
+            <h2>🔒 Certificate Locked</h2>
+
+            <p>
+                You need to pass the Final Test first.
+            </p>
+
+            <p>
+                Pass the Final Test with at least <strong>5/10</strong>
+                to unlock your certificate.
+            </p>
+
+            <button onclick="goToFinalTest()">
+                📝 Take Final Test
+            </button>
+
+        </div>
+
+
+        <div id="certificateBox" style="display:none;">
+
+            <div class="certificate">
+
+                <div class="certificate-content">
+
+                    <div class="logo">
+                        🏆
+                    </div>
+
+                    <h2>Certificate of Completion</h2>
+
+                    <div class="subtitle">
+                        SpeakMate AI English Learning Program
+                    </div>
+
+
+                    <div class="presented">
+                        This certificate is proudly presented to
+                    </div>
+
+
+                    <div class="student-name" id="studentName">
+                        Manish
+                    </div>
+
+
+                    <div class="achievement">
+
+                        For successfully completing the
+
+                        <div class="course-name">
+                            SpeakMate AI English Course
+                        </div>
+
+                        and passing the Final English Test.
+
+                        <br>
+
+                        This achievement demonstrates commitment
+                        to learning and improving English communication skills.
+
+                    </div>
+
+
+                    <div class="certificate-details">
+
+                        <div class="detail-box">
+
+                            <strong>Lessons</strong>
+
+                            <span>10 Completed</span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <strong>Final Test</strong>
+
+                            <span id="testScore">Passed</span>
+
+                        </div>
+
+
+                        <div class="detail-box">
+
+                            <strong>Platform</strong>
+
+                            <span>SpeakMate AI</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="seal">
+                        ✓
+                    </div>
+
+                    <div class="seal-text">
+                        COURSE COMPLETED
+                    </div>
+
+
+                    <div class="certificate-footer">
+
+                        Issued by SpeakMate AI
+
+                        <br>
+
+                        <span id="certificateDate"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button class="print-btn" onclick="printCertificate()">
+                    🖨️ Print / Save Certificate
+                </button>
+
+                <button onclick="goToChat()">
+                    🤖 Continue Practicing With AI
+                </button>
+
+                <button class="home-btn" onclick="goHome()">
+                    🏠 Back to Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠
+            <span>Home</span>
+        </a>
+
+        <a href="course.html">
+            📚
+            <span>Course</span>
+        </a>
+
+        <a href="chat.html">
+            🤖
+            <span>AI</span>
+        </a>
+
+        <a href="profile.html">
+            👤
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function checkCertificate() {
+
+            const finalTestCompleted =
+                localStorage.getItem("finalTestCompleted") === "true";
+
+
+            if (finalTestCompleted) {
+
+                document.getElementById("lockedBox").style.display =
+                    "none";
+
+                document.getElementById("certificateBox").style.display =
+                    "block";
+
+
+                const savedName =
+                    localStorage.getItem("userName") ||
+                    localStorage.getItem("name") ||
+                    "Manish";
+
+
+                document.getElementById("studentName").textContent =
+                    savedName;
+
+
+                const today = new Date();
+
+                const formattedDate =
+                    today.toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    });
+
+
+                document.getElementById("certificateDate").textContent =
+                    "Issued on " + formattedDate;
+
+            }
+
+        }
+
+
+        function printCertificate() {
+
+            window.print();
+
+        }
+
+
+        function goToFinalTest() {
+
+            window.location.href = "quiz10.html";
+
+        }
+
+
+        function goToChat() {
+
+            window.location.href = "chat.html";
+
+        }
+
+
+        function goHome() {
+
+            window.location.href = "home.html";
+
+        }
+
+
+        checkCertificate();
+
+    </script>
+
+</body>
+
+</html>

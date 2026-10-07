@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 5 - Numbers | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .score-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #22c55e;
+            transition: 0.3s;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: #1e293b;
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #334155;
+            transform: translateY(-1px);
+        }
+
+        .option.correct {
+            background: #166534;
+            border-color: #22c55e;
+        }
+
+        .option.wrong {
+            background: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .option:disabled {
+            cursor: default;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 14px;
+            padding: 13px;
+            border-radius: 12px;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .next-btn,
+        .result-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover,
+        .result-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result h2 {
+            color: #22c55e;
+        }
+
+        .big-score {
+            font-size: 42px;
+            color: #facc15;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .reward {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid #22c55e;
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: 15px;
+            line-height: 1.8;
+        }
+
+        .try-btn {
+            background: #7c3aed;
+        }
+
+        .try-btn:hover {
+            background: #6d28d9;
+        }
+
+        .course-btn {
+            background: #f59e0b;
+        }
+
+        .course-btn:hover {
+            background: #d97706;
+        }
+
+        .lesson-btn {
+            background: #0891b2;
+        }
+
+        .lesson-btn:hover {
+            background: #0e7490;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+
+        .start-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .start-btn:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🔢 Quiz 5: Numbers</h1>
+
+        <p class="subtitle">
+            Numbers, counting, age, phone numbers, prices & large numbers
+        </p>
+
+
+        <!-- SCORE -->
+
+        <div class="score-box">
+            <div>
+                Question <span id="currentQuestion">1</span> / 10
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+
+        <!-- QUIZ -->
+
+        <div id="quizArea"></div>
+
+
+        <!-- RESULT -->
+
+        <div class="result" id="resultBox">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="big-score" id="finalScore">
+                0/10
+            </div>
+
+            <p id="resultMessage"></p>
+
+            <div class="reward" id="rewardBox"></div>
+
+            <button class="result-btn lesson-btn" onclick="location.href='lesson5.html'">
+                📖 Review Lesson 5
+            </button>
+
+            <button class="result-btn course-btn" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="result-btn try-btn" onclick="location.reload()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠<br>Home
+        </a>
+
+        <a href="course.html">
+            📚<br>Course
+        </a>
+
+        <a href="chat.html">
+            🤖<br>AI Chat
+        </a>
+
+        <a href="profile.html">
+            👤<br>Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "35 को English में कैसे बोलेंगे?",
+                options: [
+                    "Thirty-five",
+                    "Fifty-three",
+                    "Thirty-four",
+                    "Thirty-six"
+                ],
+                answer: 0,
+                explanation:
+                    "35 को English में Thirty-five कहते हैं।"
+            },
+
+            {
+                question: "68 का सही English नाम क्या है?",
+                options: [
+                    "Sixty-eight",
+                    "Eighty-six",
+                    "Sixty-six",
+                    "Seventy-eight"
+                ],
+                answer: 0,
+                explanation:
+                    "68 को English में Sixty-eight कहते हैं।"
+            },
+
+            {
+                question: "आपके परिवार में 6 लोग हैं। कौन-सा English sentence सही है?",
+                options: [
+                    "There are six people in my family.",
+                    "There is six people in my family.",
+                    "My family have six person.",
+                    "There are sixteen people in my family."
+                ],
+                answer: 0,
+                explanation:
+                    "Six people plural हैं, इसलिए सही sentence है: There are six people in my family."
+            },
+
+            {
+                question: "अगर आपकी उम्र 30 साल है, तो आप अपनी age कैसे बताएँगे?",
+                options: [
+                    "I have thirty years old.",
+                    "I am thirty years old.",
+                    "I am thirty year.",
+                    "My age have thirty years."
+                ],
+                answer: 1,
+                explanation:
+                    "Age बताने के लिए सही structure है: I am thirty years old."
+            },
+
+            {
+                question: "किसी व्यक्ति से उसका phone number दोबारा पूछने के लिए कौन-सा sentence सही है?",
+                options: [
+                    "Can you repeat your phone number?",
+                    "Can you number your phone repeat?",
+                    "How old is your phone number?",
+                    "How many old your number?"
+                ],
+                answer: 0,
+                explanation:
+                    "Phone number दोबारा पूछने के लिए Can you repeat your phone number? natural English है।"
+            },
+
+            {
+                question: "एक shirt की कीमत ₹750 है। सही English sentence कौन-सा है?",
+                options: [
+                    "It costs seven hundred fifty rupees.",
+                    "It costs seventy-five rupees.",
+                    "It costs seven thousand fifty rupees.",
+                    "It costs seven hundred fifteen rupees."
+                ],
+                answer: 0,
+                explanation:
+                    "₹750 को English में seven hundred fifty rupees कहा जा सकता है।"
+            },
+
+            {
+                question: "50,000 को English में कैसे बोलेंगे?",
+                options: [
+                    "Five thousand",
+                    "Fifty thousand",
+                    "Five hundred thousand",
+                    "Fifteen thousand"
+                ],
+                answer: 1,
+                explanation:
+                    "50,000 को English में Fifty thousand कहते हैं।"
+            },
+
+            {
+                question: "इनमें से कौन-से numbers 20 से बड़े और 30 से छोटे हैं?",
+                multi: true,
+                options: [
+                    "Twenty-one",
+                    "Twenty-eight",
+                    "Thirty-two",
+                    "Nineteen"
+                ],
+                answer: [0, 1],
+                explanation:
+                    "Twenty-one = 21 और Twenty-eight = 28 हैं। दोनों 20 से बड़े और 30 से छोटे हैं।"
+            },
+
+            {
+                question: "अगर कोई कहता है “I have two hundred rupees”, तो उसके पास कितने रुपये हैं?",
+                options: [
+                    "₹20",
+                    "₹100",
+                    "₹200",
+                    "₹2,000"
+                ],
+                answer: 2,
+                explanation:
+                    "Two hundred rupees का मतलब ₹200 होता है।"
+            },
+
+            {
+                question: "The number 1,000,000 is called One million in English.",
+                trueFalse: true,
+                options: [
+                    "सही",
+                    "गलत"
+                ],
+                answer: 0,
+                explanation:
+                    "1,000,000 को English में One million कहा जाता है।"
+            }
+
+        ];
+
+
+        let current = 0;
+        let score = 0;
+        let answered = false;
+
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const quizArea =
+                document.getElementById("quizArea");
+
+            const q = questions[current];
+
+            document.getElementById("currentQuestion").textContent =
+                current + 1;
+
+            document.getElementById("progressBar").style.width =
+                ((current + 1) / questions.length * 100) + "%";
+
+
+            let html = `
+    <div class="question-card">
+
+      <div class="question-number">
+        Question ${current + 1}
+      </div>
+
+      <div class="question">
+        ${q.question}
+      </div>
+  `;
+
+
+            if (q.multi) {
+
+                html += `
+      <p style="color:#cbd5e1;">
+        ☑️ सभी सही answers select करें
+      </p>
+    `;
+
+                q.options.forEach((option, index) => {
+
+                    html += `
+        <button
+          class="option"
+          onclick="selectMulti(${index})"
+          id="option${index}">
+          ${String.fromCharCode(65 + index)}. ${option}
+        </button>
+      `;
+
+                });
+
+                html += `
+      <button
+        class="next-btn"
+        onclick="checkMulti()"
+        id="checkMultiBtn">
+        ✅ Check Answer
+      </button>
+    `;
+
+            }
+
+            else if (q.trueFalse) {
+
+                q.options.forEach((option, index) => {
+
+                    html += `
+        <button
+          class="option"
+          onclick="selectAnswer(${index})"
+          id="option${index}">
+          ${option}
+        </button>
+      `;
+
+                });
+
+            }
+
+            else {
+
+                q.options.forEach((option, index) => {
+
+                    html += `
+        <button
+          class="option"
+          onclick="selectAnswer(${index})"
+          id="option${index}">
+          ${String.fromCharCode(65 + index)}. ${option}
+        </button>
+      `;
+
+                });
+
+            }
+
+
+            html += `
+      <div class="feedback" id="feedback"></div>
+    </div>
+  `;
+
+
+            quizArea.innerHTML = html;
+        }
+
+
+        function selectAnswer(selected) {
+
+            if (answered) return;
+
+            answered = true;
+
+            const q = questions[current];
+
+            const buttons =
+                document.querySelectorAll(".option");
+
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+
+
+            if (selected === q.answer) {
+
+                score++;
+
+                buttons[selected].classList.add("correct");
+
+                showFeedback(
+                    true,
+                    q.explanation
+                );
+
+            } else {
+
+                buttons[selected].classList.add("wrong");
+
+                buttons[q.answer].classList.add("correct");
+
+                showFeedback(
+                    false,
+                    q.explanation
+                );
+            }
+
+
+            setTimeout(nextQuestion, 1300);
+        }
+
+
+        let selectedMulti = [];
+
+
+        function selectMulti(index) {
+
+            if (answered) return;
+
+            const button =
+                document.getElementById("option" + index);
+
+            if (selectedMulti.includes(index)) {
+
+                selectedMulti =
+                    selectedMulti.filter(i => i !== index);
+
+                button.style.borderColor = "transparent";
+
+            } else {
+
+                selectedMulti.push(index);
+
+                button.style.borderColor = "#38bdf8";
+            }
+        }
+
+
+        function checkMulti() {
+
+            if (answered) return;
+
+            if (selectedMulti.length === 0) {
+
+                alert("कम से कम एक answer select करें।");
+
+                return;
+            }
+
+            answered = true;
+
+            const q = questions[current];
+
+            const correct =
+                q.answer.slice().sort().join(",") ===
+                selectedMulti.slice().sort().join(",");
+
+
+            const buttons =
+                document.querySelectorAll(".option");
+
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+
+
+            q.answer.forEach(index => {
+                buttons[index].classList.add("correct");
+            });
+
+
+            selectedMulti.forEach(index => {
+
+                if (!q.answer.includes(index)) {
+                    buttons[index].classList.add("wrong");
+                }
+
+            });
+
+
+            if (correct) {
+                score++;
+            }
+
+
+            showFeedback(
+                correct,
+                q.explanation
+            );
+
+
+            setTimeout(nextQuestion, 1500);
+        }
+
+
+        function showFeedback(isCorrect, text) {
+
+            const feedback =
+                document.getElementById("feedback");
+
+            feedback.style.display = "block";
+
+            if (isCorrect) {
+
+                feedback.innerHTML =
+                    "✅ सही जवाब!<br>" + text;
+
+            } else {
+
+                feedback.innerHTML =
+                    "❌ गलत जवाब।<br>" + text;
+            }
+        }
+
+
+        function nextQuestion() {
+
+            current++;
+
+            selectedMulti = [];
+
+            if (current < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                showResult();
+            }
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quizArea").style.display =
+                "none";
+
+            document.querySelector(".score-box").style.display =
+                "none";
+
+            document.getElementById("resultBox").style.display =
+                "block";
+
+
+            document.getElementById("finalScore").textContent =
+                score + "/10";
+
+
+            let message = "";
+
+            if (score === 10) {
+
+                message =
+                    "🏆 Perfect! Numbers par tumhari pakad bahut achhi hai!";
+
+            } else if (score >= 8) {
+
+                message =
+                    "🔥 Excellent! Bahut badhiya performance!";
+
+            } else if (score >= 5) {
+
+                message =
+                    "👍 Good job! Lesson 5 ko ek baar aur revise karoge to aur better hoga.";
+
+            } else {
+
+                message =
+                    "💪 Koi baat nahi! Lesson 5 ko revise karo aur quiz dobara try karo.";
+            }
+
+
+            document.getElementById("resultMessage").textContent =
+                message;
+
+
+            giveReward();
+        }
+
+
+        function giveReward() {
+
+            const rewardBox =
+                document.getElementById("rewardBox");
+
+            if (score >= 5) {
+
+                const alreadyCompleted =
+                    localStorage.getItem("quiz5Completed") === "true";
+
+
+                if (alreadyCompleted) {
+
+                    rewardBox.innerHTML = `
+        ✅ Quiz 5 already completed.<br>
+        🎁 Reward pehle hi mil chuka hai.
+      `;
+
+                    return;
+                }
+
+
+                let xp =
+                    Number(localStorage.getItem("xp") || 0);
+
+                let coins =
+                    Number(localStorage.getItem("coins") || 0);
+
+
+                xp += 20;
+                coins += 10;
+
+
+                localStorage.setItem("xp", xp);
+                localStorage.setItem("coins", coins);
+
+                localStorage.setItem(
+                    "quiz5Completed",
+                    "true"
+                );
+
+
+                rewardBox.innerHTML = `
+      🎉 Quiz Passed!<br><br>
+      ⭐ <b>+20 XP</b><br>
+      🪙 <b>+10 Coins</b><br><br>
+      Keep learning! 🚀
+    `;
+
+            } else {
+
+                rewardBox.innerHTML = `
+      📚 Quiz pass karne ke liye
+      कम से कम 5/10 score चाहिए।<br><br>
+      Lesson 5 revise karke phir try karo.
+    `;
+            }
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>

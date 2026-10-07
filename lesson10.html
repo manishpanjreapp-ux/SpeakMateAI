@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 10 - Final English Test | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .lesson-header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .lesson-header h1 {
+            color: white;
+            margin: 0 0 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 18px;
+            border-radius: 18px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .section h2 {
+            color: #38bdf8;
+            margin-top: 0;
+        }
+
+        .phrase {
+            background: #111827;
+            padding: 13px;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .english {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .hindi {
+            color: #cbd5e1;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .speak-btn {
+            width: auto;
+            padding: 8px 12px;
+            margin-top: 8px;
+            font-size: 13px;
+            background: #2563eb;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.15);
+            border-left: 4px solid #22c55e;
+            padding: 13px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .final-box {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        .final-box h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .reward-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="lesson-header">
+            <h1>🏆 Lesson 10</h1>
+            <p><strong>Final English Preparation</strong></p>
+            <div class="badge">⭐ Final Lesson • Complete Your Course</div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 What You Have Learned</h2>
+
+            <p>Congratulations! You have reached the final lesson of SpeakMate AI.</p>
+
+            <p>So far you have learned:</p>
+
+            <div class="phrase">
+                <div class="english">👋 Greetings</div>
+                <div class="hindi">Hello, Hi, Good morning, How are you?</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">🙋 Self Introduction</div>
+                <div class="hindi">My name is..., I am from..., I work as...</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">👨‍👩‍👧 Family</div>
+                <div class="hindi">Father, mother, brother, sister, uncle, aunt etc.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">💬 Daily Conversation</div>
+                <div class="hindi">Everyday English questions and answers.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">🔢 Numbers</div>
+                <div class="hindi">Counting, age, prices, phone numbers and more.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">⏰ Time</div>
+                <div class="hindi">Asking and telling time.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">🛒 Shopping</div>
+                <div class="hindi">Prices, sizes, colors, discounts and shopping conversations.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">✈️ Travel</div>
+                <div class="hindi">Airport, hotel, taxi, directions and travel English.</div>
+            </div>
+
+            <div class="phrase">
+                <div class="english">💼 Office English</div>
+                <div class="hindi">Meetings, colleagues, deadlines, phone calls and professional English.</div>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>🗣️ Important Speaking Sentences</h2>
+
+            <div class="phrase">
+                <div class="english">Hello, how are you?</div>
+                <div class="hindi">नमस्ते, आप कैसे हैं?</div>
+                <button class="speak-btn" onclick="speak('Hello, how are you?')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">My name is Manish.</div>
+                <div class="hindi">मेरा नाम मनीष है।</div>
+                <button class="speak-btn" onclick="speak('My name is Manish.')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">I am learning English.</div>
+                <div class="hindi">मैं अंग्रेज़ी सीख रहा हूँ।</div>
+                <button class="speak-btn" onclick="speak('I am learning English.')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">Can you help me?</div>
+                <div class="hindi">क्या आप मेरी मदद कर सकते हैं?</div>
+                <button class="speak-btn" onclick="speak('Can you help me?')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">Please speak slowly.</div>
+                <div class="hindi">कृपया धीरे बोलिए।</div>
+                <button class="speak-btn" onclick="speak('Please speak slowly.')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">I don't understand.</div>
+                <div class="hindi">मुझे समझ नहीं आया।</div>
+                <button class="speak-btn" onclick="speak('I don’t understand.')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">Could you repeat that?</div>
+                <div class="hindi">क्या आप इसे दोबारा बोल सकते हैं?</div>
+                <button class="speak-btn" onclick="speak('Could you repeat that?')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">What do you mean?</div>
+                <div class="hindi">आपका क्या मतलब है?</div>
+                <button class="speak-btn" onclick="speak('What do you mean?')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">I will try my best.</div>
+                <div class="hindi">मैं अपनी पूरी कोशिश करूंगा।</div>
+                <button class="speak-btn" onclick="speak('I will try my best.')">🔊 Listen</button>
+            </div>
+
+            <div class="phrase">
+                <div class="english">I can speak English.</div>
+                <div class="hindi">मैं अंग्रेज़ी बोल सकता हूँ।</div>
+                <button class="speak-btn" onclick="speak('I can speak English.')">🔊 Listen</button>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>💡 English Speaking Tips</h2>
+
+            <div class="tip">
+                <strong>1️⃣ Don't be afraid of mistakes.</strong>
+                <br>
+                Mistakes are a normal part of learning.
+            </div>
+
+            <div class="tip">
+                <strong>2️⃣ Speak every day.</strong>
+                <br>
+                Even 5–10 minutes of speaking practice can help.
+            </div>
+
+            <div class="tip">
+                <strong>3️⃣ Think in English.</strong>
+                <br>
+                Try to make simple English sentences in your mind.
+            </div>
+
+            <div class="tip">
+                <strong>4️⃣ Listen carefully.</strong>
+                <br>
+                Listen to English conversations and repeat them.
+            </div>
+
+            <div class="tip">
+                <strong>5️⃣ Practice with SpeakMate AI.</strong>
+                <br>
+                Chat with AI and practice real conversations.
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>🎤 Final Speaking Practice</h2>
+
+            <p>Try saying this introduction aloud:</p>
+
+            <div class="phrase">
+                <div class="english">
+                    Hello! My name is Manish. I am learning English.
+                    I want to improve my speaking skills.
+                    I practice English every day.
+                    I am not afraid of making mistakes.
+                    I will keep learning and improving.
+                    Thank you!
+                </div>
+
+                <button class="speak-btn"
+                    onclick="speak('Hello! My name is Manish. I am learning English. I want to improve my speaking skills. I practice English every day. I am not afraid of making mistakes. I will keep learning and improving. Thank you!')">
+                    🔊 Listen
+                </button>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>🤖 Practice With AI</h2>
+
+            <p>
+                Your final step is to practice real English conversation
+                with SpeakMate AI.
+            </p>
+
+            <p>
+                Ask questions, introduce yourself, talk about your day,
+                practice travel English, shopping English or office English.
+            </p>
+
+            <button onclick="goToChat()">🤖 Start AI Conversation</button>
+        </div>
+
+
+        <div class="final-box">
+            <h2>🏆 Course Almost Complete!</h2>
+
+            <p>
+                You have completed all 10 English lessons.
+                Now take the Final Test and check your English skills.
+            </p>
+
+            <div class="reward-box">
+                <strong>🎁 Lesson Reward</strong>
+                <p>+10 XP ⭐</p>
+                <p>+5 Coins 🪙</p>
+            </div>
+
+            <button onclick="completeLesson()">
+                ✅ Complete Lesson 10
+            </button>
+
+            <button onclick="goToFinalTest()">
+                📝 Take Final Test
+            </button>
+        </div>
+
+
+        <button onclick="goHome()">🏠 Back to Home</button>
+
+    </div>
+
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<span>Home</span></a>
+        <a href="course.html">📚<span>Course</span></a>
+        <a href="chat.html">🤖<span>AI</span></a>
+        <a href="profile.html">👤<span>Profile</span></a>
+    </div>
+
+
+    <script>
+
+        function speak(text) {
+            if (!("speechSynthesis" in window)) {
+                alert("Sorry, your browser does not support voice playback.");
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+            const voice = new SpeechSynthesisUtterance(text);
+            voice.lang = "en-US";
+            voice.rate = 0.85;
+            voice.pitch = 1;
+
+            speechSynthesis.speak(voice);
+        }
+
+
+        function completeLesson() {
+
+            const alreadyCompleted =
+                localStorage.getItem("lesson10Completed") === "true";
+
+            if (alreadyCompleted) {
+                alert("🎉 Lesson 10 is already completed!");
+                return;
+            }
+
+            let xp = Number(localStorage.getItem("xp") || 0);
+            let coins = Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+            localStorage.setItem("lesson10Completed", "true");
+
+            alert(
+                "🏆 Lesson 10 Completed!\n\n" +
+                "+10 XP ⭐\n" +
+                "+5 Coins 🪙\n\n" +
+                "🎉 Congratulations! You finished all 10 lessons!"
+            );
+        }
+
+
+        function goToFinalTest() {
+            window.location.href = "quiz10.html";
+        }
+
+
+        function goToChat() {
+            window.location.href = "chat.html";
+        }
+
+
+        function goHome() {
+            window.location.href = "home.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

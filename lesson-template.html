@@ -1,0 +1,95 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson Template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 id="lessonTitle">📘 Lesson</h1>
+
+        <p id="lessonDesc">Lesson Description</p>
+
+        <hr>
+
+        <div id="lessonContent">
+
+            <h3>Sentence 1</h3>
+            <p><b>Meaning:</b> Meaning Here</p>
+            <p><b>Pronunciation:</b> Pronunciation Here</p>
+
+            <hr>
+
+            <h3>Sentence 2</h3>
+            <p><b>Meaning:</b> Meaning Here</p>
+            <p><b>Pronunciation:</b> Pronunciation Here</p>
+
+            <hr>
+
+            <h3>Sentence 3</h3>
+            <p><b>Meaning:</b> Meaning Here</p>
+            <p><b>Pronunciation:</b> Pronunciation Here</p>
+
+        </div>
+
+        <br>
+
+        <button onclick="completeLesson()">
+            ✅ Complete Lesson
+        </button>
+
+        <br><br>
+
+        <button onclick="window.location.href='chat.html'">
+            🤖 Practice with AI
+        </button>
+
+        <br><br>
+
+        <button onclick="window.location.href='quiz.html'">
+            📝 Start Quiz
+        </button>
+
+        <br><br>
+
+        <button onclick="window.location.href='course.html'">
+            ⬅ Back to Course
+        </button>
+
+    </div>
+
+    <script>
+
+        const lessonNumber = 4; // Isko har lesson me badalna
+
+        function completeLesson() {
+
+            let xp = Number(localStorage.getItem("xp") || 0);
+            let coins = Number(localStorage.getItem("coins") || 0);
+
+            xp += 10;
+            coins += 5;
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            // Next Lesson Unlock
+            localStorage.setItem("lesson" + (lessonNumber + 1) + "Unlocked", "true");
+
+            alert("🎉 Lesson Completed!\n\n+10 XP\n+5 Coins");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```

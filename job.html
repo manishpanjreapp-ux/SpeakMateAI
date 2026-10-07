@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Career & Jobs | SpeakMate AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: white;
+
+            background:
+                radial-gradient(circle at top left, #172554 0%, transparent 42%),
+                linear-gradient(135deg, #06101d, #0b1d31, #111827);
+        }
+
+        .container {
+            max-width: 560px;
+            margin: auto;
+            padding: 18px;
+            padding-bottom: 40px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #ffffff0d;
+            border: 1px solid #ffffff18;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 23px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            background:
+                linear-gradient(135deg,
+                    #075985,
+                    #2563eb,
+                    #7c3aed);
+
+            border-radius: 25px;
+            padding: 24px;
+
+            margin-bottom: 20px;
+
+            box-shadow: 0 15px 35px #0005;
+        }
+
+        .hero-icon {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .hero p {
+            color: #dbeafe;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+
+        /* PROGRESS */
+
+        .progress-card {
+            background: #ffffff0b;
+
+            border: 1px solid #ffffff14;
+
+            border-radius: 20px;
+
+            padding: 17px;
+
+            margin-bottom: 20px;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+        .progress-top strong {
+            font-size: 14px;
+        }
+
+        .progress-top span {
+            color: #38bdf8;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .progress {
+            height: 9px;
+
+            background: #ffffff12;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(90deg,
+                    #38bdf8,
+                    #8b5cf6);
+
+            border-radius: 20px;
+
+            transition: .4s;
+        }
+
+
+        /* SECTION */
+
+        .section-title {
+            font-size: 19px;
+
+            margin: 23px 0 12px;
+        }
+
+
+        /* JOB CARD */
+
+        .job-card {
+            background: #ffffff0b;
+
+            border: 1px solid #ffffff14;
+
+            border-radius: 20px;
+
+            padding: 18px;
+
+            margin-bottom: 12px;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-2px);
+
+            background: #ffffff12;
+
+            border-color: #38bdf855;
+        }
+
+        .job-row {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .job-icon {
+            width: 52px;
+            height: 52px;
+
+            min-width: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #2563eb18;
+
+            font-size: 28px;
+        }
+
+        .job-content {
+            flex: 1;
+        }
+
+        .job-content h3 {
+            font-size: 16px;
+
+            margin-bottom: 5px;
+        }
+
+        .job-content p {
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+        .job-arrow {
+            font-size: 21px;
+
+            color: #64748b;
+        }
+
+        .badge {
+            display: inline-block;
+
+            margin-top: 8px;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #38bdf818;
+
+            color: #38bdf8;
+
+            font-size: 9px;
+
+            font-weight: bold;
+        }
+
+
+        /* AI CARD */
+
+        .ai-card {
+            background:
+                linear-gradient(135deg,
+                    #312e81,
+                    #6d28d9);
+
+            border-radius: 22px;
+
+            padding: 20px;
+
+            margin-top: 20px;
+        }
+
+        .ai-icon {
+            font-size: 36px;
+
+            margin-bottom: 8px;
+        }
+
+        .ai-card h2 {
+            font-size: 20px;
+
+            margin-bottom: 7px;
+        }
+
+        .ai-card p {
+            color: #ddd6fe;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        .ai-btn {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 13px;
+
+            padding: 14px;
+
+            margin-top: 14px;
+
+            background: white;
+
+            color: #4c1d95;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+        .stat {
+            background: #ffffff09;
+
+            border: 1px solid #ffffff12;
+
+            border-radius: 17px;
+
+            padding: 15px;
+
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 24px;
+
+            margin-bottom: 5px;
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 18px;
+        }
+
+        .stat span {
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        /* BOTTOM NAV */
+
+        .bottom-nav {
+            display: flex;
+
+            justify-content: space-around;
+
+            margin-top: 25px;
+
+            padding: 13px 5px;
+
+            border-radius: 18px;
+
+            background: #ffffff09;
+
+            border: 1px solid #ffffff12;
+        }
+
+        .nav-item {
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            text-align: center;
+
+            cursor: pointer;
+        }
+
+        .nav-item div {
+            font-size: 20px;
+
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <a href="home_special.html" class="back-btn">
+
+                ←
+
+            </a>
+
+            <div>
+
+                <h1>
+                    💼 Career & Jobs
+                </h1>
+
+                <p>
+                    Build skills and become job ready
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-icon">
+                💼
+            </div>
+
+            <h2>
+                Become Job Ready
+            </h2>
+
+            <p>
+                Improve your English, prepare your resume,
+                practice interviews and build professional
+                communication skills.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-card">
+
+            <div class="progress-top">
+
+                <strong>
+                    Career Progress
+                </strong>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-fill" id="progressFill">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAREER PATHS -->
+
+        <div class="section-title">
+            🚀 Career Learning Paths
+        </div>
+
+
+        <!-- JOB BASICS -->
+
+        <div class="job-card" onclick="openJobBasics()">
+
+            <div class="job-row">
+
+                <div class="job-icon">
+                    📚
+                </div>
+
+                <div class="job-content">
+
+                    <h3>
+                        Job English Basics
+                    </h3>
+
+                    <p>
+                        Learn the English you need for
+                        everyday job situations.
+                    </p>
+
+                    <span class="badge" id="basicsBadge">
+
+                        START
+
+                    </span>
+
+                </div>
+
+                <div class="job-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESUME -->
+
+        <div class="job-card" onclick="openResume()">
+
+            <div class="job-row">
+
+                <div class="job-icon">
+                    📄
+                </div>
+
+                <div class="job-content">
+
+                    <h3>
+                        Resume / CV English
+                    </h3>
+
+                    <p>
+                        Build a professional CV and learn
+                        powerful resume English.
+                    </p>
+
+                    <span class="badge">
+                        BUILD CV
+                    </span>
+
+                </div>
+
+                <div class="job-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="job-card" onclick="openEmails()">
+
+            <div class="job-row">
+
+                <div class="job-icon">
+                    ✉️
+                </div>
+
+                <div class="job-content">
+
+                    <h3>
+                        Professional Emails
+                    </h3>
+
+                    <p>
+                        Learn how to write professional
+                        emails at work.
+                    </p>
+
+                    <span class="badge">
+                        LEARN
+                    </span>
+
+                </div>
+
+                <div class="job-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORKPLACE -->
+
+        <div class="job-card" onclick="openWorkplace()">
+
+            <div class="job-row">
+
+                <div class="job-icon">
+                    🏢
+                </div>
+
+                <div class="job-content">
+
+                    <h3>
+                        Workplace Communication
+                    </h3>
+
+                    <p>
+                        Practice communication with colleagues,
+                        managers and customers.
+                    </p>
+
+                    <span class="badge">
+                        PRACTICE
+                    </span>
+
+                </div>
+
+                <div class="job-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- INTERVIEW -->
+
+        <div class="job-card" onclick="openInterview()">
+
+            <div class="job-row">
+
+                <div class="job-icon">
+                    🎤
+                </div>
+
+                <div class="job-content">
+
+                    <h3>
+                        Interview English
+                    </h3>
+
+                    <p>
+                        Practice common interview questions
+                        and professional answers.
+                    </p>
+
+                    <span class="badge">
+                        INTERVIEW
+                    </span>
+
+                </div>
+
+                <div class="job-arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI JOB COACH -->
+
+        <div class="ai-card">
+
+            <div class="ai-icon">
+                🤖
+            </div>
+
+            <h2>
+                AI Job Coach
+            </h2>
+
+            <p>
+                Practice job conversations, interviews,
+                workplace English and professional
+                communication with SpeakMate AI.
+            </p>
+
+            <button class="ai-btn" onclick="openAI()">
+
+                🤖 Talk to AI Job Coach
+
+            </button>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="section-title">
+            📊 Your Career Stats
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <strong id="xpValue">
+                    0
+                </strong>
+
+                <span>
+                    XP
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🪙
+                </div>
+
+                <strong id="coinValue">
+                    0
+                </strong>
+
+                <span>
+                    Coins
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTTOM NAV -->
+
+        <div class="bottom-nav">
+
+
+            <div class="nav-item" onclick="goHome()">
+
+                <div>
+                    🏠
+                </div>
+
+                Home
+
+            </div>
+
+
+            <div class="nav-item active">
+
+                <div>
+                    💼
+                </div>
+
+                Jobs
+
+            </div>
+
+
+            <div class="nav-item" onclick="goProfile()">
+
+                <div>
+                    👤
+                </div>
+
+                Profile
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           JOB MODULES
+        ========================= */
+
+        function openJobBasics() {
+
+            window.location.href =
+                "job_basics.html";
+
+        }
+
+
+        function openResume() {
+
+            window.location.href =
+                "resume_english.html";
+
+        }
+
+
+        function openEmails() {
+
+            window.location.href =
+                "professional_emails.html";
+
+        }
+
+
+        function openWorkplace() {
+
+            window.location.href =
+                "workplace_communication.html";
+
+        }
+
+
+        function openInterview() {
+
+            window.location.href =
+                "interview_english.html";
+
+        }
+
+
+        function openAI() {
+
+            localStorage.setItem(
+                "chatMode",
+                "Job Coach"
+            );
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        function goHome() {
+
+            window.location.href =
+                "home_special.html";
+
+        }
+
+
+        /* =========================
+           PROFILE
+        ========================= */
+
+        function goProfile() {
+
+            window.location.href =
+                "profile.html";
+
+        }
+
+
+        /* =========================
+           PROGRESS
+        ========================= */
+
+        function updateProgress() {
+
+            let progress = 0;
+
+
+            if (
+                localStorage.getItem(
+                    "jobBasicsCompleted"
+                ) === "true"
+            ) {
+
+                progress += 20;
+
+            }
+
+
+            if (
+                localStorage.getItem(
+                    "resumeCompleted"
+                ) === "true"
+            ) {
+
+                progress += 20;
+
+            }
+
+
+            if (
+                localStorage.getItem(
+                    "professionalEmailsCompleted"
+                ) === "true"
+            ) {
+
+                progress += 20;
+
+            }
+
+
+            if (
+                localStorage.getItem(
+                    "workplaceCommunicationCompleted"
+                ) === "true"
+            ) {
+
+                progress += 20;
+
+            }
+
+
+            if (
+                localStorage.getItem(
+                    "interviewCompleted"
+                ) === "true"
+            ) {
+
+                progress += 20;
+
+            }
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width =
+                progress + "%";
+
+
+            document.getElementById(
+                "progressText"
+            ).innerText =
+                progress + "%";
+
+
+            if (
+                localStorage.getItem(
+                    "jobBasicsCompleted"
+                ) === "true"
+            ) {
+
+                document.getElementById(
+                    "basicsBadge"
+                ).innerText =
+                    "✓ COMPLETED";
+
+            }
+
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                localStorage.getItem("xp") || 0;
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                localStorage.getItem("coins") || 0;
+
+        }
+
+
+        updateProgress();
+
+    </script>
+
+</body>
+
+</html>

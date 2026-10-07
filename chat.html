@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeakMate AI - Job Coach</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #263b72 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #123d45 0%, transparent 35%),
+                linear-gradient(135deg, #07111f, #101827 55%, #07111f);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .07);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            border: none;
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            padding: 10px 13px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .bot-icon {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 15px;
+            font-size: 24px;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .header-mode {
+            color: #aebbd0;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .roleplay-status {
+            display: none;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 17px;
+            background: linear-gradient(135deg,
+                    rgba(16, 185, 129, .15),
+                    rgba(59, 130, 246, .12));
+            border: 1px solid rgba(16, 185, 129, .25);
+        }
+
+        .roleplay-status.active {
+            display: block;
+        }
+
+        .roleplay-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .roleplay-subtitle {
+            color: #b9c5d7;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .progress-wrap {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .progress-wrap.show {
+            display: block;
+        }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            color: #aebbd0;
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            height: 7px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .08);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            transition: width .3s ease;
+        }
+
+        .quick-title {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 9px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .quick-btn {
+            border: 1px solid rgba(255, 255, 255, .12);
+            background: rgba(255, 255, 255, .07);
+            color: #fff;
+            padding: 9px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .quick-btn:hover {
+            background: rgba(59, 130, 246, .25);
+        }
+
+        .quick-btn.roleplay {
+            border-color: rgba(16, 185, 129, .35);
+            background: rgba(16, 185, 129, .1);
+        }
+
+        .chat-box {
+            height: 500px;
+            overflow-y: auto;
+            padding: 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .055);
+            border: 1px solid rgba(255, 255, 255, .1);
+            backdrop-filter: blur(15px);
+        }
+
+        .message-row {
+            display: flex;
+            margin-bottom: 14px;
+        }
+
+        .user-row {
+            justify-content: flex-end;
+        }
+
+        .message {
+            max-width: 82%;
+            padding: 13px 15px;
+            border-radius: 17px;
+            line-height: 1.55;
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .ai-message {
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-bottom-left-radius: 5px;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-tools {
+            display: flex;
+            margin-top: 7px;
+        }
+
+        .tool-btn {
+            border: none;
+            background: rgba(255, 255, 255, .08);
+            color: #dbeafe;
+            border-radius: 8px;
+            padding: 5px 8px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .typing {
+            display: none;
+            margin: 10px 0;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .typing.show {
+            display: block;
+        }
+
+        .error-box {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 13px;
+            color: #fecaca;
+            background: rgba(239, 68, 68, .1);
+            border: 1px solid rgba(239, 68, 68, .25);
+            font-size: 13px;
+        }
+
+        .error-box.show {
+            display: block;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .input-area textarea {
+            flex: 1;
+            resize: none;
+            min-height: 52px;
+            max-height: 130px;
+            padding: 15px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .input-area textarea::placeholder {
+            color: #8491a5;
+        }
+
+        .icon-btn {
+            width: 52px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            color: #fff;
+            background: rgba(255, 255, 255, .09);
+            font-size: 19px;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+        }
+
+        .icon-btn:disabled {
+            opacity: .5;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #718096;
+            font-size: 11px;
+            margin-top: 12px;
+        }
+
+        @media(max-width:600px) {
+
+            .container {
+                padding: 12px;
+            }
+
+            .chat-box {
+                height: 58vh;
+                min-height: 420px;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .quick-btn {
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <div class="header-left">
+
+                <button class="back-btn" onclick="goBack()">←</button>
+
+                <div class="bot-icon">🤖</div>
+
+                <div>
+                    <div class="header-title">SpeakMate AI</div>
+
+                    <div class="header-mode" id="modeText">
+                        Job Coach
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-value" id="xpValue">0</div>
+                <div class="stat-label">XP</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-value" id="coinValue">0</div>
+                <div class="stat-label">Coins</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-value" id="chatCount">0</div>
+                <div class="stat-label">AI Chats</div>
+            </div>
+
+        </div>
+
+
+        <div class="roleplay-status" id="roleplayStatus">
+
+            <div class="roleplay-title" id="roleplayTitle">
+                🌍 Work Abroad Roleplay Active
+            </div>
+
+            <div class="roleplay-subtitle" id="roleplaySubtitle">
+                You are the candidate/employee and AI is your workplace coach.
+            </div>
+
+            <div class="progress-wrap" id="progressWrap">
+
+                <div class="progress-top">
+                    <span>Roleplay Progress</span>
+                    <span id="questionLabel">Question 1</span>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-title">
+            Quick Practice
+        </div>
+
+        <div class="quick-buttons">
+
+            <button class="quick-btn roleplay" onclick="startSalesRoleplay()">
+                🎤 Sales Interview
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Interview')">
+                💼 Interview
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Self Introduction')">
+                👋 Self Introduction
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Resume')">
+                📄 Resume
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Workplace')">
+                🏢 Workplace
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Email')">
+                ✉️ Email
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Sales Job')">
+                📈 Sales Job
+            </button>
+
+            <button class="quick-btn" onclick="quickPrompt('Work Abroad')">
+                🌍 Work Abroad
+            </button>
+
+            <button class="quick-btn" onclick="startSalesRoleplay()">
+                🎭 Roleplay
+            </button>
+
+        </div>
+
+
+        <div class="chat-box" id="chatBox"></div>
+
+        <div class="typing" id="typing">
+            🤖 AI is thinking...
+        </div>
+
+        <div class="error-box" id="errorBox"></div>
+
+
+        <div class="input-area">
+
+            <textarea id="messageInput" placeholder="Type your answer or message..." rows="1"></textarea>
+
+            <button class="icon-btn" id="voiceBtn" onclick="startVoiceInput()">
+                🎙️
+            </button>
+
+            <button class="icon-btn send-btn" id="sendBtn" onclick="sendMessage()">
+                ➤
+            </button>
+
+        </div>
+
+        <div class="footer-note">
+            SpeakMate AI — Career English & Interview Practice
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================================================
+           API
+        ========================================================= */
+
+        const API_URL =
+            (
+                location.hostname === "localhost" ||
+                location.hostname === "127.0.0.1"
+            )
+                ? "http://localhost:3000/chat"
+                : "http://10.0.2.2:3000/chat";
+
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        let chatMode =
+            localStorage.getItem("chatMode") || "Job Coach";
+
+        let roleplayActive =
+            localStorage.getItem("salesRoleplayActive") === "true";
+
+        let questionNumber =
+            parseInt(
+                localStorage.getItem(
+                    "salesRoleplayQuestionNumber"
+                ) || "1"
+            );
+
+
+        /* =========================================================
+           WORK ABROAD STATE
+        ========================================================= */
+
+        let workAbroadActive =
+            localStorage.getItem("workAbroadRoleplay") === "true";
+
+        let workAbroadCountry =
+            localStorage.getItem("workAbroadCountry") || "";
+
+        let workAbroadCountryCode =
+            localStorage.getItem("workAbroadCountryCode") || "";
+
+        let workAbroadTopic =
+            localStorage.getItem("workAbroadTopic") || "";
+
+        let workAbroadQuestionNumber =
+            parseInt(
+                localStorage.getItem(
+                    "workAbroadQuestionNumber"
+                ) || "1"
+            );
+
+        let isTyping = false;
+
+        let chatHistory = [];
+
+        try {
+
+            chatHistory =
+                JSON.parse(
+                    localStorage.getItem(
+                        "speakmateJobChat"
+                    ) || "[]"
+                );
+
+        } catch (e) {
+
+            chatHistory = [];
+
+        }
+
+
+        /* =========================================================
+           ELEMENTS
+        ========================================================= */
+
+        const chatBox =
+            document.getElementById("chatBox");
+
+        const input =
+            document.getElementById("messageInput");
+
+        const sendBtn =
+            document.getElementById("sendBtn");
+
+        const typing =
+            document.getElementById("typing");
+
+        const errorBox =
+            document.getElementById("errorBox");
+
+        const roleplayStatus =
+            document.getElementById("roleplayStatus");
+
+        const roleplayTitle =
+            document.getElementById("roleplayTitle");
+
+        const roleplaySubtitle =
+            document.getElementById("roleplaySubtitle");
+
+        const modeText =
+            document.getElementById("modeText");
+
+        const progressWrap =
+            document.getElementById("progressWrap");
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        const questionLabel =
+            document.getElementById("questionLabel");
+
+
+        /* =========================================================
+           INITIALIZE
+        ========================================================= */
+
+        updateStats();
+
+        updateModeUI();
+
+        loadSavedChat();
+
+        loadInterviewContext();
+
+        loadWorkAbroadContext();
+
+
+        /* =========================================================
+           WELCOME
+        ========================================================= */
+
+        if (chatHistory.length === 0) {
+
+            if (workAbroadActive) {
+
+                showWorkAbroadStart();
+
+            }
+
+            else if (roleplayActive) {
+
+                showRoleplayStart();
+
+            }
+
+            else {
+
+                addAIMessage(
+                    `Hello! 👋
+
+I'm your SpeakMate AI Job Coach.
+
+I can help you practice:
+
+• Job interviews
+• Sales English
+• Self introduction
+• Resume/CV English
+• Professional emails
+• Workplace communication
+• Speaking confidence
+
+Choose a practice option above or type your question below.`
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           WORK ABROAD START
+        ========================================================= */
+
+        function showWorkAbroadStart() {
+
+            chatBox.innerHTML = "";
+
+            updateWorkAbroadProgress();
+
+            const destination =
+                workAbroadCountry ||
+                "🌍 Work Abroad";
+
+            const topicText =
+                workAbroadTopic
+                    ? `\nPractice topic: ${workAbroadTopic}\n`
+                    : "";
+
+            addAIMessage(
+                `🌍 Work Abroad Roleplay
+
+Destination: ${destination}
+${topicText}
+You are preparing to work abroad.
+
+I am your AI workplace coach.
+
+I'll ask one realistic question at a time.
+
+After every answer I will:
+
+✓ Correct your English
+✓ Give a more natural version
+✓ Give quick feedback
+✓ Give a speaking tip
+✓ Ask the next question
+
+Question 1:
+
+Please introduce yourself to a new manager on your first day at work.`
+            );
+
+        }
+
+
+        /* =========================================================
+           LOAD WORK ABROAD CONTEXT
+        ========================================================= */
+
+        function loadWorkAbroadContext() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            if (
+                params.get("abroad") !== "1" &&
+                !workAbroadActive
+            ) {
+                return;
+            }
+
+            workAbroadActive = true;
+
+            roleplayActive = false;
+
+            chatMode =
+                "Work Abroad Roleplay";
+
+            workAbroadCountry =
+                localStorage.getItem(
+                    "workAbroadCountry"
+                ) || "🌍 Work Abroad";
+
+            workAbroadCountryCode =
+                localStorage.getItem(
+                    "workAbroadCountryCode"
+                ) || "";
+
+            workAbroadTopic =
+                localStorage.getItem(
+                    "workAbroadTopic"
+                ) || "";
+
+            localStorage.setItem(
+                "chatMode",
+                "Work Abroad Roleplay"
+            );
+
+            localStorage.setItem(
+                "workAbroadRoleplay",
+                "true"
+            );
+
+            /*
+                Only reset when opening a fresh
+                Work Abroad session through ?abroad=1.
+            */
+
+            if (params.get("abroad") === "1") {
+
+                workAbroadQuestionNumber = 1;
+
+                localStorage.setItem(
+                    "workAbroadQuestionNumber",
+                    "1"
+                );
+
+                chatHistory = [];
+
+                localStorage.setItem(
+                    "speakmateJobChat",
+                    "[]"
+                );
+
+            }
+
+            updateModeUI();
+
+            updateWorkAbroadProgress();
+
+            if (params.get("abroad") === "1") {
+
+                showWorkAbroadStart();
+
+            }
+
+            input.focus();
+
+        }
+
+
+        /* =========================================================
+           WORK ABROAD PROGRESS
+        ========================================================= */
+
+        function updateWorkAbroadProgress() {
+
+            if (!workAbroadActive) {
+                return;
+            }
+
+            progressWrap.classList.add("show");
+
+            const q =
+                Math.max(
+                    1,
+                    workAbroadQuestionNumber
+                );
+
+            questionLabel.innerText =
+                "Question " + q;
+
+            const percentage =
+                Math.min(
+                    q * 10,
+                    100
+                );
+
+            progressFill.style.width =
+                percentage + "%";
+
+        }
+
+
+        /* =========================================================
+           SALES ROLEPLAY START
+        ========================================================= */
+
+        function showRoleplayStart() {
+
+            chatBox.innerHTML = "";
+
+            addAIMessage(
+                `🎤 Sales Executive Interview
+
+You are the candidate.
+I am the interviewer.
+
+I'll ask one question at a time.
+
+After every answer I will:
+
+✓ Correct your English
+✓ Give quick feedback
+✓ Give a speaking tip
+✓ Ask the next question
+
+Question 1:
+
+Tell me about yourself and why you're interested in a Sales Executive role?`
+            );
+
+        }
+
+
+        /* =========================================================
+           START SALES ROLEPLAY
+        ========================================================= */
+
+        function startSalesRoleplay() {
+
+            workAbroadActive = false;
+
+            roleplayActive = true;
+
+            questionNumber = 1;
+
+            chatMode =
+                "Sales Interview Roleplay";
+
+            localStorage.setItem(
+                "salesRoleplayActive",
+                "true"
+            );
+
+            localStorage.setItem(
+                "salesRoleplayQuestionNumber",
+                "1"
+            );
+
+            localStorage.setItem(
+                "chatMode",
+                "Sales Interview Roleplay"
+            );
+
+            localStorage.removeItem(
+                "workAbroadRoleplay"
+            );
+
+            chatHistory = [];
+
+            localStorage.setItem(
+                "speakmateJobChat",
+                "[]"
+            );
+
+            updateModeUI();
+
+            showRoleplayStart();
+
+            input.focus();
+
+        }
+
+
+        /* =========================================================
+           UPDATE MODE UI
+        ========================================================= */
+
+        function updateModeUI() {
+
+            if (workAbroadActive) {
+
+                modeText.innerText =
+                    "Work Abroad Roleplay";
+
+                roleplayStatus.classList.add(
+                    "active"
+                );
+
+                roleplayTitle.innerText =
+                    "🌍 Work Abroad Roleplay Active";
+
+                roleplaySubtitle.innerText =
+                    `Destination: ${workAbroadCountry || "Work Abroad"}.
+${workAbroadTopic ? "Topic: " + workAbroadTopic + ".\n" : ""}
+You are the candidate/employee and AI is your workplace coach.
+Answer one question at a time. Your English will be corrected after every answer.`;
+
+                input.placeholder =
+                    "Type your work-abroad answer...";
+
+                updateWorkAbroadProgress();
+
+                return;
+
+            }
+
+
+            modeText.innerText =
+                roleplayActive
+                    ? "Sales Interview Roleplay"
+                    : chatMode;
+
+
+            if (roleplayActive) {
+
+                roleplayStatus.classList.add(
+                    "active"
+                );
+
+                progressWrap.classList.remove(
+                    "show"
+                );
+
+                roleplayTitle.innerText =
+                    "🎤 Sales Interview Roleplay Active";
+
+                roleplaySubtitle.innerText =
+                    `You are the candidate. AI is the interviewer.
+Answer one question at a time. Your English will be corrected after every answer.`;
+
+                input.placeholder =
+                    "Type your interview answer...";
+
+            }
+
+            else {
+
+                roleplayStatus.classList.remove(
+                    "active"
+                );
+
+                progressWrap.classList.remove(
+                    "show"
+                );
+
+                input.placeholder =
+                    "Type your answer or message...";
+
+            }
+
+        }
+
+
+        /* =========================================================
+           SAVE CHAT
+        ========================================================= */
+
+        function saveChat() {
+
+            localStorage.setItem(
+                "speakmateJobChat",
+                JSON.stringify(chatHistory)
+            );
+
+        }
+
+
+        /* =========================================================
+           LOAD CHAT
+        ========================================================= */
+
+        function loadSavedChat() {
+
+            if (chatHistory.length === 0) {
+                return;
+            }
+
+            chatBox.innerHTML = "";
+
+            chatHistory.forEach(item => {
+
+                if (item.role === "user") {
+
+                    renderMessage(
+                        "user",
+                        item.text
+                    );
+
+                }
+
+                if (item.role === "assistant") {
+
+                    renderMessage(
+                        "ai",
+                        item.text
+                    );
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================================================
+           ADD USER
+        ========================================================= */
+
+        function addUserMessage(text) {
+
+            renderMessage(
+                "user",
+                text
+            );
+
+            chatHistory.push({
+                role: "user",
+                text: text
+            });
+
+            saveChat();
+
+        }
+
+
+        /* =========================================================
+           ADD AI
+        ========================================================= */
+
+        function addAIMessage(text) {
+
+            renderMessage(
+                "ai",
+                text
+            );
+
+            chatHistory.push({
+                role: "assistant",
+                text: text
+            });
+
+            saveChat();
+
+        }
+
+
+        /* =========================================================
+           RENDER MESSAGE
+        ========================================================= */
+
+        function renderMessage(
+            type,
+            text
+        ) {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "message-row " +
+                (
+                    type === "user"
+                        ? "user-row"
+                        : ""
+                );
+
+
+            const message =
+                document.createElement("div");
+
+            message.className =
+                "message " +
+                (
+                    type === "user"
+                        ? "user-message"
+                        : "ai-message"
+                );
+
+            message.innerText =
+                text;
+
+
+            if (type === "ai") {
+
+                const tools =
+                    document.createElement("div");
+
+                tools.className =
+                    "message-tools";
+
+
+                const speak =
+                    document.createElement("button");
+
+                speak.className =
+                    "tool-btn";
+
+                speak.innerText =
+                    "🔊 Listen";
+
+                speak.onclick =
+                    () => speakText(text);
+
+
+                tools.appendChild(
+                    speak
+                );
+
+                message.appendChild(
+                    tools
+                );
+
+            }
+
+
+            row.appendChild(
+                message
+            );
+
+            chatBox.appendChild(
+                row
+            );
+
+            chatBox.scrollTop =
+                chatBox.scrollHeight;
+
+        }
+
+
+        /* =========================================================
+           SEND MESSAGE
+        ========================================================= */
+
+        async function sendMessage() {
+
+            if (isTyping) {
+                return;
+            }
+
+            const message =
+                input.value.trim();
+
+            if (!message) {
+                return;
+            }
+
+            hideError();
+
+            input.value = "";
+
+            input.style.height =
+                "52px";
+
+            addUserMessage(
+                message
+            );
+
+            setTyping(true);
+
+
+            try {
+
+                let mode =
+                    "job_coach";
+
+                let messageToServer =
+                    message;
+
+                let currentQuestionNumber =
+                    questionNumber;
+
+
+                /* =================================================
+                   WORK ABROAD
+                ================================================= */
+
+                if (workAbroadActive) {
+
+                    mode =
+                        "work_abroad";
+
+                    currentQuestionNumber =
+                        workAbroadQuestionNumber;
+
+                }
+
+
+                /* =================================================
+                   SALES ROLEPLAY
+                ================================================= */
+
+                else if (roleplayActive) {
+
+                    mode =
+                        "sales_roleplay";
+
+                    currentQuestionNumber =
+                        questionNumber;
+
+                }
+
+
+                /* =================================================
+                   INTERVIEW PRACTICE
+                ================================================= */
+
+                else if (
+                    chatMode ===
+                    "Interview Practice"
+                ) {
+
+                    mode =
+                        "interview_practice";
+
+                }
+
+
+                const body = {
+
+                    message:
+                        messageToServer,
+
+                    mode:
+                        mode,
+
+                    questionNumber:
+                        currentQuestionNumber
+
+                };
+
+
+                /* =================================================
+                   WORK ABROAD EXTRA DATA
+                ================================================= */
+
+                if (workAbroadActive) {
+
+                    body.countryCode =
+                        workAbroadCountryCode;
+
+                    body.countryName =
+                        workAbroadCountry;
+
+                    body.topic =
+                        workAbroadTopic;
+
+                }
+
+
+                console.log(
+                    "SpeakMate request:",
+                    body
+                );
+
+
+                const response =
+                    await fetch(
+                        API_URL,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    body
+                                )
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.error ||
+                        "Server error: " +
+                        response.status
+                    );
+
+                }
+
+
+                if (!data.reply) {
+
+                    throw new Error(
+                        "AI ne reply nahi diya."
+                    );
+
+                }
+
+
+                addAIMessage(
+                    data.reply
+                );
+
+
+                /* =================================================
+                   QUESTION NUMBER
+                ================================================= */
+
+                if (workAbroadActive) {
+
+                    workAbroadQuestionNumber++;
+
+                    localStorage.setItem(
+                        "workAbroadQuestionNumber",
+                        workAbroadQuestionNumber
+                    );
+
+                    updateWorkAbroadProgress();
+
+                }
+
+                else if (roleplayActive) {
+
+                    questionNumber++;
+
+                    localStorage.setItem(
+                        "salesRoleplayQuestionNumber",
+                        questionNumber
+                    );
+
+                }
+
+
+                incrementChatCount();
+
+                rewardFirstChat();
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "SpeakMate AI Error:",
+                    error
+                );
+
+                showError(
+                    error.message ||
+                    "AI se connect nahi ho paya."
+                );
+
+            }
+
+            finally {
+
+                setTyping(false);
+
+                input.focus();
+
+            }
+
+        }
+
+
+        /* =========================================================
+           QUICK PROMPT
+        ========================================================= */
+
+        function quickPrompt(type) {
+
+            let prompt = "";
+
+
+            if (type === "Interview") {
+
+                prompt =
+                    `I want to practice a job interview.
+Ask me one interview question at a time and correct my English after every answer.`;
+
+            }
+
+
+            if (type === "Self Introduction") {
+
+                prompt =
+                    `Help me practice my self introduction for a Sales Executive job interview.`;
+
+            }
+
+
+            if (type === "Resume") {
+
+                prompt =
+                    `Help me improve my resume English for a Sales Executive job.`;
+
+            }
+
+
+            if (type === "Workplace") {
+
+                prompt =
+                    `Let's practice workplace English. Give me one situation at a time.`;
+
+            }
+
+
+            if (type === "Email") {
+
+                prompt =
+                    `Help me write a professional job application email for a Sales Executive position.`;
+
+            }
+
+
+            if (type === "Sales Job") {
+
+                prompt =
+                    `Help me prepare for a Sales Executive job interview and teach me useful sales English.`;
+
+            }
+
+
+            if (type === "Work Abroad") {
+
+                if (workAbroadActive) {
+
+                    prompt =
+                        `Continue my Work Abroad roleplay.
+Ask me the next realistic workplace question for ${workAbroadCountry || "working abroad"}.`;
+
+                }
+
+                else {
+
+                    prompt =
+                        `Help me practice English for working abroad.
+Ask me one realistic workplace question at a time and correct my English after every answer.`;
+
+                }
+
+            }
+
+
+            if (prompt) {
+
+                sendMessageWithText(
+                    prompt
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           SEND CUSTOM TEXT
+        ========================================================= */
+
+        function sendMessageWithText(text) {
+
+            input.value =
+                text;
+
+            sendMessage();
+
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        function updateStats() {
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                localStorage.getItem(
+                    "xp"
+                ) || "0";
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                localStorage.getItem(
+                    "coins"
+                ) || "0";
+
+
+            document.getElementById(
+                "chatCount"
+            ).innerText =
+                localStorage.getItem(
+                    "aiChatCount"
+                ) || "0";
+
+        }
+
+
+        /* =========================================================
+           CHAT COUNT
+        ========================================================= */
+
+        function incrementChatCount() {
+
+            let count =
+                parseInt(
+                    localStorage.getItem(
+                        "aiChatCount"
+                    ) || "0"
+                );
+
+            count++;
+
+            localStorage.setItem(
+                "aiChatCount",
+                count
+            );
+
+            updateStats();
+
+        }
+
+
+        /* =========================================================
+           FIRST CHAT REWARD
+        ========================================================= */
+
+        function rewardFirstChat() {
+
+            if (
+                localStorage.getItem(
+                    "chatFirstReward"
+                ) === "true"
+            ) {
+                return;
+            }
+
+            let xp =
+                parseInt(
+                    localStorage.getItem(
+                        "xp"
+                    ) || "0"
+                );
+
+            let coins =
+                parseInt(
+                    localStorage.getItem(
+                        "coins"
+                    ) || "0"
+                );
+
+            xp += 5;
+
+            coins += 2;
+
+            localStorage.setItem(
+                "xp",
+                xp
+            );
+
+            localStorage.setItem(
+                "coins",
+                coins
+            );
+
+            localStorage.setItem(
+                "chatFirstReward",
+                "true"
+            );
+
+            updateStats();
+
+        }
+
+
+        /* =========================================================
+           TYPING
+        ========================================================= */
+
+        function setTyping(value) {
+
+            isTyping =
+                value;
+
+            if (value) {
+
+                typing.classList.add(
+                    "show"
+                );
+
+                sendBtn.disabled =
+                    true;
+
+            }
+
+            else {
+
+                typing.classList.remove(
+                    "show"
+                );
+
+                sendBtn.disabled =
+                    false;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           ERROR
+        ========================================================= */
+
+        function showError(message) {
+
+            errorBox.innerText =
+                "⚠️ " + message;
+
+            errorBox.classList.add(
+                "show"
+            );
+
+        }
+
+
+        function hideError() {
+
+            errorBox.classList.remove(
+                "show"
+            );
+
+        }
+
+
+        /* =========================================================
+           VOICE INPUT
+        ========================================================= */
+
+        function startVoiceInput() {
+
+            const SpeechRecognition =
+                window.SpeechRecognition ||
+                window.webkitSpeechRecognition;
+
+
+            if (!SpeechRecognition) {
+
+                showError(
+                    "Voice input supported nahi hai."
+                );
+
+                return;
+
+            }
+
+
+            const recognition =
+                new SpeechRecognition();
+
+
+            recognition.lang =
+                "en-US";
+
+            recognition.interimResults =
+                false;
+
+            recognition.continuous =
+                false;
+
+
+            document.getElementById(
+                "voiceBtn"
+            ).innerText =
+                "🔴";
+
+
+            recognition.onresult =
+                function (event) {
+
+                    input.value =
+                        event.results[0][0]
+                            .transcript;
+
+                    input.focus();
+
+                };
+
+
+            recognition.onerror =
+                function () {
+
+                    showError(
+                        "Voice input nahi ho paya."
+                    );
+
+                };
+
+
+            recognition.onend =
+                function () {
+
+                    document.getElementById(
+                        "voiceBtn"
+                    ).innerText =
+                        "🎙️";
+
+                };
+
+
+            recognition.start();
+
+        }
+
+
+        /* =========================================================
+           TEXT TO SPEECH
+        ========================================================= */
+
+        function speakText(text) {
+
+            if (
+                !("speechSynthesis" in window)
+            ) {
+                return;
+            }
+
+            speechSynthesis.cancel();
+
+
+            const clean =
+                text.replace(
+                    /[🎤🤖✓⚠️📈💼📄🏢✉️🌍🎭🗣️⭐✨➡️💡]/g,
+                    ""
+                );
+
+
+            const speech =
+                new SpeechSynthesisUtterance(
+                    clean
+                );
+
+            speech.lang =
+                "en-US";
+
+            speech.rate =
+                .92;
+
+            speechSynthesis.speak(
+                speech
+            );
+
+        }
+
+
+        /* =========================================================
+           INTERVIEW PRACTICE CONTEXT
+        ========================================================= */
+
+        function loadInterviewContext() {
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            if (
+                params.get("interview") !== "1"
+            ) {
+                return;
+            }
+
+
+            const answer =
+                localStorage.getItem(
+                    "interviewPracticeAnswer"
+                );
+
+            const question =
+                localStorage.getItem(
+                    "interviewPracticeQuestion"
+                );
+
+
+            if (!answer) {
+                return;
+            }
+
+
+            workAbroadActive =
+                false;
+
+            roleplayActive =
+                false;
+
+            chatMode =
+                "Interview Practice";
+
+
+            localStorage.setItem(
+                "chatMode",
+                "Interview Practice"
+            );
+
+
+            updateModeUI();
+
+
+            localStorage.removeItem(
+                "interviewPracticeAnswer"
+            );
+
+            localStorage.removeItem(
+                "interviewPracticeQuestion"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    sendMessageWithText(
+                        `Interview Question:
+${question || "Job interview question"}
+
+My Answer:
+${answer}
+
+Please improve my answer for a professional job interview. Keep my original meaning and do not invent experience.`
+                    );
+
+                },
+                500
+            );
+
+        }
+
+
+        /* =========================================================
+           ENTER TO SEND
+        ========================================================= */
+
+        input.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================================
+           AUTO TEXTAREA HEIGHT
+        ========================================================= */
+
+        input.addEventListener(
+            "input",
+            function () {
+
+                this.style.height =
+                    "auto";
+
+                this.style.height =
+                    Math.min(
+                        this.scrollHeight,
+                        130
+                    ) + "px";
+
+            }
+        );
+
+
+        /* =========================================================
+           BACK
+        ========================================================= */
+
+        function goBack() {
+
+            if (workAbroadActive) {
+
+                window.location.href =
+                    "work_abroad.html";
+
+                return;
+
+            }
+
+
+            if (
+                document.referrer.includes(
+                    "interview_english.html"
+                )
+            ) {
+
+                window.location.href =
+                    "interview_english.html";
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "job.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

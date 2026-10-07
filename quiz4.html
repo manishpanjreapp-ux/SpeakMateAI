@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 4 - Daily Conversation | SpeakMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 15px 100px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #312e81);
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: #1f2937;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #22c55e;
+            transition: 0.3s;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .question-number {
+            color: #facc15;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 19px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 13px;
+            margin: 7px 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .option.correct {
+            background: #15803d;
+        }
+
+        .option.wrong {
+            background: #b91c1c;
+        }
+
+        .option:disabled {
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            line-height: 1.5;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .correct-feedback {
+            background: rgba(34, 197, 94, 0.15);
+            border-left: 4px solid #22c55e;
+        }
+
+        .wrong-feedback {
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 4px solid #ef4444;
+        }
+
+        .result {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .score {
+            font-size: 42px;
+            font-weight: bold;
+            color: #facc15;
+            margin: 15px;
+        }
+
+        .reward {
+            font-size: 18px;
+            color: #86efac;
+            margin: 15px 0;
+        }
+
+        .action {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .action:hover {
+            background: #16a34a;
+        }
+
+        .blue {
+            background: #2563eb;
+        }
+
+        .blue:hover {
+            background: #1d4ed8;
+        }
+
+        .purple {
+            background: #7c3aed;
+        }
+
+        .purple:hover {
+            background: #6d28d9;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .bottom-nav a:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📝 Quiz 4: Daily Conversation</h1>
+
+        <p class="subtitle">
+            Test your everyday English conversation skills
+        </p>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 1 of 10</div>
+
+            <div class="question">
+                “आप कैसे हैं?” ko English mein kaise kahenge?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 1)">
+                A. How are you?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                B. Where are you?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                C. Who are you?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 1)">
+                D. What are you?
+            </button>
+
+            <div class="feedback" id="feedback1"></div>
+
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 2 of 10</div>
+
+            <div class="question">
+                “मैं ठीक हूँ, धन्यवाद।” ka correct English sentence kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 2)">
+                A. I am fine, thank you.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                B. I am busy, thank you.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                C. I am late, thank you.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 2)">
+                D. I am going, thank you.
+            </button>
+
+            <div class="feedback" id="feedback2"></div>
+
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 3 of 10</div>
+
+            <div class="question">
+                “आप क्या कर रहे हैं?” ka English translation kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                A. Where are you going?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 3)">
+                B. What are you doing?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                C. What do you want?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 3)">
+                D. How are you?
+            </button>
+
+            <div class="feedback" id="feedback3"></div>
+
+        </div>
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 4 of 10</div>
+
+            <div class="question">
+                “मैं अभी खाली हूँ।” ka correct English sentence kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 4)">
+                A. I am free now.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                B. I am busy now.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                C. I am late now.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 4)">
+                D. I am ready now.
+            </button>
+
+            <div class="feedback" id="feedback4"></div>
+
+        </div>
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 5 of 10</div>
+
+            <div class="question">
+                “क्या आप मेरी मदद कर सकते हैं?” ka correct English sentence kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 5)">
+                A. Can you help me?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                B. Can you call me?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                C. Can you know me?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 5)">
+                D. Can you wait me?
+            </button>
+
+            <div class="feedback" id="feedback5"></div>
+
+        </div>
+
+
+        <!-- QUESTION 6 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 6 of 10</div>
+
+            <div class="question">
+                “मुझे नहीं पता।” ko English mein kaise kahenge?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                A. I don't understand.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, true, 6)">
+                B. I don't know.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                C. I don't agree.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 6)">
+                D. I don't want.
+            </button>
+
+            <div class="feedback" id="feedback6"></div>
+
+        </div>
+
+
+        <!-- QUESTION 7 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 7 of 10</div>
+
+            <div class="question">
+                Agar koi kahe “Thank you so much”, to natural reply kya hoga?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 7)">
+                A. You're welcome.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                B. Good morning.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                C. Excuse me.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 7)">
+                D. Good night.
+            </button>
+
+            <div class="feedback" id="feedback7"></div>
+
+        </div>
+
+
+        <!-- QUESTION 8 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 8 of 10</div>
+
+            <div class="question">
+                “क्या मैं अंदर आ सकता हूँ?” ka correct English sentence kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 8)">
+                A. Can I come in?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                B. Can I go home?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                C. Can I sit here?
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 8)">
+                D. Can I call you?
+            </button>
+
+            <div class="feedback" id="feedback8"></div>
+
+        </div>
+
+
+        <!-- QUESTION 9 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 9 of 10</div>
+
+            <div class="question">
+                “मैं अभी काम कर रहा हूँ।” ka correct English translation kya hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 9)">
+                A. I am working right now.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                B. I am going to work.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                C. I was working yesterday.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 9)">
+                D. I work tomorrow.
+            </button>
+
+            <div class="feedback" id="feedback9"></div>
+
+        </div>
+
+
+        <!-- QUESTION 10 -->
+
+        <div class="question-card">
+
+            <div class="question-number">Question 10 of 10</div>
+
+            <div class="question">
+                “माफ कीजिए / सुनिए” ke liye kaunsa polite English expression use hota hai?
+            </div>
+
+            <button class="option" onclick="checkAnswer(this, true, 10)">
+                A. Excuse me.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                B. Thank you.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                C. See you.
+            </button>
+
+            <button class="option" onclick="checkAnswer(this, false, 10)">
+                D. You're welcome.
+            </button>
+
+            <div class="feedback" id="feedback10"></div>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="result" id="result">
+
+            <h2>🎉 Quiz Completed!</h2>
+
+            <div class="score" id="score">
+                0 / 10
+            </div>
+
+            <p id="resultMessage"></p>
+
+            <div class="reward" id="reward"></div>
+
+            <button class="action" onclick="location.href='lesson4.html'">
+                📖 Review Lesson 4
+            </button>
+
+            <button class="action blue" onclick="location.href='course.html'">
+                📚 Back to Course
+            </button>
+
+            <button class="action purple" onclick="location.reload()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            🏠<br>Home
+        </a>
+
+        <a href="course.html">
+            📚<br>Course
+        </a>
+
+        <a href="chat.html">
+            🤖<br>AI Chat
+        </a>
+
+        <a href="profile.html">
+            👤<br>Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        let score = 0;
+        let answered = 0;
+        let finished = false;
+
+        const totalQuestions = 10;
+
+
+        function checkAnswer(button, correct, questionNumber) {
+
+            if (button.disabled || finished) {
+                return;
+            }
+
+            const card = button.parentElement;
+
+            const options =
+                card.querySelectorAll(".option");
+
+            const feedback =
+                document.getElementById("feedback" + questionNumber);
+
+            options.forEach(function (option) {
+                option.disabled = true;
+            });
+
+            answered++;
+
+            if (correct) {
+
+                score++;
+
+                button.classList.add("correct");
+
+                feedback.innerHTML =
+                    "✅ <b>Correct!</b><br>" +
+                    getExplanation(questionNumber);
+
+                feedback.className =
+                    "feedback show correct-feedback";
+
+            } else {
+
+                button.classList.add("wrong");
+
+                feedback.innerHTML =
+                    "❌ <b>Wrong answer.</b><br>" +
+                    getExplanation(questionNumber);
+
+                feedback.className =
+                    "feedback show wrong-feedback";
+
+                showCorrectAnswer(options, questionNumber);
+            }
+
+            updateProgress();
+
+            if (answered === totalQuestions) {
+
+                setTimeout(function () {
+                    showResult();
+                }, 700);
+
+            }
+
+        }
+
+
+        function showCorrectAnswer(options, questionNumber) {
+
+            const correctAnswers = {
+
+                1: "How are you?",
+                2: "I am fine, thank you.",
+                3: "What are you doing?",
+                4: "I am free now.",
+                5: "Can you help me?",
+                6: "I don't know.",
+                7: "You're welcome.",
+                8: "Can I come in?",
+                9: "I am working right now.",
+                10: "Excuse me."
+
+            };
+
+            options.forEach(function (option) {
+
+                if (
+                    option.innerText.trim() ===
+                    correctAnswers[questionNumber]
+                ) {
+                    option.classList.add("correct");
+                }
+
+            });
+
+        }
+
+
+        function getExplanation(questionNumber) {
+
+            const explanations = {
+
+                1:
+                    "How are you? kisi ki condition ya well-being poochhne ke liye use hota hai.",
+
+                2:
+                    "I am fine, thank you. ka meaning hai: Main theek hoon, dhanyavaad.",
+
+                3:
+                    "What are you doing? kisi ke current action ke baare mein poochhne ke liye use hota hai.",
+
+                4:
+                    "I am free now. ka meaning hai: Main abhi khaali hoon.",
+
+                5:
+                    "Can you help me? kisi se politely help maangne ka common sentence hai.",
+
+                6:
+                    "I don't know. ka meaning hai: Mujhe nahi pata.",
+
+                7:
+                    "You're welcome. thank you ke response mein commonly use hota hai.",
+
+                8:
+                    "Can I come in? andar aane ki permission poochhne ke liye use hota hai.",
+
+                9:
+                    "I am working right now. current action ko express karta hai.",
+
+                10:
+                    "Excuse me. attention lene ya politely kisi ko address karne ke liye use hota hai."
+
+            };
+
+            return explanations[questionNumber];
+        }
+
+
+        function updateProgress() {
+
+            const percentage =
+                (answered / totalQuestions) * 100;
+
+            document.getElementById("progressBar").style.width =
+                percentage + "%";
+        }
+
+
+        function showResult() {
+
+            finished = true;
+
+            document.getElementById("result")
+                .classList.add("show");
+
+            document.getElementById("score")
+                .innerText = score + " / " + totalQuestions;
+
+
+            let message = "";
+            let rewardText = "";
+
+
+            if (score === 10) {
+
+                message =
+                    "🏆 Perfect! Daily Conversation par aapki pakad bahut achhi hai!";
+
+                rewardText =
+                    "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else if (score >= 8) {
+
+                message =
+                    "🔥 Excellent! Aap daily English conversation achhe se samajh rahe ho.";
+
+                rewardText =
+                    "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else if (score >= 5) {
+
+                message =
+                    "👍 Good job! Thodi aur practice se aap aur better ho jaoge.";
+
+                rewardText =
+                    "⭐ +20 XP & 🪙 +10 Coins";
+
+            } else {
+
+                message =
+                    "💪 Koi baat nahi! Lesson 4 dobara padho aur quiz phir try karo.";
+
+                rewardText =
+                    "5 ya usse zyada correct answers par reward milega.";
+
+            }
+
+
+            document.getElementById("resultMessage")
+                .innerText = message;
+
+            document.getElementById("reward")
+                .innerText = rewardText;
+
+
+            /*
+              Reward only once.
+              Minimum score = 5/10
+            */
+
+            const alreadyCompleted =
+                localStorage.getItem("quiz4Completed") === "true";
+
+
+            if (!alreadyCompleted && score >= 5) {
+
+                let xp =
+                    Number(localStorage.getItem("xp") || 0);
+
+                let coins =
+                    Number(localStorage.getItem("coins") || 0);
+
+
+                xp += 20;
+                coins += 10;
+
+
+                localStorage.setItem("xp", xp);
+                localStorage.setItem("coins", coins);
+
+                localStorage.setItem(
+                    "quiz4Completed",
+                    "true"
+                );
+
+            }
+
+
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Test | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .test-header {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            padding: 22px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        .test-header h1 {
+            color: white;
+            margin: 0 0 8px;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 18px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .question-number {
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            background: #111827;
+            border: 2px solid transparent;
+            padding: 13px;
+            border-radius: 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #38bdf8;
+            transform: translateX(3px);
+        }
+
+        .option.selected {
+            border-color: #38bdf8;
+            background: #1e3a5f;
+        }
+
+        .option.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .feedback {
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .progress-area {
+            margin: 15px 0;
+        }
+
+        .progress-area progress {
+            width: 100%;
+        }
+
+        .result-box {
+            display: none;
+            background: linear-gradient(135deg, #16a34a, #2563eb);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        .result-box h2 {
+            color: white;
+        }
+
+        .score-big {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .result-message {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .review-btn {
+            background: #7c3aed;
+        }
+
+        .home-btn {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="test-header">
+            <h1>🏆 Final English Test</h1>
+            <p>Test your English skills from all 10 lessons.</p>
+            <p><strong>10 Questions • Pass: 5/10</strong></p>
+        </div>
+
+        <div id="quizArea">
+
+            <div class="progress-area">
+                <p id="progressText">Question 1 of 10</p>
+                <progress id="quizProgress" value="1" max="10"></progress>
+            </div>
+
+            <div class="question-box">
+
+                <div class="question-number" id="questionNumber">
+                    Question 1
+                </div>
+
+                <div class="question-text" id="questionText"></div>
+
+                <div id="options"></div>
+
+                <div class="feedback" id="feedback"></div>
+
+            </div>
+
+            <button id="nextBtn" onclick="nextQuestion()" disabled>
+                Next Question →
+            </button>
+
+        </div>
+
+
+        <div class="result-box" id="resultBox">
+
+            <h2>🎉 Final Test Complete!</h2>
+
+            <div class="score-big" id="finalScore">
+                0/10
+            </div>
+
+            <div class="result-message" id="resultMessage"></div>
+
+            <p id="rewardText"></p>
+
+            <button class="review-btn" onclick="reviewCourse()">
+                📚 Review Course
+            </button>
+
+            <button onclick="goToChat()">
+                🤖 Practice With AI
+            </button>
+
+            <button class="home-btn" onclick="goHome()">
+                🏠 Back to Home
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-nav">
+        <a href="home.html">🏠<span>Home</span></a>
+        <a href="course.html">📚<span>Course</span></a>
+        <a href="chat.html">🤖<span>AI</span></a>
+        <a href="profile.html">👤<span>Profile</span></a>
+    </div>
+
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "Which sentence is a correct greeting?",
+                options: [
+                    "Hello, how are you?",
+                    "Hello, how you are?",
+                    "Hello, how is you?",
+                    "Hello, how am you?"
+                ],
+                answer: 0,
+                explanation: "“Hello, how are you?” is the correct and common English greeting."
+            },
+
+            {
+                question: "Which sentence is correct for introducing yourself?",
+                options: [
+                    "My name Manish.",
+                    "My name is Manish.",
+                    "My name are Manish.",
+                    "I name is Manish."
+                ],
+                answer: 1,
+                explanation: "The correct structure is “My name is + name.”"
+            },
+
+            {
+                question: "What does “mother” mean?",
+                options: [
+                    "भाई",
+                    "बहन",
+                    "माँ",
+                    "पिता"
+                ],
+                answer: 2,
+                explanation: "Mother means माँ."
+            },
+
+            {
+                question: "Which sentence is commonly used to ask someone's daily activity?",
+                options: [
+                    "What are you doing?",
+                    "What you doing?",
+                    "What does you doing?",
+                    "What are you do?"
+                ],
+                answer: 0,
+                explanation: "“What are you doing?” is the correct present continuous question."
+            },
+
+            {
+                question: "What number is “fifty”?",
+                options: [
+                    "15",
+                    "40",
+                    "50",
+                    "60"
+                ],
+                answer: 2,
+                explanation: "Fifty means 50."
+            },
+
+            {
+                question: "How do you say 8:30 in English?",
+                options: [
+                    "Eight o'clock",
+                    "Half past eight",
+                    "Quarter past eight",
+                    "Quarter to eight"
+                ],
+                answer: 1,
+                explanation: "8:30 is commonly said as “half past eight.”"
+            },
+
+            {
+                question: "Which sentence is useful when shopping?",
+                options: [
+                    "How much is this?",
+                    "How many is this price?",
+                    "How cost this?",
+                    "How money this?"
+                ],
+                answer: 0,
+                explanation: "“How much is this?” is a standard way to ask the price."
+            },
+
+            {
+                question: "What do you usually need at an airport to travel internationally?",
+                options: [
+                    "Passport",
+                    "Pillow",
+                    "Notebook",
+                    "Umbrella"
+                ],
+                answer: 0,
+                explanation: "A passport is an important travel document for international travel."
+            },
+
+            {
+                question: "Which sentence is professional office English?",
+                options: [
+                    "I will finish the task by Friday.",
+                    "I finish task Friday maybe.",
+                    "Me finish task Friday.",
+                    "Task finish by me Friday maybe."
+                ],
+                answer: 0,
+                explanation: "“I will finish the task by Friday.” is clear and professional."
+            },
+
+            {
+                question: "Choose the correct sentence.",
+                options: [
+                    "I don't understand. Could you repeat that?",
+                    "I doesn't understand. Repeat that.",
+                    "I don't understands. Could repeat?",
+                    "I not understand. You repeat that?"
+                ],
+                answer: 0,
+                explanation: "“I don't understand. Could you repeat that?” is grammatically correct and polite."
+            }
+
+        ];
+
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("questionNumber").textContent =
+                "Question " + (currentQuestion + 1);
+
+            document.getElementById("questionText").textContent =
+                q.question;
+
+            document.getElementById("progressText").textContent =
+                "Question " + (currentQuestion + 1) + " of " + questions.length;
+
+            document.getElementById("quizProgress").value =
+                currentQuestion + 1;
+
+            const optionsDiv = document.getElementById("options");
+
+            optionsDiv.innerHTML = "";
+
+            document.getElementById("feedback").style.display = "none";
+            document.getElementById("feedback").textContent = "";
+
+            const nextBtn = document.getElementById("nextBtn");
+
+            nextBtn.disabled = true;
+            nextBtn.textContent =
+                currentQuestion === questions.length - 1
+                    ? "Finish Test 🏆"
+                    : "Next Question →";
+
+
+            q.options.forEach(function (option, index) {
+
+                const optionDiv = document.createElement("div");
+
+                optionDiv.className = "option";
+
+                optionDiv.textContent =
+                    String.fromCharCode(65 + index) + ". " + option;
+
+                optionDiv.onclick = function () {
+                    selectAnswer(index, optionDiv);
+                };
+
+                optionsDiv.appendChild(optionDiv);
+
+            });
+
+        }
+
+
+        function selectAnswer(index, selectedElement) {
+
+            if (answered) {
+                return;
+            }
+
+            answered = true;
+
+            const q = questions[currentQuestion];
+
+            const allOptions =
+                document.querySelectorAll(".option");
+
+            allOptions.forEach(function (option) {
+                option.style.pointerEvents = "none";
+            });
+
+
+            if (index === q.answer) {
+
+                score++;
+
+                selectedElement.classList.add("correct");
+
+                showFeedback(
+                    "✅ Correct! " + q.explanation,
+                    "correct"
+                );
+
+            } else {
+
+                selectedElement.classList.add("wrong");
+
+                allOptions[q.answer].classList.add("correct");
+
+                showFeedback(
+                    "❌ Not quite. " +
+                    q.explanation +
+                    " The correct answer is: " +
+                    q.options[q.answer],
+                    "wrong"
+                );
+
+            }
+
+            document.getElementById("nextBtn").disabled = false;
+
+        }
+
+
+        function showFeedback(text, type) {
+
+            const feedback =
+                document.getElementById("feedback");
+
+            feedback.textContent = text;
+
+            feedback.style.display = "block";
+
+            if (type === "correct") {
+                feedback.style.background =
+                    "rgba(34,197,94,0.18)";
+            } else {
+                feedback.style.background =
+                    "rgba(239,68,68,0.18)";
+            }
+
+        }
+
+
+        function nextQuestion() {
+
+            if (!answered) {
+                return;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                showResult();
+
+            }
+
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quizArea").style.display =
+                "none";
+
+            document.getElementById("resultBox").style.display =
+                "block";
+
+            document.getElementById("finalScore").textContent =
+                score + "/10";
+
+
+            const resultMessage =
+                document.getElementById("resultMessage");
+
+            const rewardText =
+                document.getElementById("rewardText");
+
+
+            if (score >= 5) {
+
+                resultMessage.innerHTML =
+                    "🎉 Congratulations! You passed the Final Test.<br><br>" +
+                    "You have successfully completed your SpeakMate AI English course!";
+
+                giveFinalReward();
+
+            } else {
+
+                resultMessage.innerHTML =
+                    "💪 Keep practicing! You did not pass this time.<br><br>" +
+                    "Review the lessons and try the Final Test again.";
+
+                rewardText.textContent =
+                    "No final reward yet. You need at least 5 correct answers.";
+
+            }
+
+        }
+
+
+        function giveFinalReward() {
+
+            const alreadyCompleted =
+                localStorage.getItem("finalTestCompleted") === "true";
+
+
+            if (alreadyCompleted) {
+
+                document.getElementById("rewardText").textContent =
+                    "🏆 Final reward was already collected.";
+
+                return;
+
+            }
+
+
+            let xp =
+                Number(localStorage.getItem("xp") || 0);
+
+            let coins =
+                Number(localStorage.getItem("coins") || 0);
+
+
+            xp += 50;
+            coins += 25;
+
+
+            localStorage.setItem("xp", xp);
+            localStorage.setItem("coins", coins);
+
+            localStorage.setItem(
+                "finalTestCompleted",
+                "true"
+            );
+
+
+            document.getElementById("rewardText").innerHTML =
+                "🎁 Final Reward<br><br>" +
+                "+50 XP ⭐<br>" +
+                "+25 Coins 🪙<br><br>" +
+                "🏆 You are now a SpeakMate AI English Course Graduate!";
+        }
+
+
+        function reviewCourse() {
+            window.location.href = "course.html";
+        }
+
+
+        function goToChat() {
+            window.location.href = "chat.html";
+        }
+
+
+        function goHome() {
+            window.location.href = "home.html";
+        }
+
+
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpeakMate AI - Home</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background:
+                radial-gradient(circle at top left, #12395c 0%, transparent 35%),
+                radial-gradient(circle at bottom right, #40205d 0%, transparent 35%),
+                linear-gradient(135deg, #06111f, #0b1728 55%, #111827);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .brand {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .profile-btn {
+            border: none;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .1);
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            padding: 30px;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            backdrop-filter: blur(14px);
+            margin-bottom: 22px;
+        }
+
+        .hero-small {
+            color: #7dd3fc;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #b8c5d5;
+            line-height: 1.6;
+            max-width: 760px;
+        }
+
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+            margin-top: 22px;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, .06);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #9eacbe;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        /* SECTION */
+
+        .section-title {
+            font-size: 23px;
+            margin: 28px 0 8px;
+        }
+
+        .section-subtitle {
+            color: #91a1b5;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+
+        /* GOAL GRID */
+
+        .goals {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .goal-card {
+            position: relative;
+            padding: 22px;
+            min-height: 165px;
+            border-radius: 21px;
+            cursor: pointer;
+            overflow: hidden;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            transition: .2s;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, .095);
+            border-color: rgba(255, 255, 255, .18);
+        }
+
+        .goal-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .goal-card h3 {
+            font-size: 19px;
+            margin-bottom: 7px;
+        }
+
+        .goal-card p {
+            color: #aebdce;
+            font-size: 13px;
+            line-height: 1.55;
+            max-width: 420px;
+        }
+
+        .arrow {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+        }
+
+
+        /* SPECIAL COLORS */
+
+        .job-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(37, 99, 235, .17),
+                    rgba(59, 130, 246, .05));
+        }
+
+        .speaking-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(16, 185, 129, .15),
+                    rgba(20, 184, 166, .05));
+        }
+
+        .abroad-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(14, 165, 233, .17),
+                    rgba(6, 182, 212, .05));
+        }
+
+        .interview-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(124, 58, 237, .18),
+                    rgba(168, 85, 247, .05));
+        }
+
+        .learn-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(245, 158, 11, .15),
+                    rgba(234, 88, 12, .05));
+        }
+
+        .career-card {
+            background:
+                linear-gradient(135deg,
+                    rgba(236, 72, 153, .15),
+                    rgba(219, 39, 119, .05));
+        }
+
+
+        /* QUICK ACTIONS */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 13px;
+            margin-top: 15px;
+        }
+
+        .quick-card {
+            padding: 17px;
+            border-radius: 17px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .quick-icon {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .quick-card h4 {
+            margin-bottom: 5px;
+        }
+
+        .quick-card p {
+            color: #93a3b7;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+
+        /* AI CARD */
+
+        .ai-card {
+            margin-top: 24px;
+            padding: 25px;
+            border-radius: 23px;
+            background:
+                linear-gradient(135deg,
+                    rgba(37, 99, 235, .15),
+                    rgba(124, 58, 237, .15));
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .ai-icon {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .ai-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .ai-card p {
+            color: #b8c5d5;
+            line-height: 1.6;
+        }
+
+        .ai-btn {
+            margin-top: 16px;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            padding: 28px 0 10px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            .container {
+                padding: 14px;
+            }
+
+            .hero {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .goals {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        /* PREMIUM CARD */
+
+        .premium-card {
+            margin-top: 24px;
+            padding: 25px;
+            border-radius: 23px;
+            background: linear-gradient(135deg,
+                    rgba(245, 158, 11, .16),
+                    rgba(124, 58, 237, .18));
+            border: 1px solid rgba(250, 204, 21, .25);
+        }
+
+        .premium-icon {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .premium-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .premium-card p {
+            color: #b8c5d5;
+            line-height: 1.6;
+        }
+
+        .premium-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 14px;
+        }
+
+        .premium-price span {
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: normal;
+        }
+
+        .premium-btn {
+            margin-top: 16px;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f59e0b, #7c3aed);
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="brand">
+                🗣️ SpeakMate AI
+            </div>
+
+            <button class="profile-btn" onclick="goProfile()">
+                👤 Profile
+            </button>
+
+        </div>
+
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div class="hero-small">
+                AI-powered English & Career Coach
+            </div>
+
+            <h1>
+                What do you want to achieve?
+            </h1>
+
+            <p>
+                Choose your goal and start practicing
+                English, job skills, interviews and
+                international workplace communication.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-value" id="xpValue">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        XP
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-value" id="coinValue">
+                        0
+                    </div>
+
+                    <div class="stat-label">
+                        Coins
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-value" id="levelValue">
+                        1
+                    </div>
+
+                    <div class="stat-label">
+                        Level
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN GOALS -->
+
+        <h2 class="section-title">
+            🎯 Choose Your Goal
+        </h2>
+
+        <p class="section-subtitle">
+            Pick the path that matches what you want
+            to achieve.
+        </p>
+
+
+        <div class="goals">
+
+
+            <!-- GET A JOB -->
+
+            <div class="goal-card job-card" onclick="chooseGoal('Get a Job','💼')">
+
+                <div class="goal-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Get a Job
+                </h3>
+
+                <p>
+                    Learn job English, build your resume,
+                    write professional emails and prepare
+                    for interviews.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <!-- SPEAKING -->
+
+            <div class="goal-card speaking-card" onclick="chooseGoal('Improve Speaking','🗣️')">
+
+                <div class="goal-icon">
+                    🗣️
+                </div>
+
+                <h3>
+                    Improve Speaking
+                </h3>
+
+                <p>
+                    Practice real conversations and
+                    improve your English speaking confidence
+                    with AI.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <!-- WORK ABROAD -->
+
+            <div class="goal-card abroad-card" onclick="chooseGoal('Work Abroad','🌍')">
+
+                <div class="goal-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Work Abroad
+                </h3>
+
+                <p>
+                    Practice international workplace English,
+                    real-life situations and AI roleplays
+                    for working abroad.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <!-- INTERVIEW -->
+
+            <div class="goal-card interview-card" onclick="chooseGoal('Prepare for Interview','🎤')">
+
+                <div class="goal-icon">
+                    🎤
+                </div>
+
+                <h3>
+                    Prepare for Interview
+                </h3>
+
+                <p>
+                    Practice interview questions,
+                    improve your answers and build
+                    interview confidence.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <!-- LEARN ENGLISH -->
+
+            <div class="goal-card learn-card" onclick="chooseGoal('Learn English','📚')">
+
+                <div class="goal-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Learn English
+                </h3>
+
+                <p>
+                    Follow structured English lessons,
+                    quizzes and practice activities.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <!-- CAREER SKILLS -->
+
+            <div class="goal-card career-card" onclick="chooseGoal('Improve Career Skills','📈')">
+
+                <div class="goal-icon">
+                    📈
+                </div>
+
+                <h3>
+                    Improve Career Skills
+                </h3>
+
+                <p>
+                    Build professional communication,
+                    workplace skills and career confidence.
+                </p>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <h2 class="section-title">
+            ⚡ Quick Practice
+        </h2>
+
+        <p class="section-subtitle">
+            Jump directly into a useful practice session.
+        </p>
+
+
+        <div class="quick-actions">
+
+
+            <div class="quick-card" onclick="openQuick('Interview Practice')">
+
+                <div class="quick-icon">
+                    🎤
+                </div>
+
+                <h4>
+                    Interview Practice
+                </h4>
+
+                <p>
+                    Practice common job interview questions.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card" onclick="openQuick('Job Coach')">
+
+                <div class="quick-icon">
+                    💼
+                </div>
+
+                <h4>
+                    AI Job Coach
+                </h4>
+
+                <p>
+                    Ask AI about jobs and career English.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card" onclick="openQuick('Speaking Practice')">
+
+                <div class="quick-icon">
+                    🗣️
+                </div>
+
+                <h4>
+                    Speaking Practice
+                </h4>
+
+                <p>
+                    Practice English conversations with AI.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div><!-- PREMIUM CARD -->
+
+    <div class="premium-card">
+
+        <div class="premium-icon">
+            👑
+        </div>
+
+        <h2>
+            SpeakMate Premium
+        </h2>
+
+        <p>
+            Unlock advanced AI practice, career English,
+            interview preparation and more.
+        </p>
+
+        <div class="premium-price">
+            ₹199 <span>/ month</span>
+        </div>
+
+        <button id="premiumHomeBtn" class="premium-btn" onclick="openPremium()">
+            👑 Get Premium
+        </button>
+
+    </div>
+    <!-- AI CARD -->
+
+    <div class="ai-card">
+
+        <div class="ai-icon">
+            🤖
+        </div>
+
+        <h2>
+            Speak with Your AI Coach
+        </h2>
+
+        <p>
+            Practice English, interviews, workplace
+            conversations and career communication
+            with SpeakMate AI.
+        </p>
+
+
+        <button class="ai-btn" onclick="openAI()">
+            💬 Start AI Practice
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+        SpeakMate AI • Learn English • Build Your Career
+    </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================================================
+           GOAL NAVIGATION
+        ========================================================= */
+
+        function chooseGoal(goal, icon) {
+
+            localStorage.setItem(
+                "selectedGoal",
+                goal
+            );
+
+
+            localStorage.setItem(
+                "selectedGoalIcon",
+                icon
+            );
+
+
+            /* GET A JOB */
+
+            if (goal === "Get a Job") {
+
+                window.location.href =
+                    "job.html";
+
+                return;
+
+            }
+
+
+            /* WORK ABROAD */
+
+            if (goal === "Work Abroad") {
+
+                window.location.href =
+                    "work_abroad.html";
+
+                return;
+
+            }
+
+
+            /* INTERVIEW */
+
+            if (goal === "Prepare for Interview") {
+
+                localStorage.setItem(
+                    "chatMode",
+                    "Interview Practice"
+                );
+
+
+                window.location.href =
+                    "interview_english.html";
+
+                return;
+
+            }
+
+
+            /* SPEAKING */
+
+            if (goal === "Improve Speaking") {
+
+                localStorage.setItem(
+                    "chatMode",
+                    "Speaking Practice"
+                );
+
+
+                window.location.href =
+                    "chat.html";
+
+                return;
+
+            }
+
+
+            /* LEARN ENGLISH */
+
+            if (goal === "Learn English") {
+
+                window.location.href =
+                    "course.html";
+
+                return;
+
+            }
+
+
+            /* CAREER SKILLS */
+
+            if (goal === "Improve Career Skills") {
+
+                localStorage.setItem(
+                    "chatMode",
+                    "Career Coach"
+                );
+
+
+                window.location.href =
+                    "chat.html";
+
+                return;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           QUICK PRACTICE
+        ========================================================= */
+
+        function openQuick(mode) {
+
+            localStorage.setItem(
+                "chatMode",
+                mode
+            );
+
+
+            if (mode === "Interview Practice") {
+
+                window.location.href =
+                    "interview_english.html";
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        /* =========================================================
+           AI
+        ========================================================= */
+
+        function openAI() {
+
+            localStorage.setItem(
+                "chatMode",
+                "Job Coach"
+            );
+
+
+            window.location.href =
+                "chat.html";
+
+        }
+
+
+        /* =========================================================
+           PROFILE
+        ========================================================= */
+
+        function goProfile() {
+
+            window.location.href =
+                "profile.html";
+
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        function updateStats() {
+
+            const xp =
+                Number(
+                    localStorage.getItem(
+                        "xp"
+                    ) || 0
+                );
+
+
+            const coins =
+                Number(
+                    localStorage.getItem(
+                        "coins"
+                    ) || 0
+                );
+
+
+            const level =
+                Math.floor(
+                    xp / 100
+                ) + 1;
+
+
+            document.getElementById(
+                "xpValue"
+            ).innerText =
+                xp;
+
+
+            document.getElementById(
+                "coinValue"
+            ).innerText =
+                coins;
+
+
+            document.getElementById(
+                "levelValue"
+            ).innerText =
+                level;
+
+        }
+
+
+        /* =========================================================
+           INIT
+        ========================================================= */
+        function openPremium() {
+            window.location.href = "premium.html";
+        }/* =========================
+   PREMIUM STATUS
+========================= */
+
+        function updateHomePremium() {
+
+            const email = localStorage.getItem("userEmail");
+
+            const premiumKey = email
+                ? "premiumActive_" + email
+                : "premiumActive";
+
+            const isPremium =
+                localStorage.getItem(premiumKey) === "true";
+
+            const button =
+                document.getElementById("premiumHomeBtn");
+
+            if (!button) return;
+
+            if (isPremium) {
+
+                button.innerHTML = "👑 Premium Active";
+
+                button.style.background =
+                    "linear-gradient(135deg, #16a34a, #22c55e)";
+
+            } else {
+
+                button.innerHTML = "👑 Get Premium";
+
+            }
+        }
+
+
+        /* =========================
+           CHECK ON PAGE LOAD
+        ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                updateHomePremium();
+
+            }
+        );
+        updateStats();
+
+    </script>
+
+</body>
+
+</html>

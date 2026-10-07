@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpeakMate AI - Premium</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top left,
+                    rgba(56, 189, 248, .18),
+                    transparent 35%),
+                radial-gradient(circle at bottom right,
+                    rgba(139, 92, 246, .18),
+                    transparent 35%),
+                #020617;
+
+            color: white;
+            min-height: 100vh;
+            padding-bottom: 90px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+            padding: 20px 16px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            border: none;
+            background: rgba(255, 255, 255, .08);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .brand {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            text-align: center;
+            padding: 28px 18px;
+            border-radius: 25px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(56, 189, 248, .16),
+                    rgba(139, 92, 246, .18));
+
+            border: 1px solid rgba(255, 255, 255, .12);
+            margin-bottom: 20px;
+        }
+
+        .crown {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .premium-badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 14px;
+            border-radius: 30px;
+
+            background: rgba(250, 204, 21, .12);
+            border: 1px solid rgba(250, 204, 21, .35);
+
+            color: #fde68a;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           PLANS
+        ========================= */
+
+        .section-title {
+            font-size: 20px;
+            margin: 25px 0 12px;
+        }
+
+        .plan {
+            border-radius: 20px;
+            padding: 20px;
+
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10);
+
+            margin-bottom: 15px;
+        }
+
+        .plan.premium {
+            border: 2px solid #8b5cf6;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(139, 92, 246, .15),
+                    rgba(56, 189, 248, .08));
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .plan-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .price span {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: normal;
+        }
+
+        .features {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .features li {
+            padding: 8px 0;
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+
+        .choose-btn {
+            width: 100%;
+            border: none;
+            border-radius: 13px;
+            padding: 13px;
+
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .free-btn {
+            background: #334155;
+        }
+
+        .premium-btn {
+            background:
+                linear-gradient(135deg,
+                    #8b5cf6,
+                    #6366f1);
+        }
+
+        .premium-btn.active {
+            background:
+                linear-gradient(135deg,
+                    #16a34a,
+                    #22c55e);
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .feature-card {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .08);
+
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: rgba(56, 189, 248, .12);
+
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .feature-text h3 {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 20px;
+            padding: 15px;
+
+            border-radius: 15px;
+
+            background: rgba(34, 197, 94, .10);
+            border: 1px solid rgba(34, 197, 94, .25);
+
+            color: #86efac;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           PREMIUM ACTIVE BOX
+        ========================= */
+
+        .premium-active-box {
+            display: none;
+
+            margin-top: 15px;
+            padding: 15px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(34, 197, 94, .12),
+                    rgba(16, 185, 129, .08));
+
+            border: 1px solid rgba(34, 197, 94, .25);
+
+            text-align: center;
+
+            color: #bbf7d0;
+        }
+
+        .premium-active-box .active-icon {
+            font-size: 35px;
+            margin-bottom: 7px;
+        }
+
+        .premium-active-box h3 {
+            margin-bottom: 5px;
+        }
+
+        .premium-active-box p {
+            font-size: 13px;
+            color: #86efac;
+        }
+
+
+        /* =========================
+           NOTE
+        ========================= */
+
+        .note {
+            text-align: center;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.5;
+            margin-top: 25px;
+        }
+
+
+        /* =========================
+           BOTTOM NAV
+        ========================= */
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 68px;
+
+            background: #0f172a;
+
+            border-top: 1px solid rgba(255, 255, 255, .10);
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            text-decoration: none;
+            color: #94a3b8;
+
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .bottom-nav span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .bottom-nav a.active {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 360px) {
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .price {
+                font-size: 19px;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <button class="back-btn" onclick="goBack()">
+                ← Back
+            </button>
+
+            <div class="brand">
+                🗣️ SpeakMate AI
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <div class="hero">
+
+            <div class="crown">
+                👑
+            </div>
+
+            <h1>
+                SpeakMate Premium
+            </h1>
+
+            <p>
+                Unlock more English learning,
+                AI practice and career features.
+            </p>
+
+            <div class="premium-badge">
+                ✨ LEARN MORE • ACHIEVE MORE
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PLAN
+        ========================= -->
+
+        <h2 class="section-title">
+            Choose Your Plan
+        </h2>
+
+
+        <!-- FREE PLAN -->
+
+        <div class="plan">
+
+            <div class="plan-header">
+
+                <div class="plan-name">
+                    Free
+                </div>
+
+                <div class="price">
+                    ₹0
+                </div>
+
+            </div>
+
+
+            <ul class="features">
+
+                <li>
+                    ✅ Basic English Courses
+                </li>
+
+                <li>
+                    ✅ Daily Quiz
+                </li>
+
+                <li>
+                    ✅ Basic AI Practice
+                </li>
+
+                <li>
+                    ✅ XP & Coins
+                </li>
+
+                <li>
+                    🔒 Limited AI usage
+                </li>
+
+                <li>
+                    📢 Ads may be shown
+                </li>
+
+            </ul>
+
+
+            <button class="choose-btn free-btn">
+                Current Plan
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             PREMIUM PLAN
+        ========================= -->
+
+        <div class="plan premium">
+
+            <div class="plan-header">
+
+                <div class="plan-name">
+                    👑 Premium
+                </div>
+
+                <div class="price">
+                    ₹199
+                    <span>/ month</span>
+                </div>
+
+            </div>
+
+
+            <ul class="features">
+
+                <li>
+                    🔓 All English Courses
+                </li>
+
+                <li>
+                    🤖 Extended AI Practice
+                </li>
+
+                <li>
+                    💼 Advanced Interview Practice
+                </li>
+
+                <li>
+                    🌍 Work Abroad Practice
+                </li>
+
+                <li>
+                    📧 Professional English
+                </li>
+
+                <li>
+                    📄 Resume English
+                </li>
+
+                <li>
+                    🚫 Ad-Free Experience
+                </li>
+
+                <li>
+                    🏆 Premium Features
+                </li>
+
+            </ul>
+
+
+            <button id="premiumButton" class="choose-btn premium-btn" onclick="startPremium()">
+                👑 Get Premium
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             PREMIUM ACTIVE
+        ========================= -->
+
+        <div id="premiumActiveBox" class="premium-active-box">
+
+            <div class="active-icon">
+                👑
+            </div>
+
+            <h3>
+                SpeakMate Premium Active
+            </h3>
+
+            <p>
+                Your Premium features are unlocked.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             PREMIUM FEATURES
+        ========================= -->
+
+        <h2 class="section-title">
+            What You Get
+        </h2>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🤖
+            </div>
+
+            <div class="feature-text">
+
+                <h3>
+                    More AI Practice
+                </h3>
+
+                <p>
+                    Practice English with your AI coach
+                    with higher usage limits.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💼
+            </div>
+
+            <div class="feature-text">
+
+                <h3>
+                    Career English
+                </h3>
+
+                <p>
+                    Improve interview, resume,
+                    email and workplace English.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🌍
+            </div>
+
+            <div class="feature-text">
+
+                <h3>
+                    Work Abroad
+                </h3>
+
+                <p>
+                    Practice professional English
+                    for international workplaces.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🚫
+            </div>
+
+            <div class="feature-text">
+
+                <h3>
+                    Ad-Free Learning
+                </h3>
+
+                <p>
+                    Learn without advertisements
+                    when Premium is active.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             STATUS
+        ========================= -->
+
+        <div id="premiumStatus" class="status">
+
+            👑 Premium selected.
+
+            <br>
+
+            Real payment will be connected
+            through Google Play Billing.
+
+        </div>
+
+
+        <div class="note">
+
+            Premium purchases will be handled through
+            Google Play Billing when the payment system
+            is connected.
+
+            <br><br>
+
+            This is currently a development/demo activation.
+            No real payment is being charged.
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         BOTTOM NAV
+    ========================= -->
+
+    <div class="bottom-nav">
+
+        <a href="home_special.html">
+
+            <span>
+                🏠
+            </span>
+
+            Home
+
+        </a>
+
+
+        <a href="course.html">
+
+            <span>
+                📚
+            </span>
+
+            Course
+
+        </a>
+
+
+        <a href="chat.html">
+
+            <span>
+                🤖
+            </span>
+
+            AI Chat
+
+        </a>
+
+
+        <a href="quiz1.html">
+
+            <span>
+                📝
+            </span>
+
+            Quiz
+
+        </a>
+
+
+        <a href="profile.html">
+
+            <span>
+                👤
+            </span>
+
+            Profile
+
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           BACK
+        ========================= */
+
+        function goBack() {
+
+            if (history.length > 1) {
+
+                history.back();
+
+            } else {
+
+                window.location.href =
+                    "home_special.html";
+
+            }
+
+        }
+
+
+        /* =========================
+           GET PREMIUM STORAGE KEY
+        ========================= */
+
+        function getPremiumKey() {
+
+            const email =
+                localStorage.getItem("userEmail");
+
+            /*
+             * Agar user login hai to
+             * Premium us account ke naam se save hoga.
+             */
+
+            if (email) {
+
+                return "premiumActive_" + email;
+
+            }
+
+            /*
+             * Agar login nahi hai
+             * to normal demo key use hogi.
+             */
+
+            return "premiumActive";
+
+        }
+
+
+        /* =========================
+           CHECK PREMIUM
+        ========================= */
+
+        function isPremiumActive() {
+
+            return (
+                localStorage.getItem(
+                    getPremiumKey()
+                ) === "true"
+            );
+
+        }
+
+
+        /* =========================
+           START PREMIUM
+        ========================= */
+
+        function startPremium() {
+
+            const status =
+                document.getElementById(
+                    "premiumStatus"
+                );
+
+            const button =
+                document.getElementById(
+                    "premiumButton"
+                );
+
+            const activeBox =
+                document.getElementById(
+                    "premiumActiveBox"
+                );
+
+
+            /*
+             * Agar Premium already active hai
+             */
+
+            if (isPremiumActive()) {
+
+                status.innerHTML = `
+                    👑 <strong>Premium Already Active!</strong>
+                    <br>
+                    Aapke Premium features already unlocked hain.
+                `;
+
+                status.style.display = "block";
+
+                if (button) {
+
+                    button.innerHTML =
+                        "👑 Premium Active";
+
+                    button.classList.add("active");
+
+                }
+
+                if (activeBox) {
+
+                    activeBox.style.display =
+                        "block";
+
+                }
+
+                status.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
+                return;
+
+            }
+
+
+            /*
+             * =========================
+             * DEMO ACTIVATION
+             * =========================
+             *
+             * Abhi real payment nahi hai.
+             *
+             * Google Play Billing baad me
+             * connect kiya jayega.
+             */
+
+            localStorage.setItem(
+                getPremiumKey(),
+                "true"
+            );
+
+
+            /*
+             * Success message
+             */
+
+            status.innerHTML = `
+                🎉 <strong>SpeakMate Premium Activated!</strong>
+                <br>
+                👑 Ab aap Premium features use kar sakte ho.
+                <br>
+                <small>
+                    Demo activation successful.
+                </small>
+            `;
+
+            status.style.display = "block";
+
+
+            /*
+             * Button change
+             */
+
+            if (button) {
+
+                button.innerHTML =
+                    "👑 Premium Active";
+
+                button.classList.add("active");
+
+            }
+
+
+            /*
+             * Active box show
+             */
+
+            if (activeBox) {
+
+                activeBox.style.display =
+                    "block";
+
+            }
+
+
+            /*
+             * Message tak scroll
+             */
+
+            status.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "center"
+
+            });
+
+        }
+
+
+        /* =========================
+           UPDATE PREMIUM UI
+        ========================= */
+
+        function updatePremiumUI() {
+
+            const status =
+                document.getElementById(
+                    "premiumStatus"
+                );
+
+            const button =
+                document.getElementById(
+                    "premiumButton"
+                );
+
+            const activeBox =
+                document.getElementById(
+                    "premiumActiveBox"
+                );
+
+
+            /*
+             * Premium active hai
+             */
+
+            if (isPremiumActive()) {
+
+                if (status) {
+
+                    status.innerHTML = `
+                        👑 <strong>SpeakMate Premium Active</strong>
+                        <br>
+                        All Premium features are unlocked.
+                    `;
+
+                    status.style.display =
+                        "block";
+
+                }
+
+
+                if (button) {
+
+                    button.innerHTML =
+                        "👑 Premium Active";
+
+                    button.classList.add("active");
+
+                }
+
+
+                if (activeBox) {
+
+                    activeBox.style.display =
+                        "block";
+
+                }
+
+            }
+
+
+        }
+
+
+        /* =========================
+           PAGE LOAD
+        ========================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                updatePremiumUI();
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

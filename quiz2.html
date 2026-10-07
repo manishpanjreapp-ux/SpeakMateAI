@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz 2 - Self Introduction | SpeakMate AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .quiz-header {
+            margin-bottom: 20px;
+        }
+
+        .quiz-header h1 {
+            margin-bottom: 8px;
+        }
+
+        .quiz-header p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #facc15;
+            margin-top: 4px;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .question-number {
+            color: #38bdf8;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            font-size: 21px;
+            font-weight: bold;
+            line-height: 1.5;
+            color: white;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            width: 100%;
+            padding: 14px;
+            margin: 0;
+            border-radius: 14px;
+            background: #1e293b;
+            border: 2px solid transparent;
+            color: white;
+            font-size: 16px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #334155;
+        }
+
+        .option.correct {
+            background: #166534;
+            border-color: #22c55e;
+        }
+
+        .option.wrong {
+            background: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 14px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .feedback.correct-feedback {
+            display: block;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+        }
+
+        .feedback.wrong-feedback {
+            display: block;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .next-btn {
+            display: none;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .result-box {
+            display: none;
+        }
+
+        .result-icon {
+            font-size: 65px;
+        }
+
+        .result-score {
+            font-size: 32px;
+            font-weight: bold;
+            color: #facc15;
+            margin: 15px 0;
+        }
+
+        .result-message {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .reward-box {
+            background: rgba(250, 204, 21, 0.10);
+            border: 1px solid rgba(250, 204, 21, 0.25);
+            border-radius: 18px;
+            padding: 18px;
+            margin: 20px 0;
+            color: #fde68a;
+        }
+
+        .retry-btn {
+            background: #475569;
+        }
+
+        .course-btn {
+            background: #0f766e;
+        }
+
+        .lesson-btn {
+            background: #2563eb;
+        }
+
+        body {
+            padding-bottom: 90px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 68px;
+            background: #111827;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #38bdf8;
+            z-index: 999;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .bottom-nav a.active {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .bottom-nav span {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="quizArea">
+
+            <div class="quiz-header">
+                <h1>📝 Quiz 2</h1>
+                <p>Self Introduction</p>
+            </div>
+
+            <div class="quiz-info">
+
+                <div class="info-box">
+                    <div class="info-label">Question</div>
+                    <div class="info-value">
+                        <span id="questionNumber">1</span>/10
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-label">Score</div>
+                    <div class="info-value">
+                        ⭐ <span id="scoreDisplay">0</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="question-box">
+
+                <div class="question-number" id="questionLabel">
+                    Question 1
+                </div>
+
+                <div class="question" id="questionText">
+                    Loading...
+                </div>
+
+            </div>
+
+            <div class="options" id="optionsContainer"></div>
+
+            <div id="feedback" class="feedback"></div>
+
+            <button id="nextButton" class="next-btn" onclick="nextQuestion()">
+                Next Question →
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div id="resultBox" class="result-box">
+
+            <div class="result-icon" id="resultIcon">
+                🎉
+            </div>
+
+            <h1>Quiz Complete!</h1>
+
+            <div class="result-score">
+                <span id="finalScore">0</span>/10
+            </div>
+
+            <p class="result-message" id="resultMessage"></p>
+
+            <div class="reward-box">
+
+                🏆 <strong>Quiz Reward</strong>
+
+                <br><br>
+
+                ⭐ <strong>+20 XP</strong>
+                <br>
+                🪙 <strong>+10 Coins</strong>
+
+                <br><br>
+
+                <span id="rewardStatus"></span>
+
+            </div>
+
+            <button class="lesson-btn" onclick="goToLesson()">
+                📖 Review Lesson 2
+            </button>
+
+            <button class="course-btn" onclick="goToCourse()">
+                📚 Back to Course
+            </button>
+
+            <button class="retry-btn" onclick="restartQuiz()">
+                🔄 Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <a href="home.html">
+            <span>🏠</span>
+            Home
+        </a>
+
+        <a href="course.html">
+            <span>📚</span>
+            Course
+        </a>
+
+        <a href="chat.html">
+            <span>🤖</span>
+            AI Chat
+        </a>
+
+        <a href="quiz2.html" class="active">
+            <span>📝</span>
+            Quiz
+        </a>
+
+        <a href="profile.html">
+            <span>👤</span>
+            Profile
+        </a>
+
+    </div>
+
+
+    <script>
+
+        // ================================
+        // QUESTIONS
+        // ================================
+
+        const questions = [
+
+            {
+                question: "Which sentence correctly introduces your name?",
+                options: [
+                    "My name is Manish.",
+                    "My name Manish.",
+                    "I name is Manish.",
+                    "Me name is Manish."
+                ],
+                answer: 0,
+                explanation: "Correct sentence: My name is Manish."
+            },
+
+            {
+                question: "What does 'Where are you from?' mean?",
+                options: [
+                    "आप कहाँ से हैं?",
+                    "आपका नाम क्या है?",
+                    "आप क्या कर रहे हैं?",
+                    "आप कहाँ जा रहे हैं?"
+                ],
+                answer: 0,
+                explanation: "Where are you from? का मतलब 'आप कहाँ से हैं?' होता है।"
+            },
+
+            {
+                question: "Choose the correct sentence for 'मैं भारत से हूँ।'",
+                options: [
+                    "I am from India.",
+                    "I am India.",
+                    "I from India.",
+                    "I am at India."
+                ],
+                answer: 0,
+                explanation: "I am from India. सही sentence है।"
+            },
+
+            {
+                question: "Which sentence means 'मैं अंग्रेज़ी सीख रहा हूँ।'?",
+                options: [
+                    "I learn English yesterday.",
+                    "I am learning English.",
+                    "I English learning.",
+                    "I am learn English."
+                ],
+                answer: 1,
+                explanation: "I am learning English. का मतलब 'मैं अंग्रेज़ी सीख रहा हूँ।' है।"
+            },
+
+            {
+                question: "How do you ask someone where they live?",
+                options: [
+                    "Where do you live?",
+                    "Where are you from?",
+                    "What is your hobby?",
+                    "What is your name?"
+                ],
+                answer: 0,
+                explanation: "Where do you live? का उपयोग किसी से उनके रहने की जगह पूछने के लिए किया जाता है।"
+            },
+
+            {
+                question: "What does 'My hobby is reading' mean?",
+                options: [
+                    "मुझे पढ़ना पसंद नहीं है।",
+                    "मैं पढ़ाई कर रहा हूँ।",
+                    "मेरा शौक पढ़ना है।",
+                    "मैं किताब बेचता हूँ।"
+                ],
+                answer: 2,
+                explanation: "My hobby is reading. का मतलब 'मेरा शौक पढ़ना है।' है।"
+            },
+
+            {
+                question: "Complete the sentence: 'I ___ in Delhi.'",
+                options: [
+                    "live",
+                    "lives",
+                    "living",
+                    "am live"
+                ],
+                answer: 0,
+                explanation: "I के साथ simple present में 'live' आता है: I live in Delhi."
+            },
+
+            {
+                question: "Which sentence is correct?",
+                options: [
+                    "I am 25 years old.",
+                    "I have 25 years old.",
+                    "I am 25 year old.",
+                    "I has 25 years old."
+                ],
+                answer: 0,
+                explanation: "Age बताने का सही तरीका है: I am 25 years old."
+            },
+
+            {
+                question: "What does 'I work in a company' mean?",
+                options: [
+                    "मैं एक कंपनी में काम करता हूँ।",
+                    "मैं एक कंपनी खरीदता हूँ।",
+                    "मैं कंपनी में पढ़ता हूँ।",
+                    "मैं कंपनी से जा रहा हूँ।"
+                ],
+                answer: 0,
+                explanation: "I work in a company. का मतलब 'मैं एक कंपनी में काम करता हूँ।' है।"
+            },
+
+            {
+                question: "Which sentence is best for saying why you are learning English?",
+                options: [
+                    "I want to improve my English.",
+                    "I am from English.",
+                    "My English is India.",
+                    "I live English."
+                ],
+                answer: 0,
+                explanation: "I want to improve my English. अपने English skills को बेहतर करने की इच्छा बताता है।"
+            }
+
+        ];
+
+
+        // ================================
+        // VARIABLES
+        // ================================
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+
+        // ================================
+        // LOAD QUESTION
+        // ================================
+
+        function loadQuestion() {
+
+            answered = false;
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("questionNumber")
+                .textContent = currentQuestion + 1;
+
+            document.getElementById("questionLabel")
+                .textContent =
+                "Question " + (currentQuestion + 1);
+
+            document.getElementById("questionText")
+                .textContent = q.question;
+
+            document.getElementById("scoreDisplay")
+                .textContent = score;
+
+
+            const container =
+                document.getElementById("optionsContainer");
+
+            container.innerHTML = "";
+
+
+            q.options.forEach(function (option, index) {
+
+                const button =
+                    document.createElement("button");
+
+                button.className = "option";
+
+                button.textContent =
+                    String.fromCharCode(65 + index) +
+                    ". " +
+                    option;
+
+                button.onclick = function () {
+                    checkAnswer(index, button);
+                };
+
+                container.appendChild(button);
+
+            });
+
+
+            const feedback =
+                document.getElementById("feedback");
+
+            feedback.style.display = "none";
+            feedback.className = "feedback";
+            feedback.textContent = "";
+
+
+            document.getElementById("nextButton")
+                .style.display = "none";
+
+        }
+
+
+        // ================================
+        // CHECK ANSWER
+        // ================================
+
+        function checkAnswer(selectedIndex, selectedButton) {
+
+            if (answered) {
+                return;
+            }
+
+            answered = true;
+
+            const q = questions[currentQuestion];
+
+            const options =
+                document.querySelectorAll(".option");
+
+
+            options.forEach(function (button, index) {
+
+                button.disabled = true;
+                button.classList.add("disabled");
+
+                if (index === q.answer) {
+                    button.classList.add("correct");
+                }
+
+            });
+
+
+            const feedback =
+                document.getElementById("feedback");
+
+
+            if (selectedIndex === q.answer) {
+
+                score++;
+
+                selectedButton.classList.add("correct");
+
+                feedback.className =
+                    "feedback correct-feedback";
+
+                feedback.innerHTML =
+                    "✅ Correct!<br><br>" +
+                    q.explanation;
+
+            }
+
+            else {
+
+                selectedButton.classList.add("wrong");
+
+                feedback.className =
+                    "feedback wrong-feedback";
+
+                feedback.innerHTML =
+                    "❌ Wrong answer.<br><br>" +
+                    "Correct answer: <strong>" +
+                    q.options[q.answer] +
+                    "</strong><br><br>" +
+                    q.explanation;
+
+            }
+
+
+            feedback.style.display = "block";
+
+            document.getElementById("scoreDisplay")
+                .textContent = score;
+
+
+            const nextButton =
+                document.getElementById("nextButton");
+
+            nextButton.style.display = "block";
+
+
+            if (currentQuestion === questions.length - 1) {
+
+                nextButton.textContent =
+                    "🏆 See Result";
+
+            }
+            else {
+
+                nextButton.textContent =
+                    "Next Question →";
+
+            }
+
+        }
+
+
+        // ================================
+        // NEXT QUESTION
+        // ================================
+
+        function nextQuestion() {
+
+            if (!answered) {
+                return;
+            }
+
+            currentQuestion++;
+
+
+            if (currentQuestion >= questions.length) {
+
+                finishQuiz();
+
+                return;
+
+            }
+
+
+            loadQuestion();
+
+        }
+
+
+        // ================================
+        // FINISH QUIZ
+        // ================================
+
+        function finishQuiz() {
+
+            document.getElementById("quizArea")
+                .style.display = "none";
+
+            document.getElementById("resultBox")
+                .style.display = "block";
+
+
+            document.getElementById("finalScore")
+                .textContent = score;
+
+
+            const percentage =
+                (score / questions.length) * 100;
+
+
+            const icon =
+                document.getElementById("resultIcon");
+
+            const message =
+                document.getElementById("resultMessage");
+
+
+            if (percentage >= 80) {
+
+                icon.textContent = "🏆";
+
+                message.innerHTML =
+                    "Excellent! 🔥<br>" +
+                    "You have a strong understanding of self introduction.";
+
+            }
+
+            else if (percentage >= 50) {
+
+                icon.textContent = "🎉";
+
+                message.innerHTML =
+                    "Good job! 👍<br>" +
+                    "You understand the basics. Review the lesson and keep practicing.";
+
+            }
+
+            else {
+
+                icon.textContent = "💪";
+
+                message.innerHTML =
+                    "Keep practicing!<br>" +
+                    "Review Lesson 2 and try the quiz again.";
+
+            }
+
+
+            // ================================
+            // REWARD
+            // ================================
+
+            const alreadyCompleted =
+                localStorage.getItem("quiz2Completed") === "true";
+
+            const rewardStatus =
+                document.getElementById("rewardStatus");
+
+
+            if (!alreadyCompleted && score >= 5) {
+
+                let xp =
+                    Number(localStorage.getItem("xp") || 0);
+
+                let coins =
+                    Number(localStorage.getItem("coins") || 0);
+
+
+                xp += 20;
+                coins += 10;
+
+
+                localStorage.setItem("xp", xp);
+                localStorage.setItem("coins", coins);
+
+                localStorage.setItem(
+                    "quiz2Completed",
+                    "true"
+                );
+
+
+                rewardStatus.innerHTML =
+                    "🎁 Reward added to your account!";
+
+            }
+
+            else if (alreadyCompleted) {
+
+                rewardStatus.innerHTML =
+                    "✅ You already received this quiz reward.";
+
+            }
+
+            else {
+
+                rewardStatus.innerHTML =
+                    "📚 Score 5/10 or higher to earn the reward.";
+
+            }
+
+        }
+
+
+        // ================================
+        // RETRY
+        // ================================
+
+        function restartQuiz() {
+
+            currentQuestion = 0;
+            score = 0;
+
+            document.getElementById("quizArea")
+                .style.display = "block";
+
+            document.getElementById("resultBox")
+                .style.display = "none";
+
+            loadQuestion();
+
+        }
+
+
+        // ================================
+        // NAVIGATION
+        // ================================
+
+        function goToLesson() {
+
+            window.location.href =
+                "lesson2.html";
+
+        }
+
+
+        function goToCourse() {
+
+            window.location.href =
+                "course.html";
+
+        }
+
+
+        // START
+        loadQuestion();
+
+    </script>
+
+</body>
+
+</html>
